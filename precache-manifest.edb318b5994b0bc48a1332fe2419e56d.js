@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bbf98b389b3d3ccb3bb5ed9011bb4a6f",
+    "revision": "c625d0e71ef631e1b56a42f632033646",
     "url": "/index.html"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/4.3e7d09e6.chunk.css"
   },
   {
-    "revision": "e1d6d4fae9e12a506a91",
+    "revision": "b81c0e20a83fffe349e2",
     "url": "/static/css/main.3bdeca1e.chunk.css"
   },
   {
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/4.4315c3c6.chunk.js"
   },
   {
-    "revision": "e1d6d4fae9e12a506a91",
-    "url": "/static/js/main.bf4766b1.chunk.js"
+    "revision": "b81c0e20a83fffe349e2",
+    "url": "/static/js/main.849bbc57.chunk.js"
   },
   {
     "revision": "42cb2f33945334219712",
@@ -72,10 +72,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/canwood.0bafc84e.png"
   },
   {
-    "revision": "207ae2e407b93a7dcc76cebd61c4de82",
-    "url": "/static/media/contactme.207ae2e4.svg"
-  },
-  {
     "revision": "eb895571c8572c451bf53e7c8d7ee1bb",
     "url": "/static/media/datacamp.eb895571.png"
   },
@@ -110,6 +106,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "35ef5e915631be2c31ccdff55b53db29",
     "url": "/static/media/harvardLogo.35ef5e91.png"
+  },
+  {
+    "revision": "4b3e7de22488a54c2b576a7eb4ae82c4",
+    "url": "/static/media/headshot.4b3e7de2.png"
   },
   {
     "revision": "a6fac9d543dfb3f73c4bcd0a83119e1a",

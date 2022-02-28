@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.3bdeca1e.chunk.css",
-    "main.js": "/static/js/main.bf4766b1.chunk.js",
-    "main.js.map": "/static/js/main.bf4766b1.chunk.js.map",
+    "main.js": "/static/js/main.849bbc57.chunk.js",
+    "main.js.map": "/static/js/main.849bbc57.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.12d93973.js",
     "runtime-main.js.map": "/static/js/runtime-main.12d93973.js.map",
     "static/js/2.3625beb5.chunk.js": "/static/js/2.3625beb5.chunk.js",
@@ -14,7 +14,7 @@
     "static/js/4.4315c3c6.chunk.js": "/static/js/4.4315c3c6.chunk.js",
     "static/js/4.4315c3c6.chunk.js.map": "/static/js/4.4315c3c6.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.279e9e3b8a3e93ba20c100ca6b67d1c0.js": "/precache-manifest.279e9e3b8a3e93ba20c100ca6b67d1c0.js",
+    "precache-manifest.edb318b5994b0bc48a1332fe2419e56d.js": "/precache-manifest.edb318b5994b0bc48a1332fe2419e56d.js",
     "service-worker.js": "/service-worker.js",
     "static/css/3.00373544.chunk.css.map": "/static/css/3.00373544.chunk.css.map",
     "static/css/4.3e7d09e6.chunk.css.map": "/static/css/4.3e7d09e6.chunk.css.map",
@@ -27,7 +27,6 @@
     "static/media/bio.png": "/static/media/bio.30fd4211.png",
     "static/media/brown.png": "/static/media/brown.71898345.png",
     "static/media/canwood.png": "/static/media/canwood.0bafc84e.png",
-    "static/media/contactme.svg": "/static/media/contactme.207ae2e4.svg",
     "static/media/datacamp.png": "/static/media/datacamp.eb895571.png",
     "static/media/engoo.jpg": "/static/media/engoo.27b3b3f6.jpg",
     "static/media/fiverrLogo.png": "/static/media/fiverrLogo.50cfdfcd.png",
@@ -37,6 +36,7 @@
     "static/media/gnatural.png": "/static/media/gnatural.2499288e.png",
     "static/media/gss.png": "/static/media/gss.b0e101df.png",
     "static/media/harvardLogo.png": "/static/media/harvardLogo.35ef5e91.png",
+    "static/media/headshot.png": "/static/media/headshot.4b3e7de2.png",
     "static/media/mood.png": "/static/media/mood.a6fac9d5.png",
     "static/media/mygreeting.svg": "/static/media/mygreeting.9568e95c.svg",
     "static/media/naivera.png": "/static/media/naivera.552c73b3.png",
@@ -54,6 +54,6 @@
     "static/js/runtime-main.12d93973.js",
     "static/js/2.3625beb5.chunk.js",
     "static/css/main.3bdeca1e.chunk.css",
-    "static/js/main.bf4766b1.chunk.js"
+    "static/js/main.849bbc57.chunk.js"
   ]
 }
