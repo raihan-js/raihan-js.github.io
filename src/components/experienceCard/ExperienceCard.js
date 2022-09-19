@@ -2,6 +2,7 @@ import React, {useState, createRef} from "react";
 import "./ExperienceCard.css";
 import ColorThief from "colorthief";
 
+
 export default function ExperienceCard({cardInfo, isDark}) {
   const [colorArrays, setColorArrays] = useState([]);
   const imgRef = createRef();
@@ -26,6 +27,7 @@ export default function ExperienceCard({cardInfo, isDark}) {
           >
             {item}
           </li>
+          
         ))
       : null;
   };
@@ -78,6 +80,14 @@ export default function ExperienceCard({cardInfo, isDark}) {
         <ul>
           <GetDescBullets descBullets={cardInfo.descBullets} isDark={isDark} />
         </ul>
+        <div className="exdiv">
+          <a href={cardInfo.url} className="exbtn" rel="noopener noreferrer" target="_blank">
+          {cardInfo.urlText}
+          </a>
+        </div>
+        
+        
+        
         
         
       </div>

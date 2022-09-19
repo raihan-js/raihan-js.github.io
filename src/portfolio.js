@@ -52,20 +52,16 @@ const skillsSection = {
 https://fontawesome.com/icons?d=gallery */
 
     softwareSkills: [{
-            skillName: "html-5",
+            skillName: "HTML5",
             fontAwesomeClassname: "fab fa-html5"
         },
         {
-            skillName: "WordPress",
-            fontAwesomeClassname: "fab fa-wordpress"
-        },
-        {
-            skillName: "Elementor",
-            fontAwesomeClassname: "fab fa-elementor"
-        },
-        {
-            skillName: "css3",
+            skillName: "CSS3",
             fontAwesomeClassname: "fab fa-css3-alt"
+        },
+        {
+            skillName: "Bootstrap",
+            fontAwesomeClassname: "fab fa-bootstrap"
         },
         {
             skillName: "JavaScript",
@@ -76,30 +72,54 @@ https://fontawesome.com/icons?d=gallery */
             fontAwesomeClassname: "fab fa-php"
         },
         {
-            skillName: "reactjs",
+            skillName: "Reactjs",
             fontAwesomeClassname: "fab fa-react"
         },
         {
-            skillName: "nodejs",
+            skillName: "Nodejs",
             fontAwesomeClassname: "fab fa-node"
         },
         
         {
-            skillName: "npm",
+            skillName: "NPM",
             fontAwesomeClassname: "fab fa-npm"
         },
         {
-            skillName: "sql-database",
+            skillName: "MySQL",
             fontAwesomeClassname: "fas fa-database"
         },
         {
-            skillName: "laravel",
+            skillName: "Laravel",
             fontAwesomeClassname: "fab fa-laravel"
         },
         {
-            skillName: "firebase",
+            skillName: "Firebase",
             fontAwesomeClassname: "fas fa-fire"
-        }
+        },
+        {
+            skillName: "Mongodb",
+            fontAwesomeClassname: "fab fa-mdb"
+        },
+        {
+            skillName: "Git",
+            fontAwesomeClassname: "fab fa-git"
+        },
+        {
+            skillName: "Digital Ocean",
+            fontAwesomeClassname: "fab fa-digital-ocean"
+        },
+        {
+            skillName: "cPanel",
+            fontAwesomeClassname: "fab fa-cpanel"
+        },
+        {
+            skillName: "WordPress",
+            fontAwesomeClassname: "fab fa-wordpress"
+        },
+        {
+            skillName: "Elementor",
+            fontAwesomeClassname: "fab fa-elementor"
+        },
     ],
     display: true // Set false to hide this section, defaults to true
 };
@@ -144,6 +164,10 @@ const techStack = {
         {
             Stack: "Programming",
             progressPercentage: "70%"
+        },
+        {
+            Stack: "Deployment",
+            progressPercentage: "85%"
         }
     ],
     displayCodersrank: true // Set true to display codersrank badges section need to changes your username in src/containers/skillProgress/skillProgress.js:17:62, defaults to false
@@ -165,7 +189,8 @@ const workExperiences = {
                 "Creating documentation & tutorials"
 
             ],
-
+            url: "https://fiverr.com/ryandevv",
+            urlText: "Visit profile"
         },
         {
             role: "WordPress Developer",
@@ -179,7 +204,9 @@ const workExperiences = {
             company: "ENGOO Tutors",
             companylogo: require("./assets/images/engoo.jpg"),
             date: "November 2018 – present",
-            desc: "I've conducted online English lessons and recruited Teachers around the world"
+            desc: "I've conducted online English lessons and recruited Teachers around the world",
+            url: "https://eikaiwa.dmm.com/teacher/index/28433/",
+            urlText: "Tutor Profile"
         }
     ]
 };
