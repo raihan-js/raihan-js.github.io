@@ -200,11 +200,33 @@ const bigProjects = {
     title: "Works",
     subtitle: "SOME STARTUPS AND COMPANIES THAT I HELPED TO CREATE THEIR WEBSITES",
     projects: [{
+        image: require("./assets/images/audax.png"),
+        projectName: "Audax Wales",
+        projectDesc: "Cycling event booking website",
+        footerLink: [{
+                name: "Live Demo",
+                url: "http://audaxwales.com/"
+            }
+            //  you can add extra buttons here.
+        ]
+    },
+    {
+        image: require("./assets/images/wels.png"),
+        projectName: "WELS Education",
+        projectDesc: "Study abroad and education consultancy website",
+        footerLink: [{
+                name: "Live Demo",
+                url: "http://welseducation.com/"
+            }
+            //  you can add extra buttons here.
+        ]
+    },
+    {
             image: require("./assets/images/alisarLogo.png"),
             projectName: "Alisar Vodka",
             projectDesc: "An eCommerce Website built on WordPress",
             footerLink: [{
-                    name: "Visit Website",
+                    name: "Live Demo",
                     url: "http://alisarvodka.com/"
                 }
                 //  you can add extra buttons here.
@@ -215,7 +237,7 @@ const bigProjects = {
             projectName: "TBoK",
             projectDesc: "An eCommerce website with consultation",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "http://tbokconsulting.com/"
             }]
         },
@@ -224,7 +246,7 @@ const bigProjects = {
             projectName: "GNatural",
             projectDesc: "A herbal products ecommerce website",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "https://gnatural.net"
             }]
         },
@@ -233,7 +255,7 @@ const bigProjects = {
             projectName: "Alex TV",
             projectDesc: "An Streaming Website",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "http://alextvstudio.com/"
             }]
         },
@@ -242,7 +264,7 @@ const bigProjects = {
             projectName: "God Said Stay",
             projectDesc: "A marriage counselling community website",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "http://godsaidstay.com/"
             }]
         },
@@ -251,7 +273,7 @@ const bigProjects = {
             projectName: "AGNutrition UK",
             projectDesc: "An ecommerce website",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "http://agnutritionuk.com/"
             }]
         },
@@ -260,7 +282,7 @@ const bigProjects = {
             projectName: "Proactive Payment Solution",
             projectDesc: "Business Portfolio",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "http://proactivepaymentsolution.com/"
             }]
         },
@@ -269,7 +291,7 @@ const bigProjects = {
             projectName: "Safety Edge",
             projectDesc: "Safety equipment event website",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "https://www.safetyedgetraining.com.au/"
             }]
         },
@@ -278,7 +300,7 @@ const bigProjects = {
             projectName: "Naivera",
             projectDesc: "Asset Listing and Management website",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "https://naiverah.com/"
             }]
         },
@@ -287,7 +309,7 @@ const bigProjects = {
             projectName: "CanWood",
             projectDesc: "Canada Migration consulting agency",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "https://canwoodcanada.com/"
             }]
         },
@@ -296,7 +318,7 @@ const bigProjects = {
             projectName: "The Sainted Trilogy",
             projectDesc: "Book Author - Michael Medico",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "https://thesaintedtrilogy.net/"
             }]
         },
@@ -305,7 +327,7 @@ const bigProjects = {
             projectName: "Brown Girl Health Care",
             projectDesc: "Blog and Podcast",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "https://browngirlhealthcare.com/"
             }]
         },
@@ -314,7 +336,7 @@ const bigProjects = {
             projectName: "Premier Business Partners",
             projectDesc: "Business Consultation Agency",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "https://pbpwin.com/"
             }]
         },
@@ -323,7 +345,7 @@ const bigProjects = {
             projectName: "Moodbooster",
             projectDesc: "Scented candle store from Germany",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "https://moodbooster.de/en/"
             }]
         },
@@ -332,7 +354,7 @@ const bigProjects = {
             projectName: "FruitDorp",
             projectDesc: "Fruit and Veggies export agency",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "https://fruitdorp.nl"
             }]
         },
@@ -341,7 +363,7 @@ const bigProjects = {
             projectName: "Retirement2020",
             projectDesc: "Retirement Advisors agency",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "https://retirement2020.ca/"
             }]
         },
@@ -350,7 +372,7 @@ const bigProjects = {
             projectName: "BioSoul Integration",
             projectDesc: "Chiropractor Consultancy",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "https://www.biosoulintegration.com/"
             }]
         },
@@ -359,7 +381,7 @@ const bigProjects = {
             projectName: "Unicorn Strength",
             projectDesc: "Agency for your branding strategy",
             footerLink: [{
-                name: "Visit Website",
+                name: "Live Demo",
                 url: "https://unicorn-strength.com/"
             }]
         }
