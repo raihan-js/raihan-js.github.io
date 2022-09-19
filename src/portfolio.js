@@ -249,6 +249,17 @@ const bigProjects = {
         ]
     },
     {
+        image: require("./assets/images/storysong.png"),
+        projectName: "StorySong",
+        projectDesc: "Songwriters providing custom songs",
+        footerLink: [{
+                name: "Live Demo",
+                url: "http://storysong.nl/"
+            }
+            //  you can add extra buttons here.
+        ]
+    },
+    {
             image: require("./assets/images/alisarLogo.png"),
             projectName: "Alisar Vodka",
             projectDesc: "An eCommerce Website built on WordPress",
