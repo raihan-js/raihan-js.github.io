@@ -1,43 +1,43 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "92d4ce7c441e367b0fe2d15cdc481791",
+    "revision": "40002a542aed2eb3100a3a6eeb7d808b",
     "url": "/index.html"
   },
   {
-    "revision": "cbe640e84ec7b7d2f26b",
+    "revision": "a6c4e110b4ed9f5bb0ec",
     "url": "/static/css/3.3a26ebde.chunk.css"
   },
   {
-    "revision": "e1ebf4a40d9b844567b7",
+    "revision": "2367351f1edba0942566",
     "url": "/static/css/4.ea3dbbf2.chunk.css"
   },
   {
-    "revision": "7ff0b6963dd8e193796c",
+    "revision": "8cbf469dffd390cde997",
     "url": "/static/css/main.1c65e86c.chunk.css"
   },
   {
-    "revision": "6cf99db480c116f3520e",
-    "url": "/static/js/2.2f20e935.chunk.js"
+    "revision": "15cc8ceeef8de1e034de",
+    "url": "/static/js/2.de62a881.chunk.js"
   },
   {
     "revision": "0a6d64cd3b49be6a14afdf21fa7c6d43",
-    "url": "/static/js/2.2f20e935.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.de62a881.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "cbe640e84ec7b7d2f26b",
-    "url": "/static/js/3.422b453d.chunk.js"
+    "revision": "a6c4e110b4ed9f5bb0ec",
+    "url": "/static/js/3.e5966ec8.chunk.js"
   },
   {
-    "revision": "e1ebf4a40d9b844567b7",
-    "url": "/static/js/4.185c936b.chunk.js"
+    "revision": "2367351f1edba0942566",
+    "url": "/static/js/4.c82d4d97.chunk.js"
   },
   {
-    "revision": "7ff0b6963dd8e193796c",
-    "url": "/static/js/main.cfabcbee.chunk.js"
+    "revision": "8cbf469dffd390cde997",
+    "url": "/static/js/main.0b05d9ef.chunk.js"
   },
   {
-    "revision": "42d0ee48d2b02bc38e15",
-    "url": "/static/js/runtime-main.c2449a92.js"
+    "revision": "98272d21b455115500f4",
+    "url": "/static/js/runtime-main.30cdde1a.js"
   },
   {
     "revision": "31aefe19554b85e0e5c1232daebc158e",
@@ -150,6 +150,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "9dfeb19b0bdd38c76d377ef162c60d27",
     "url": "/static/media/skill2.9dfeb19b.svg"
+  },
+  {
+    "revision": "c8aef24460ed32aeff5e794a90be89a6",
+    "url": "/static/media/storysong.c8aef244.png"
   },
   {
     "revision": "c23ff6865c2225113540a0cbaca034f5",
