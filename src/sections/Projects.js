@@ -88,7 +88,7 @@ const Projects = forwardRef((props, ref) => {
       <p className="text-center text-gray-600 dark:text-neutral-400 mb-10">
         Here are some of the projects I have worked on from a broad spectrum of my professional engagements.
       </p>
-      <div className="flex justify-center gap-4 mb-6">
+      <div className="flex justify-center flex-wrap gap-4 mb-6">
         {['Laravel', 'WordPress', 'Python', 'React Native'].map((category) => (
           <button
             key={category}
@@ -99,6 +99,7 @@ const Projects = forwardRef((props, ref) => {
           </button>
         ))}
       </div>
+
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentProjects.map((project, index) => (
           <div key={index} className="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 hover:shadow-lg">
