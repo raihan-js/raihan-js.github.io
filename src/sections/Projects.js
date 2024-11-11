@@ -46,9 +46,7 @@ const Projects = forwardRef((props, ref) => {
       imageUrl: "",
       githubLink: null
     },
-    { name: "WELS Education", category: "WordPress", description: "Study abroad and education consultancy website", liveLink: "https://www.welseducation.com/", imageUrl: "", githubLink: null },
     { name: "StorySong", category: "WordPress", description: "Songwriters providing custom songs", liveLink: "https://storysong.nl", imageUrl: "", githubLink: null },
-    { name: "Alisar Vodka", category: "WordPress", description: "An eCommerce Website built on WordPress", liveLink: "https://alisarvodka.com", imageUrl: "", githubLink: null },
     { name: "GNatural", category: "WordPress", description: "A herbal products ecommerce website", liveLink: "https://gnatural.net", imageUrl: "", githubLink: null },
     { name: "Alex TV", category: "WordPress", description: "An Streaming Website", liveLink: "https://alextvstudio.com/", imageUrl: "", githubLink: null },
     { name: "God Said Stay", category: "WordPress", description: "A marriage counselling community website", liveLink: "https://godsaidstay.com/", imageUrl: "", githubLink: null },
