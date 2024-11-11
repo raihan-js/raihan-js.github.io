@@ -66,6 +66,7 @@ const Header = ({ refs }) => {
             <button onClick={() => scrollToRef(refs.aboutRef)} className="text-base hover:text-opacity-80 dark:text-white hover:bg-gray-100 px-4 py-2 rounded-md dark:hover:bg-slate-800">About</button>
             <button onClick={() => scrollToRef(refs.skillsRef)} className="text-base hover:text-opacity-80 dark:text-white hover:bg-gray-100 px-4 py-2 rounded-md dark:hover:bg-slate-800">Skills</button>
             <button onClick={() => scrollToRef(refs.projectsRef)} className="text-base hover:text-opacity-80 dark:text-white hover:bg-gray-100 px-4 py-2 rounded-md dark:hover:bg-slate-800">Projects</button>
+            <button onClick={() => scrollToRef(refs.projectsRef)} className="text-base hover:text-opacity-80 dark:text-white hover:bg-gray-100 px-4 py-2 rounded-md dark:hover:bg-slate-800">Case Study</button>
             <button onClick={() => scrollToRef(refs.experiencesRef)} className="text-base hover:text-opacity-80 dark:text-white hover:bg-gray-100 px-4 py-2 rounded-md dark:hover:bg-slate-800">Experiences</button>
             <button onClick={() => scrollToRef(refs.contactRef)} className="text-base hover:text-opacity-80 dark:text-white hover:bg-gray-100 px-4 py-2 rounded-md dark:hover:bg-slate-800">Contact</button>
           </nav>

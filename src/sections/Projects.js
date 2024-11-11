@@ -26,7 +26,7 @@ const Projects = forwardRef((props, ref) => {
       name: "BlackGPT.us",
       category: "Laravel",
       description: "A chat system specialized for the black community using RAG architecture and a generative AI app.",
-      liveLink: "https://staging.blackgpt.us/",
+      liveLink: "https://blkgpt.com/",
       imageUrl: "",
       githubLink: "https://github.com/raihan-js/blackgpt"
     },
