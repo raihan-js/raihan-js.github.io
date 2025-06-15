@@ -87,7 +87,7 @@ const CaseStudies = forwardRef((props, ref) => {
       fullDescription: "Developed a comprehensive pregnancy tracking app with personalized recommendations, health monitoring, community features, and integration with healthcare providers.",
       technologies: ["React Native", "Node.js", "MongoDB", "Firebase", "WebRTC"],
       metrics: "Beta testing with 1k+ users, 4.7/5 rating, featured in app stores",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=600&h=400&fit=crop",
       icon: faMobile,
       size: "small"
     },
