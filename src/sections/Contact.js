@@ -12,8 +12,8 @@ const Contact = forwardRef((props, ref) => {
         </p>
         <div className="mt-8 space-y-3">
           <div>
-            <a href="mailto:ceo@bracketi.com" className="text-lg text-slate-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
-              ceo@bracketi.com
+            <a href="mailto:raihan@clarioscope.ai" className="text-lg text-slate-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+              raihan@clarioscope.ai
             </a>
           </div>
           <div className="mt-6">
