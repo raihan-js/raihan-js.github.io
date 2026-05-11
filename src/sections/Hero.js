@@ -125,14 +125,17 @@ const Hero = forwardRef((props, ref) => {
               className="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 mt-4 font-medium"
               variants={itemVariants}
             >
-              Full Stack Engineer • AI Engineer • CTO at ClarioScope AI
+              AI/ML Engineer • CTO at ClarioScope AI
             </motion.div>
           </motion.div>
 
           <motion.div variants={itemVariants} className="mt-6 max-w-xl text-center md:text-left">
             <p className="text-lg text-gray-600 dark:text-neutral-400 leading-relaxed">
-              Leading innovative AI solutions at ClarioScope AI while crafting exceptional digital experiences. 
-              Passionate about merging cutting-edge technology with user-centric design to build the future.
+              I train small language models (SLMs) from scratch for domain-specific tasks &mdash;
+              code generation for Next.js (ORCH series, 350M&ndash;3B params) and medical applications
+              (MedLLM-10M). I also apply parameter-efficient fine-tuning (QLoRA) on larger base models.
+              Currently CTO at <span className="font-semibold text-gray-800 dark:text-neutral-200">ClarioScope AI</span>,
+              a HIPAA-compliant healthcare practice growth platform.
             </p>
           </motion.div>
 
