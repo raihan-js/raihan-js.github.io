@@ -2,9 +2,9 @@ import React, { forwardRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faServer, faMobile, faCloud, faDatabase, faBrain } from '@fortawesome/free-solid-svg-icons';
-import { 
-  faReact, faVuejs, faJs, faPython, faPhp, faNodeJs, faLaravel, 
-  faAws, faDocker, faGit, faWordpress
+import {
+  faReact, faVuejs, faJs, faPython, faPhp, faNodeJs, faLaravel,
+  faAws, faDocker, faGit
 } from '@fortawesome/free-brands-svg-icons';
 
 const Skills = forwardRef((props, ref) => {
