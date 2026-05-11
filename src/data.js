@@ -87,6 +87,19 @@ export const PROJECTS = [
     image: "/projects/commonroom.webp",
     link: "https://commonroomai.com",
   },
+  {
+    id: "reelfuse",
+    name: "ReelFuse",
+    kind: "Internal · Video AI Studio",
+    year: "2026",
+    status: "Internal",
+    summary:
+      "Internal video production studio for short-form vertical content (YouTube Shorts, Reels, TikTok). Scene planner, AI-assisted title generation, brand kits, render queue with scheduled outputs, multi-format export (1080×1920, 30fps). Currently driving ClarioScope AI's growth content engine.",
+    role: "Architecture, AI, full-stack",
+    stack: ["Next.js", "TypeScript", "Python", "FFmpeg", "Render queue"],
+    image: "/projects/reelfuse.webp",
+    link: "https://reelfuse.io",
+  },
 ];
 
 export const MODELS = [

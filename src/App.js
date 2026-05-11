@@ -700,10 +700,10 @@ function Work() {
 }
 
 function ProjectCard({ project, index }) {
-  // 5 projects: hero(8) + ILMA(4) | BeautyCrew(6) + VETR(6) | CommonRoom(12 full-width)
-  const layouts = [8, 4, 6, 6, 12];
+  // 6 projects, editorial rhythm: 8+4 / 6+6 / 6+6
+  const layouts = [8, 4, 6, 6, 6, 6];
   const span = layouts[index] || 6;
-  const isHero = span >= 8;
+  const isHero = span === 8;
   const [hovered, setHovered] = useState(false);
   return (
     <Reveal as="article" className={`work-card span-${span}`} style={{ gridColumn: `span ${span} / span ${span}`, display: "flex" }}>
@@ -755,50 +755,42 @@ function ProjectCard({ project, index }) {
               transform: hovered ? "scale(1.02)" : "scale(1)",
             }}
           />
-          <div
-            style={{
-              position: "absolute",
-              top: 12,
-              left: 12,
-              fontFamily: "var(--mono)",
-              fontSize: 11,
-              padding: "4px 8px",
-              background: "color-mix(in oklch, var(--bg) 80%, transparent)",
-              border: "1px solid var(--border)",
-              backdropFilter: "blur(6px)",
-              borderRadius: 4,
-              color: "var(--fg-muted)",
-              letterSpacing: "0.04em",
-              pointerEvents: "none",
-            }}
-          >
-            {project.kind}
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: 12,
-              right: 12,
-              fontFamily: "var(--mono)",
-              fontSize: 11,
-              padding: "4px 8px",
-              background:
-                project.status === "Live" ? "color-mix(in oklch, var(--accent) 16%, var(--bg))" : "var(--bg-elev)",
-              border: `1px solid ${project.status === "Live" ? "var(--accent)" : "var(--border)"}`,
-              borderRadius: 4,
-              color: project.status === "Live" ? "var(--accent)" : "var(--fg-muted)",
-              letterSpacing: "0.04em",
-              pointerEvents: "none",
-            }}
-          >
-            {project.status}
-          </div>
         </div>
         <div style={{ padding: isHero ? "28px 28px 24px" : "22px 22px 20px", flex: 1, display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10, gap: 12 }}>
-            <h3 style={{ margin: 0, fontSize: isHero ? 26 : 20, fontWeight: 500, letterSpacing: "-0.015em" }}>{project.name}</h3>
-            <span style={{ fontFamily: "var(--mono)", fontSize: 12, color: "var(--fg-subtle)" }}>{project.year}</span>
+          {/* Meta row: kind, status, year — no longer overlaying the screenshot */}
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
+            <span
+              style={{
+                fontFamily: "var(--mono)",
+                fontSize: 11,
+                padding: "3px 8px",
+                background: "var(--bg-sunken)",
+                border: "1px solid var(--border)",
+                borderRadius: 4,
+                color: "var(--fg-muted)",
+                letterSpacing: "0.04em",
+              }}
+            >
+              {project.kind}
+            </span>
+            <span
+              style={{
+                fontFamily: "var(--mono)",
+                fontSize: 11,
+                padding: "3px 8px",
+                background:
+                  project.status === "Live" ? "color-mix(in oklch, var(--accent) 16%, var(--bg))" : "var(--bg-elev)",
+                border: `1px solid ${project.status === "Live" ? "var(--accent)" : "var(--border)"}`,
+                borderRadius: 4,
+                color: project.status === "Live" ? "var(--accent)" : "var(--fg-muted)",
+                letterSpacing: "0.04em",
+              }}
+            >
+              {project.status}
+            </span>
+            <span style={{ marginLeft: "auto", fontFamily: "var(--mono)", fontSize: 12, color: "var(--fg-subtle)" }}>{project.year}</span>
           </div>
+          <h3 style={{ margin: "0 0 10px", fontSize: isHero ? 26 : 20, fontWeight: 500, letterSpacing: "-0.015em" }}>{project.name}</h3>
           <p style={{ margin: 0, color: "var(--fg-muted)", fontSize: isHero ? 15 : 14, lineHeight: 1.55, flex: 1 }}>{project.summary}</p>
           <div
             style={{
