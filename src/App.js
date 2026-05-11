@@ -269,9 +269,9 @@ function Hero() {
               maxWidth: 1100,
             }}
           >
-            Building small language models
+            Engineering AI systems
             <br />
-            <span style={{ color: "var(--fg-muted)" }}>and the products they power.</span>
+            <span style={{ color: "var(--fg-muted)" }}>from model weights to the interfaces that ship them.</span>
           </h1>
           <div
             style={{
@@ -689,7 +689,7 @@ function Stat({ value, suffix, label, divider }) {
 // ============================================================
 function Work() {
   return (
-    <Section id="work" num="01" title="Selected work" kicker={`${PROJECTS.length} shipped products`}>
+    <Section id="work" num="01" title="Selected work" kicker={`${PROJECTS.length} featured · 200+ shipped`}>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 28 }} className="work-grid">
         {PROJECTS.map((p, i) => (
           <ProjectCard key={p.id} project={p} index={i} />
@@ -700,9 +700,10 @@ function Work() {
 }
 
 function ProjectCard({ project, index }) {
-  const layouts = [8, 4, 6, 6, 6, 6, 6, 6];
+  // 5 projects: hero(8) + ILMA(4) | BeautyCrew(6) + VETR(6) | CommonRoom(12 full-width)
+  const layouts = [8, 4, 6, 6, 12];
   const span = layouts[index] || 6;
-  const isHero = span === 8;
+  const isHero = span >= 8;
   const [hovered, setHovered] = useState(false);
   return (
     <Reveal as="article" className={`work-card span-${span}`} style={{ gridColumn: `span ${span} / span ${span}`, display: "flex" }}>
@@ -1169,9 +1170,9 @@ function Contact() {
               maxWidth: 1100,
             }}
           >
-            Got a hard problem
+            Got something ambitious
             <br />
-            <span style={{ color: "var(--fg-muted)" }}>that needs a model?</span>
+            <span style={{ color: "var(--fg-muted)" }}>you want to build?</span>
           </h2>
           <a
             href={`mailto:${PROFILE.email}`}

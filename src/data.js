@@ -87,32 +87,6 @@ export const PROJECTS = [
     image: "/projects/commonroom.webp",
     link: "https://commonroomai.com",
   },
-  {
-    id: "orch-studio",
-    name: "ORCH Studio",
-    kind: "AI Product · HF Space",
-    year: "2026",
-    status: "Live",
-    summary:
-      "Autonomous Next.js application generator on Hugging Face Spaces. Describe an app, get a downloadable Next.js 14 project ZIP — TypeScript, Tailwind, Prisma patterns. Powered by ORCH-7B (QLoRA fine-tune of DeepSeek Coder 6.7B).",
-    role: "ML, Gradio, fine-tuning",
-    stack: ["Gradio", "Python", "PyTorch", "DeepSeek"],
-    image: "/projects/orch-studio.webp",
-    link: "https://huggingface.co/spaces/raihan-js/orch-studio",
-  },
-  {
-    id: "blackgpt",
-    name: "BlackGPT.us",
-    kind: "Consumer AI",
-    year: "2024",
-    status: "Live",
-    summary:
-      "Specialized AI chat platform for the Black community using RAG architecture with culturally-aware responses, community moderation, and real-time conversations.",
-    role: "Founding engineer · RAG",
-    stack: ["Laravel", "Vue.js", "OpenAI", "PostgreSQL"],
-    image: "/projects/blackgpt.webp",
-    link: "https://blkgpt.com/",
-  },
 ];
 
 export const MODELS = [
@@ -278,12 +252,12 @@ export const EXPERIENCE = [
     period: "Multi-year",
     tags: ["Remote", "Production work"],
     blurb:
-      "Shipped production web applications across React, Next.js, Laravel, and Node.js for clients in healthcare, e-commerce, AI, and education — see the projects above for live URLs.",
+      "Shipped 200+ production web applications across React, Next.js, Laravel, and Node.js for clients in healthcare, e-commerce, AI, and education — including BlackGPT.us (Consumer AI), Klevere AI, DreamStreams, and many more. The projects above are the featured highlights.",
     bullets: [
-      "Built AI-integrated apps (BlackGPT.us, BeautyCrew, VETR, CommonRoom) using LLM, RAG, and agent infra.",
-      "Delivered Laravel SaaS platforms with React frontends and Stripe / WooCommerce billing.",
+      "Built AI-integrated apps (BeautyCrew, VETR, CommonRoom, BlackGPT.us) using LLM, RAG, and agent infra.",
+      "Delivered Laravel + React SaaS platforms with Stripe / WooCommerce billing for clients across the US, EU, and SE Asia.",
       "Architected the React Native mobile app PregaCare for pregnancy tracking and guidance.",
-      "Production handover + maintenance for retained clients across the US, EU, and SE Asia.",
+      "Production handover + maintenance for retained clients across multiple time zones.",
     ],
   },
 ];
