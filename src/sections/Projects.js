@@ -1,7 +1,7 @@
 import React, { useState, forwardRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt, faCode, faEye, faFilter } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const Projects = forwardRef((props, ref) => {
