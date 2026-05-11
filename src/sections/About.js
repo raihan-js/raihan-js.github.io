@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faBriefcase, faHeart, faGlobeAmericas, faBullseye, faRocket } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faBriefcase, faBullseye, faRocket, faBrain, faCode } from '@fortawesome/free-solid-svg-icons';
 
 const About = forwardRef((props, ref) => {
   const containerVariants = {
@@ -27,32 +27,32 @@ const About = forwardRef((props, ref) => {
     {
       icon: faUser,
       title: "My Story",
-      description: "From Dhaka to leading ClarioScope AI, my journey spans from curious developer to CTO, driven by the transformative power of AI and technology."
+      description: "Based in Bangladesh, working at the intersection of full-stack engineering and applied ML. Spent years shipping production web apps, then went deep on training small language models from the ground up on consumer hardware."
     },
     {
       icon: faBriefcase,
-      title: "My Role at ClarioScope AI",
-      description: "As CTO, I lead our technical vision, architecting AI solutions that serve 50+ enterprise clients and process terabytes of data daily."
+      title: "CTO at ClarioScope AI",
+      description: "Leading engineering for ClarioScope AI — a HIPAA-compliant healthcare practice growth platform. Responsible for technical strategy, AI architecture, and the infrastructure that keeps protected health information secure."
+    },
+    {
+      icon: faBrain,
+      title: "Training SLMs From Scratch",
+      description: "I build small language models from scratch — not fine-tunes. The ORCH series (350M–3B params) targets Next.js code generation; MedLLM-10M targets medical text. All trained on consumer GPUs (RTX 3060) and larger rented hardware where the scale demands it."
     },
     {
       icon: faRocket,
-      title: "Innovation Focus",
-      description: "Specializing in AI/ML, full-stack development, and cloud architecture, I bridge the gap between cutting-edge research and practical applications."
+      title: "Fine-Tuning at Scale",
+      description: "When a domain task calls for a stronger base, I apply parameter-efficient fine-tuning. ORCH-7B is a QLoRA fine-tune of DeepSeek Coder 6.7B (43 hours on an A100, 5,238 steps) — same project family, different approach."
     },
     {
-      icon: faHeart,
-      title: "My Passion",
-      description: "I dedicate time to mentoring emerging developers, contributing to open source, and sharing knowledge through technical writing and community engagement."
-    },
-    {
-      icon: faGlobeAmericas,
-      title: "Personal Interests",
-      description: "Beyond code, I explore the latest AI research, enjoy outdoor adventures, and cherish meaningful moments with family and friends."
+      icon: faCode,
+      title: "Full-Stack Background",
+      description: "Years of production work in React, Next.js, Laravel, and Node.js inform every model I train. I optimize for what actually ships — small models that run on real hardware, not lab demos that need 80GB of VRAM."
     },
     {
       icon: faBullseye,
-      title: "Goals & Vision",
-      description: "Aiming to democratize AI technology, I strive to build solutions that empower businesses while mentoring the next generation of tech leaders."
+      title: "Open Source on Hugging Face",
+      description: "Every model I train is published openly on Hugging Face under raihan-js. The ORCH organization (orch-ai) collects the code generation family; everything is reproducible from the published configs."
     }
   ];
 
@@ -73,13 +73,13 @@ const About = forwardRef((props, ref) => {
           >
             About Me
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-lg text-gray-600 dark:text-neutral-400"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Full Stack Engineer, AI Innovator, and Technology Leader
+            AI/ML Engineer training small language models from scratch &middot; CTO at ClarioScope AI
           </motion.p>
         </motion.div>
 

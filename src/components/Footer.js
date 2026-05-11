@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="text-center">
         <div className="mt-3">
           <p className="text-gray-500 dark:text-neutral-500">
-            © 2024 Raihan. All rights reserved.
+            © 2026 Raihan. All rights reserved.
           </p>
         </div>
         <div className="mt-3 space-x-2">

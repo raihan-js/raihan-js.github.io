@@ -12,16 +12,29 @@ const Skills = forwardRef((props, ref) => {
 
   const skillCategories = [
     {
+      title: "AI & Machine Learning",
+      icon: faBrain,
+      color: "from-indigo-500 to-purple-500",
+      skills: [
+        { name: 'PyTorch', icon: faBrain, level: 92, color: '#EE4C2C' },
+        { name: 'Hugging Face', icon: faBrain, level: 92, color: '#FFD21E' },
+        { name: 'Transformers', icon: faBrain, level: 90, color: '#FF6F00' },
+        { name: 'QLoRA / PEFT', icon: faBrain, level: 88, color: '#412991' },
+        { name: 'bitsandbytes', icon: faBrain, level: 85, color: '#10B981' },
+        { name: 'Tokenizers', icon: faBrain, level: 88, color: '#F7931E' }
+      ]
+    },
+    {
       title: "Frontend Development",
       icon: faCode,
       color: "from-blue-500 to-cyan-500",
       skills: [
         { name: 'React.js', icon: faReact, level: 95, color: '#61DAFB' },
-        { name: 'Vue.js', icon: faVuejs, level: 90, color: '#4FC08D' },
+        { name: 'Next.js', icon: faReact, level: 92, color: '#000000' },
+        { name: 'TypeScript', icon: faCode, level: 88, color: '#3178C6' },
         { name: 'JavaScript', icon: faJs, level: 95, color: '#F7DF1E' },
-        { name: 'TypeScript', icon: faCode, level: 85, color: '#3178C6' },
-        { name: 'Tailwind CSS', icon: faCode, level: 90, color: '#06B6D4' },
-        { name: 'Next.js', icon: faReact, level: 88, color: '#000000' }
+        { name: 'Tailwind CSS', icon: faCode, level: 92, color: '#06B6D4' },
+        { name: 'Vue.js', icon: faVuejs, level: 85, color: '#4FC08D' }
       ]
     },
     {
@@ -29,12 +42,25 @@ const Skills = forwardRef((props, ref) => {
       icon: faServer,
       color: "from-green-500 to-emerald-500",
       skills: [
+        { name: 'Python', icon: faPython, level: 92, color: '#3776AB' },
         { name: 'Laravel', icon: faLaravel, level: 95, color: '#FF2D20' },
         { name: 'Node.js', icon: faNodeJs, level: 92, color: '#339933' },
+        { name: 'FastAPI', icon: faPython, level: 88, color: '#009688' },
         { name: 'PHP', icon: faPhp, level: 95, color: '#777BB4' },
-        { name: 'Python', icon: faPython, level: 88, color: '#3776AB' },
-        { name: 'Express.js', icon: faNodeJs, level: 90, color: '#000000' },
-        { name: 'Django', icon: faPython, level: 80, color: '#092E20' }
+        { name: 'Gradio', icon: faPython, level: 85, color: '#F97316' }
+      ]
+    },
+    {
+      title: "Cloud, GPU & DevOps",
+      icon: faCloud,
+      color: "from-orange-500 to-red-500",
+      skills: [
+        { name: 'AWS', icon: faAws, level: 88, color: '#FF9900' },
+        { name: 'Docker', icon: faDocker, level: 88, color: '#2496ED' },
+        { name: 'CUDA / GPU', icon: faCloud, level: 85, color: '#76B900' },
+        { name: 'RunPod', icon: faCloud, level: 85, color: '#673AB7' },
+        { name: 'Digital Ocean', icon: faCloud, level: 85, color: '#0080FF' },
+        { name: 'Git', icon: faGit, level: 95, color: '#F05032' }
       ]
     },
     {
@@ -43,20 +69,7 @@ const Skills = forwardRef((props, ref) => {
       color: "from-purple-500 to-pink-500",
       skills: [
         { name: 'React Native', icon: faReact, level: 90, color: '#61DAFB' },
-        { name: 'Expo', icon: faMobile, level: 85, color: '#000020' },
-        { name: 'Flutter', icon: faMobile, level: 75, color: '#02569B' }
-      ]
-    },
-    {
-      title: "Cloud & DevOps",
-      icon: faCloud,
-      color: "from-orange-500 to-red-500",
-      skills: [
-        { name: 'AWS', icon: faAws, level: 90, color: '#FF9900' },
-        { name: 'Docker', icon: faDocker, level: 88, color: '#2496ED' },
-        { name: 'Kubernetes', icon: faCloud, level: 82, color: '#326CE5' },
-        { name: 'Digital Ocean', icon: faCloud, level: 85, color: '#0080FF' },
-        { name: 'Git', icon: faGit, level: 95, color: '#F05032' }
+        { name: 'Expo', icon: faMobile, level: 85, color: '#000020' }
       ]
     },
     {
@@ -65,31 +78,20 @@ const Skills = forwardRef((props, ref) => {
       color: "from-yellow-500 to-orange-500",
       skills: [
         { name: 'PostgreSQL', icon: faDatabase, level: 90, color: '#336791' },
-        { name: 'MongoDB', icon: faDatabase, level: 88, color: '#47A248' },
         { name: 'MySQL', icon: faDatabase, level: 92, color: '#4479A1' },
+        { name: 'MongoDB', icon: faDatabase, level: 85, color: '#47A248' },
         { name: 'Redis', icon: faDatabase, level: 85, color: '#DC382D' },
-        { name: 'Firebase', icon: faDatabase, level: 87, color: '#FFCA28' }
-      ]
-    },
-    {
-      title: "AI & Machine Learning",
-      icon: faBrain,
-      color: "from-indigo-500 to-purple-500",
-      skills: [
-        { name: 'TensorFlow', icon: faBrain, level: 85, color: '#FF6F00' },
-        { name: 'PyTorch', icon: faBrain, level: 80, color: '#EE4C2C' },
-        { name: 'OpenAI', icon: faBrain, level: 90, color: '#412991' },
-        { name: 'Scikit-learn', icon: faBrain, level: 82, color: '#F7931E' }
+        { name: 'Firebase', icon: faDatabase, level: 85, color: '#FFCA28' }
       ]
     }
   ];
 
   const mainSkills = [
-    "Architect and develop scalable full-stack applications with modern frameworks and cloud technologies",
-    "Build AI-powered solutions integrating machine learning models with real-world business applications",
-    "Lead technical teams and mentor developers while maintaining high code quality and best practices",
-    "Design and implement microservices architectures with containerization and orchestration",
-    "Integrate complex third-party APIs and services for seamless user experiences"
+    "Train small language models (SLMs) from scratch — custom LLaMA-style and GPT-2 architectures, custom tokenizers, on consumer GPUs (RTX 3060) and rented A100s",
+    "Apply parameter-efficient fine-tuning (QLoRA, LoRA, 4-bit quantization) to larger base models like DeepSeek Coder 6.7B",
+    "Architect HIPAA-compliant infrastructure for healthcare AI at ClarioScope AI as CTO",
+    "Build production full-stack web apps with React, Next.js, Laravel, and Node.js — the SLMs ship into real products, not lab demos",
+    "Publish models openly on Hugging Face under raihan-js — reproducible configs, accurate model cards, end-to-end training code on GitHub"
   ];
 
   const containerVariants = {
@@ -138,13 +140,13 @@ const Skills = forwardRef((props, ref) => {
           >
             Skills & Expertise
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-lg text-gray-600 dark:text-neutral-400"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Full-stack development expertise spanning modern frameworks, AI/ML, and cloud technologies
+            ML engineering on top of a deep full-stack foundation &mdash; training, fine-tuning, and shipping
           </motion.p>
         </motion.div>
 
@@ -174,7 +176,7 @@ const Skills = forwardRef((props, ref) => {
                   What I Do
                 </h3>
                 <p className="text-sm text-[#F4DB01] font-semibold mb-4 uppercase tracking-wide">
-                  Chief Technology Officer & Full Stack Engineer
+                  CTO at ClarioScope AI &middot; AI/ML Engineer
                 </p>
                 <ul className="space-y-3">
                   {mainSkills.map((skill, index) => (

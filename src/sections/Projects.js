@@ -6,15 +6,75 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const Projects = forwardRef((props, ref) => {
   const projectsPerPage = 6;
-  const [activeTab, setActiveTab] = useState('Laravel');
+  const [activeTab, setActiveTab] = useState('AI / SaaS');
   const [currentPage, setCurrentPage] = useState(1);
   const [hoveredProject, setHoveredProject] = useState(null);
 
   const projects = [
     {
+      name: "BeautyCrew AI",
+      category: "AI / SaaS",
+      description: "Booking management platform for the beauty industry — built to eliminate missed appointments and keep beauty professionals' calendars and client relationships reliable.",
+      liveLink: "https://beautycrew.ai",
+      imageUrl: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=400&fit=crop",
+      githubLink: null,
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "AI scheduling"],
+      status: "Live"
+    },
+    {
+      name: "VETR Proposal",
+      category: "AI / SaaS",
+      description: "AI-assisted proposal co-pilot that streamlines federal contracting for small business teams. Makes the federal contracting process accessible to teams without dedicated proposal departments.",
+      liveLink: "https://vetrproposal.com",
+      imageUrl: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop",
+      githubLink: null,
+      technologies: ["Next.js", "TypeScript", "LLM integration", "PostgreSQL"],
+      status: "Live"
+    },
+    {
+      name: "CommonRoom AI",
+      category: "AI / SaaS",
+      description: "Collaborative digital workspace combining 15 purpose-built tools (tasks, voting, attendance, expenses) for groups — shareable via link or QR with no app install or account required for guests.",
+      liveLink: "https://commonroomai.com",
+      imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop",
+      githubLink: null,
+      technologies: ["Next.js", "Real-time sync", "Tailwind CSS", "TypeScript"],
+      status: "Live"
+    },
+    {
+      name: "BlackGPT.us",
+      category: "AI / SaaS",
+      description: "Specialized AI chat platform for the black community using RAG architecture with culturally-aware responses, community moderation, and real-time conversations.",
+      liveLink: "https://blkgpt.com/",
+      imageUrl: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
+      githubLink: "https://github.com/raihan-js/blackgpt",
+      technologies: ["Laravel", "Vue.js", "OpenAI API", "PostgreSQL"],
+      status: "Live"
+    },
+    {
+      name: "Klevere AI",
+      category: "AI / SaaS",
+      description: "AI assistant suite providing intelligent tools for marketing automation, finance analysis, and business intelligence with advanced dashboard analytics.",
+      liveLink: "https://www.klevere.ai/",
+      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+      githubLink: null,
+      technologies: ["Laravel", "React", "Python", "AWS"],
+      status: "Live"
+    },
+    {
+      name: "DreamStreams",
+      category: "AI / SaaS",
+      description: "Educational AI image generation platform inspired by Midjourney, designed for schools and educational content creation with content filtering and teacher dashboard.",
+      liveLink: "https://dreamstream.hephed.org/",
+      imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
+      githubLink: null,
+      technologies: ["Laravel", "React", "Stable Diffusion", "Redis"],
+      status: "Live"
+    },
+    {
       name: "PregaCare",
       category: "React Native",
-      description: "Comprehensive mobile application designed to support and guide expectant mothers through pregnancy journey with personalized recommendations and health tracking.",
+      description: "Mobile application designed to support and guide expectant mothers through pregnancy with personalized recommendations and health tracking.",
       liveLink: null,
       imageUrl: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=600&h=400&fit=crop",
       githubLink: "https://github.com/raihan-js/pregacare",
@@ -24,42 +84,12 @@ const Projects = forwardRef((props, ref) => {
     {
       name: "FlaskColorWorks",
       category: "Python",
-      description: "Advanced AI-powered image processing tool featuring object segmentation and intelligent colorization using MASK R-CNN and COCO dataset for automated image enhancement.",
+      description: "AI-powered image processing tool featuring object segmentation and intelligent colorization using MASK R-CNN and COCO dataset for automated image enhancement.",
       liveLink: null,
       imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
       githubLink: "https://github.com/raihan-js/FlaskColorWorks",
       technologies: ["Python", "Flask", "TensorFlow", "OpenCV"],
       status: "Completed"
-    },
-    {
-      name: "BlackGPT.us",
-      category: "Laravel",
-      description: "Specialized AI chat platform for the black community using RAG architecture with culturally-aware responses, community moderation, and real-time conversations.",
-      liveLink: "https://blkgpt.com/",
-      imageUrl: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
-      githubLink: "https://github.com/raihan-js/blackgpt",
-      technologies: ["Laravel", "Vue.js", "OpenAI API", "PostgreSQL"],
-      status: "Live"
-    },
-    {
-      name: "DreamStreams",
-      category: "Laravel",
-      description: "Educational AI image generation platform inspired by Midjourney, specifically designed for schools and educational content creation with content filtering and teacher dashboard.",
-      liveLink: "https://dreamstream.hephed.org/",
-      imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
-      githubLink: null,
-      technologies: ["Laravel", "React", "Stable Diffusion", "Redis"],
-      status: "Live"
-    },
-    {
-      name: "Klevere AI",
-      category: "Laravel",
-      description: "Comprehensive AI assistant suite providing intelligent tools for marketing automation, finance analysis, and business intelligence with advanced dashboard analytics.",
-      liveLink: "https://www.klevere.ai/",
-      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-      githubLink: null,
-      technologies: ["Laravel", "React", "Python", "AWS"],
-      status: "Live"
     },
     { 
       name: "StorySong", 
@@ -134,6 +164,7 @@ const Projects = forwardRef((props, ref) => {
   ];
 
   const categories = [
+    { name: 'AI / SaaS', count: projects.filter(p => p.category === 'AI / SaaS').length, color: 'from-indigo-500 to-purple-500' },
     { name: 'Laravel', count: projects.filter(p => p.category === 'Laravel').length, color: 'from-red-500 to-orange-500' },
     { name: 'WordPress', count: projects.filter(p => p.category === 'WordPress').length, color: 'from-blue-500 to-cyan-500' },
     { name: 'Python', count: projects.filter(p => p.category === 'Python').length, color: 'from-green-500 to-emerald-500' },
@@ -194,13 +225,13 @@ const Projects = forwardRef((props, ref) => {
           >
             Featured Projects
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-lg text-gray-600 dark:text-neutral-400"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            A curated selection of projects showcasing my expertise across different technologies and domains
+            Live products and shipped builds &mdash; AI / SaaS first, then full-stack and mobile work
           </motion.p>
         </motion.div>
 
