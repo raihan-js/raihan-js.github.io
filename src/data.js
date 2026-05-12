@@ -15,7 +15,7 @@ export const PROFILE = {
 };
 
 export const STATS = [
-  { value: 4, suffix: "", label: "small LMs trained\nfrom scratch" },
+  { value: 5, suffix: "", label: "small LMs trained\nfrom scratch" },
   { value: 28, suffix: "M", label: "smallest model\nparameters (MedLLM)" },
   { value: 6.7, suffix: "B", label: "largest model\nQLoRA fine-tuned" },
   { value: 1, suffix: "", label: "programming language\nshipped (ILMA)" },
@@ -34,6 +34,23 @@ export const PROJECTS = [
     stack: ["Python", "PyTorch", "Next.js", "PostgreSQL", "AWS"],
     image: "/projects/clarioscope.webp",
     link: "https://clarioscope.ai/",
+  },
+  {
+    id: "clarioscope-slm-suite",
+    name: "ClarioScope SLM Suite",
+    kind: "Healthcare AI · Models",
+    year: "2026",
+    status: "Live",
+    summary:
+      "Three small language models composed into a real intake pipeline — PHI is redacted, intent is classified for routing, insurance info is extracted for billing. Each model matches frontier-API accuracy on its narrow task at ~50× the speed and ~1000× lower cost, all on synthetic data.",
+    role: "Data, fine-tuning, evaluation, deployment",
+    stack: ["PyTorch", "DeBERTa-v3", "RoBERTa", "Hugging Face"],
+    image: "/projects/clarioscope-slm.png",
+    link: "https://huggingface.co/raihan-js",
+    writeup: {
+      href: "https://dev.to/raihan-js/three-small-models-for-healthcare-intake-and-what-shipping-all-three-taught-me-71l",
+      label: "writeup",
+    },
   },
   {
     id: "ilma-lang",
@@ -103,6 +120,74 @@ export const PROJECTS = [
 ];
 
 export const MODELS = [
+  {
+    id: "clarioscope-intent-deberta-v1",
+    name: "ClarioScope Intent (184M)",
+    kind: "Fine-tune",
+    base: "DeBERTa-v3 base",
+    summary:
+      "7-class sequence classifier that routes inbound patient text at the front of the ClarioScope intake pipeline. 91.16% accuracy on the test set, 48 ms per example on CPU — roughly 22× faster than Claude Haiku 4.5 and 95% accuracy of Haiku on the same task.",
+    metrics: [
+      { k: "params", v: "184M" },
+      { k: "acc", v: "91.16%" },
+      { k: "vs Haiku", v: "22× faster" },
+    ],
+    href: "https://huggingface.co/raihan-js/clarioscope-intent-deberta-v1",
+    writeup: {
+      href: "https://dev.to/raihan-js/matching-frontier-llms-at-22x-lower-latency-a-184m-parameter-intent-classifier-for-healthcare-text-5ec2",
+      label: "writeup",
+    },
+  },
+  {
+    id: "clarioscope-phi-deberta-v1",
+    name: "ClarioScope PHI Detector",
+    kind: "Fine-tune",
+    base: "DeBERTa-v3 base",
+    summary:
+      "Token-classification model targeting all 18 HIPAA Safe Harbor identifier categories — names, addresses, MRNs, phones, account numbers, biometrics references, ages over 89, etc. Identifies PHI spans for downstream redaction, not a regulatory determination.",
+    metrics: [
+      { k: "task", v: "BIO NER" },
+      { k: "entities", v: "18" },
+      { k: "scheme", v: "Safe Harbor" },
+    ],
+    href: "https://huggingface.co/raihan-js/clarioscope-phi-deberta-v1",
+    writeup: {
+      href: "https://dev.to/raihan-js/where-small-models-beat-frontier-llms-and-where-they-dont-a-125m-phi-detector-4edb",
+      label: "writeup",
+    },
+  },
+  {
+    id: "clarioscope-insurance-v1",
+    name: "ClarioScope Insurance Extractor",
+    kind: "Fine-tune",
+    base: "RoBERTa base",
+    summary:
+      "Token-classification model that pulls 12 structured fields — carrier, plan type, member / group / policy ID, copay, deductible, billed amount, auth number — out of free-text intake messages. BIO spans are reassembled into a JSON dict billing systems can ingest directly.",
+    metrics: [
+      { k: "task", v: "extraction" },
+      { k: "entities", v: "12" },
+      { k: "output", v: "JSON" },
+    ],
+    href: "https://huggingface.co/raihan-js/clarioscope-insurance-v1",
+  },
+  {
+    id: "fedproc-180m-v0",
+    name: "FedProc-180M",
+    kind: "Fine-tune",
+    base: "ModernBERT base",
+    summary:
+      "Compact multi-task model for federal procurement NLP — notice type, NAICS sector, set-aside, and FAR / DFARS clause extraction trained jointly. Matches Claude Haiku 4.5's F1 on FAR-clause extraction with less than half its hallucination rate, at ~50× lower latency. Paired with the open FedProc-Bench dataset.",
+    metrics: [
+      { k: "params", v: "180M" },
+      { k: "tasks", v: "4 heads" },
+      { k: "FAR F1", v: "0.800" },
+    ],
+    href: "https://huggingface.co/raihan-js/fedproc-180m-v0",
+    writeup: {
+      href: "https://dev.to/raihan-js/i-built-the-first-open-benchmark-for-federal-contracting-ai-heres-what-it-shows-about-frontier-5a03",
+      label: "writeup",
+    },
+  },
   {
     id: "orch-nextjs-3b",
     name: "ORCH Next.js 3B",
@@ -226,6 +311,7 @@ export const EXPERIENCE = [
       "Leading technical strategy and engineering for a HIPAA-compliant healthcare practice growth platform. Owning the AI architecture and the infrastructure that keeps protected health information isolated end-to-end.",
     bullets: [
       "Architect HIPAA-compliant data flows for healthcare AI use cases.",
+      "Trained the ClarioScope SLM suite — 184M intent classifier, PHI detector covering all 18 HIPAA Safe Harbor categories, and a 12-field insurance extractor — replacing frontier-LLM calls in the intake pipeline at roughly 50× the speed and 1000× lower cost.",
       "Lead ML model selection, evaluation, and deployment strategy.",
       "Drive the engineering roadmap for product features touching PHI.",
       "Operate the org's Hugging Face presence (clarioscope-ai) for in-house models.",

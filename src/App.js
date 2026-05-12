@@ -700,8 +700,8 @@ function Work() {
 }
 
 function ProjectCard({ project, index }) {
-  // 6 projects, editorial rhythm: 8+4 / 6+6 / 6+6
-  const layouts = [8, 4, 6, 6, 6, 6];
+  // 7 projects, editorial rhythm: 8+4 / 6+6 / 4+4+4 ... falls back to 6.
+  const layouts = [8, 4, 6, 6, 4, 4, 4];
   const span = layouts[index] || 6;
   const isHero = span === 8;
   const [hovered, setHovered] = useState(false);
@@ -818,20 +818,43 @@ function ProjectCard({ project, index }) {
                 {s}
               </span>
             ))}
-            <span
-              style={{
-                marginLeft: "auto",
-                fontFamily: "var(--mono)",
-                fontSize: 11,
-                color: hovered ? "var(--accent)" : "var(--fg-subtle)",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                transition: "color 160ms",
-              }}
-            >
-              visit <span style={{ transform: hovered ? "translateX(2px)" : "none", transition: "transform 160ms" }}>→</span>
-            </span>
+            <div style={{ marginLeft: "auto", display: "inline-flex", alignItems: "center", gap: 8 }}>
+              {project.writeup && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.open(project.writeup.href, "_blank", "noopener,noreferrer");
+                  }}
+                  style={{
+                    fontFamily: "var(--mono)",
+                    fontSize: 11,
+                    padding: "3px 8px",
+                    background: "transparent",
+                    border: "1px solid var(--border)",
+                    borderRadius: 4,
+                    color: "var(--fg-muted)",
+                    cursor: "pointer",
+                  }}
+                >
+                  {project.writeup.label} ↗
+                </button>
+              )}
+              <span
+                style={{
+                  fontFamily: "var(--mono)",
+                  fontSize: 11,
+                  color: hovered ? "var(--accent)" : "var(--fg-subtle)",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  transition: "color 160ms",
+                }}
+              >
+                visit <span style={{ transform: hovered ? "translateX(2px)" : "none", transition: "transform 160ms" }}>→</span>
+              </span>
+            </div>
           </div>
         </div>
       </a>
@@ -847,7 +870,7 @@ function Models() {
     <Section id="models" num="02" title="Model case studies" kicker="open weights on Hugging Face">
       <Reveal>
         <p style={{ maxWidth: 640, color: "var(--fg-muted)", margin: "0 0 40px", fontSize: 16 }}>
-          Every model published openly on <a href="https://huggingface.co/raihan-js" target="_blank" rel="noreferrer" style={{ color: "var(--fg)", borderBottom: "1px dashed currentColor" }}>Hugging Face</a> — configs, tokenizers, and weights. Four trained from scratch on consumer hardware, one (ORCH-7B) QLoRA fine-tuned of DeepSeek Coder 6.7B.
+          Every model published openly on <a href="https://huggingface.co/raihan-js" target="_blank" rel="noreferrer" style={{ color: "var(--fg)", borderBottom: "1px dashed currentColor" }}>Hugging Face</a> — configs, tokenizers, and weights. Five trained from scratch on consumer hardware; the rest are QLoRA and DeBERTa-v3 fine-tunes that ship in production.
         </p>
       </Reveal>
       <Reveal as="div" stagger style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }} className="models-grid">
@@ -899,9 +922,33 @@ function ModelCard({ model }) {
           </span>
           <span style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--fg-subtle)" }}>{model.base}</span>
         </div>
-        <span style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--fg-subtle)", display: "inline-flex", alignItems: "center", gap: 6 }}>
-          🤗 view weights
-        </span>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+          {model.writeup && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.open(model.writeup.href, "_blank", "noopener,noreferrer");
+              }}
+              style={{
+                fontFamily: "var(--mono)",
+                fontSize: 11,
+                padding: "3px 8px",
+                background: "transparent",
+                border: "1px solid var(--border)",
+                borderRadius: 4,
+                color: "var(--fg-muted)",
+                cursor: "pointer",
+              }}
+            >
+              {model.writeup.label} ↗
+            </button>
+          )}
+          <span style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--fg-subtle)", display: "inline-flex", alignItems: "center", gap: 6 }}>
+            🤗 view weights
+          </span>
+        </div>
       </div>
       <h3 style={{ margin: "0 0 10px", fontSize: 22, fontWeight: 500, letterSpacing: "-0.015em" }}>{model.name}</h3>
       <p style={{ margin: "0 0 18px", color: "var(--fg-muted)", fontSize: 14, lineHeight: 1.55 }}>{model.summary}</p>
