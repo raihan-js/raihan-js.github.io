@@ -383,16 +383,16 @@ function PulseDot() {
 function InlineTokenDemo() {
   const PROMPTS = [
     {
-      q: "// Generate a Next.js Server Action for a contact form",
-      a: "export async function submit(prev, form) {\n  const email = form.get('email');\n  if (!isValid(email)) return { error: 'bad email' };\n  await db.lead.create({ data: { email } });\n  return { ok: true };\n}",
+      q: "// FlipGate: detect answer flips from quantization",
+      a: "bf16: 330/1000 correct\nAWQ: 431/1000 (+10.1)\n  → 77 right-to-wrong flips\n  → p < 0.0001 (McNemar)\n\nAccuracy went up.\n77 correct answers broke silently.",
     },
     {
-      q: "// QLoRA fine-tune DeepSeek Coder 6.7B in 4-bit",
-      a: "model = AutoModelForCausalLM.from_pretrained(\n  'deepseek-ai/deepseek-coder-6.7b-instruct',\n  quantization_config=bnb_4bit_nf4,\n  device_map='auto',\n)\nmodel = get_peft_model(model, lora_cfg)\ntrainer.train()",
+      q: "// tiny-bilingual-retriever: distill bge-m3 → 30M",
+      a: "teacher (568M): nDCG@10 = 0.674\nstudent (30M): nDCG@10 = 0.481\n  → 71% of teacher quality\n  → 1/19th the index size\n\nMatryoshka dim=64:\n  87% quality at 1/4 size",
     },
     {
-      q: "// ILMA Lang: print fibonacci",
-      a: "recipe fib takes n\n  check n\n    when 0 give back 0\n    when 1 give back 1\n  give back fib(n - 1) + fib(n - 2)\n\nremember total as fib(10)\nsay total",
+      q: "// OracleBench: grade small LLM judges",
+      a: "Qwen-3B false-accept: 13.2%\nQwen-0.5B false-accept: 36.1%\n\nPairwise position bias:\n  both judges pick B 85-92%\n  regardless of correctness\n\nChecker-first harness:\n  0 errors, 18× fewer judge calls",
     },
   ];
 

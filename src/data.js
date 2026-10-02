@@ -3,10 +3,10 @@
 export const PROFILE = {
   name: "Raihan",
   role: "AI/ML Engineer · LLMOps · Evaluation · Retrieval",
-  location: "Dhaka, Bangladesh · relocating to Tokyo",
-  status: "Founding Engineer & AI/ML Lead at VETR Proposal — AI-assisted federal contracting platform.",
-  available: "Open to senior ML / LLMOps roles in Tokyo, Japan.",
-  email: "araihansikder@gmail.com",
+  location: "Dhaka, Bangladesh",
+  status: "Founding Engineer & AI/ML Lead at VETR Proposal (Acu-Elligent LLC) — AI-assisted federal contracting platform.",
+  email: "raihan@vetrproposal.com",
+  languages: ["English (professional)", "Bangla (native)", "Japanese (reading)", "Russian (basic)"],
   socials: [
     { label: "GitHub", href: "https://github.com/raihan-js", handle: "@raihan-js" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/raihan-js/", handle: "in/raihan-js" },
@@ -39,28 +39,15 @@ export const PROJECTS = [
   {
     id: "commonroom",
     name: "CommonRoom AI",
-    kind: "AI / Community",
+    kind: "AI / Community · Mobile",
     year: "2024",
     status: "Live",
     summary:
-      "Collaborative digital workspace — 15 purpose-built group-coordination tools (tasks, voting, attendance, expenses), shareable via link or QR with no install or account for guests.",
-    role: "Full-stack, real-time sync",
-    stack: ["Next.js", "TypeScript", "Tailwind", "Real-time"],
+      "Collaborative digital workspace — 15 purpose-built group-coordination tools (tasks, voting, attendance, expenses), shareable via link or QR with no install or account for guests. Live on iOS and Google Play.",
+    role: "Full-stack, real-time sync, mobile",
+    stack: ["React Native", "Next.js", "TypeScript", "Tailwind", "Real-time"],
     image: "/projects/commonroom.webp",
-    link: "https://commonroomai.com",
-  },
-  {
-    id: "reelfuse",
-    name: "ReelFuse",
-    kind: "Internal · Video AI Studio",
-    year: "2026",
-    status: "Internal",
-    summary:
-      "Internal video production studio for short-form vertical content (YouTube Shorts, Reels, TikTok). Scene planner, AI-assisted title generation, brand kits, render queue with scheduled outputs, multi-format export (1080×1920, 30fps). Currently driving ClarioScope AI's growth content engine.",
-    role: "Architecture, AI, full-stack",
-    stack: ["Next.js", "TypeScript", "Python", "FFmpeg", "Render queue"],
-    image: "/projects/reelfuse.webp",
-    link: "https://reelfuse.io",
+    link: "https://apps.apple.com/us/app/commonroom-ai/id6759333414",
   },
   {
     id: "flipgate",
@@ -324,7 +311,11 @@ export const MODELS = [
 export const STACK = [
   {
     group: "AI / ML",
-    items: ["PyTorch", "Hugging Face", "Transformers", "QLoRA / PEFT", "bitsandbytes", "Gradio"],
+    items: ["PyTorch", "Hugging Face", "Transformers", "QLoRA / PEFT", "bitsandbytes", "Gradio", "vLLM", "ONNX Runtime", "sentence-transformers"],
+  },
+  {
+    group: "MLOps · LLMOps",
+    items: ["MLflow", "GitHub Actions", "Prometheus", "FastAPI", "Docker", "AWS GovCloud", "Amazon Bedrock"],
   },
   {
     group: "Frontend",
@@ -351,7 +342,7 @@ export const STACK = [
 export const EXPERIENCE = [
   {
     role: "Founding Engineer · AI/ML Lead",
-    org: "VETR Proposal",
+    org: "VETR Proposal (Acu-Elligent LLC)",
     period: "2024 — Present",
     tags: ["Full-time", "Remote", "Federal"],
     blurb:
@@ -362,6 +353,20 @@ export const EXPERIENCE = [
       "Built FedProc-Bench (1,615 records, multi-task federal-procurement NLP benchmark) with per-source breakdowns and disclosed synthetic-data bias.",
       "All AI calls in-boundary on AWS GovCloud via Amazon Bedrock — customer proposal content never reaches a third-party model provider.",
       "Stack: Next.js, FastAPI, PostgreSQL, AWS GovCloud, Amazon Bedrock, Hugging Face.",
+    ],
+  },
+  {
+    role: "Lead Engineer → CTO",
+    org: "ClarioScope AI (EvolvateX LLC)",
+    period: "2024 — 2026",
+    tags: ["Past", "Healthcare", "HIPAA"],
+    blurb:
+      "Joined as lead engineer and was promoted to CTO of a HIPAA-compliant healthcare-practice platform. Led a team of up to 10 engineers. Built the ClarioScope SLM Suite (3 models) matching frontier-API accuracy at ~50× lower latency.",
+    bullets: [
+      "Designed HIPAA-aware architecture on AWS: React frontend, Laravel backend, Python OCR/scraping, Redis queues, GitHub Actions CI/CD, Amazon Bedrock.",
+      "Built ClarioScope SLM Suite: 184M intent classifier (91.2% accuracy, 22× faster than Haiku), 125M PHI detector (18 HIPAA categories), 125M insurance extractor (12 fields).",
+      "Designed cross-model train/test split to prevent benchmark leakage; published all models with full cards and limitations.",
+      "ClarioScope reached 3-4 practices across two pivots and was sunset in 2026; models are now open-source.",
     ],
   },
   {
@@ -398,9 +403,9 @@ export const EXPERIENCE = [
     period: "Multi-year",
     tags: ["Remote", "Production work"],
     blurb:
-      "Shipped 200+ production web applications across React, Next.js, Laravel, and Node.js for clients in healthcare, e-commerce, AI, and education — including BlackGPT.us (Consumer AI), Klevere AI, DreamStreams, and many more. The projects above are the featured highlights.",
+      "Shipped 200+ production web applications across React, Next.js, Laravel, and Node.js for clients in healthcare, e-commerce, AI, and education — including BlackGPT.us (Consumer AI), Klevere AI, DreamStreams, and many more.",
     bullets: [
-      "Built AI-integrated apps (BeautyCrew, VETR, CommonRoom, BlackGPT.us) using LLM, RAG, and agent infra.",
+      "Built AI-integrated apps (VETR, CommonRoom, BlackGPT.us) using LLM, RAG, and agent infra.",
       "Delivered Laravel + React SaaS platforms with Stripe / WooCommerce billing for clients across the US, EU, and SE Asia.",
       "Architected the React Native mobile app PregaCare for pregnancy tracking and guidance.",
       "Production handover + maintenance for retained clients across multiple time zones.",
