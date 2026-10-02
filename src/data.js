@@ -59,7 +59,7 @@ export const PROJECTS = [
       "A CLI + GitHub Action release gate for quantised/re-served LLMs. Counts per-item right-to-wrong answer flips vs. a measured bf16 noise floor, uses paired statistics (McNemar, paired bootstrap) instead of aggregate accuracy. Found 77-89 correct answers broke silently behind accuracy gains under AWQ/GPTQ quantization.",
     role: "Design, implementation, statistics",
     stack: ["Python", "PyTorch", "vLLM", "llama.cpp", "scipy", "GitHub Actions"],
-    image: "/projects/flipgate.webp",
+    image: "/projects/flipgate_arch.png",
     link: "https://github.com/raihan-js/flipgate",
     writeup: {
       href: "https://dev.to/raihan-js/flipgate-counting-answer-flips-not-just-accuracy-7k2",
@@ -76,7 +76,7 @@ export const PROJECTS = [
       "Small-model question answering that compiles to an executable graph query, with a proof-of-work constraint that forces the model to reason over the graph. 34% → 97% accuracy on 6,000 MetaQA questions (p≈0). Renamed entities: 81% vs 6% (p=1.2e-84).",
     role: "Design, training, evaluation",
     stack: ["Python", "PyTorch", "Transformers", "xgrammar"],
-    image: "/projects/graphproof.webp",
+    image: "/projects/graphproof_arch.png",
     link: "https://github.com/raihan-js/graphproof-qa",
     writeup: {
       href: "https://dev.to/raihan-js/graphproof-qa-constrained-decoding-for-reliable-multi-hop-qa-4c1",
@@ -93,7 +93,7 @@ export const PROJECTS = [
       "What does a clause hallucination turn into when decoding makes it impossible? Compiled the 1,032-clause FAR/DFARS registry into a decoding grammar. Unconstrained fabrication: 82%. With grammar: 0% fabrication but 75% substitution — the model picks a real but wrong clause.",
     role: "Design, implementation, evaluation",
     stack: ["Python", "Transformers", "xgrammar", "FAR/DFARS registry"],
-    image: "/projects/fedproc.webp",
+    image: "/projects/fedproc_arch.png",
     link: "https://github.com/raihan-js/fedproc-constrained",
     writeup: {
       href: "https://dev.to/raihan-js/fedproc-constrained-what-happens-when-hallucination-is-impossible-5d3",
@@ -110,7 +110,7 @@ export const PROJECTS = [
       "Grades small open LLM-as-judge setups against deterministic oracles. False-accept: Qwen-3B 13.2%, Qwen-0.5B 36.1%. Pairwise judging collapses to position bias (both judges pick B 85-92% regardless of correctness). Checker-first harness: 0 errors, 18× fewer judge calls.",
     role: "Design, implementation, statistics",
     stack: ["Python", "Transformers", "scipy", "FastAPI", "Prometheus"],
-    image: "/projects/oraclebench.webp",
+    image: "/projects/oraclebench_arch.png",
     link: "https://github.com/raihan-js/oraclebench",
     writeup: {
       href: "https://dev.to/raihan-js/oraclebench-when-small-llm-judges-approve-wrong-answers-6e4",
@@ -127,7 +127,7 @@ export const PROJECTS = [
       "Estimates a deployed classifier's accuracy after a data shift, before any labels arrive. Benchmarks 6 label-free accuracy estimators on a controlled shift ladder. No single estimator dominates — mean confidence wins on well-calibrated models; learned error predictor wins under OOS contamination.",
     role: "Design, implementation, statistics",
     stack: ["Python", "PyTorch", "ModernBERT", "scikit-learn", "FastAPI", "Prometheus"],
-    image: "/projects/shiftwatch.webp",
+    image: "/projects/shiftwatch_arch.png",
     link: "https://github.com/raihan-js/shiftwatch",
     writeup: {
       href: "https://dev.to/raihan-js/shiftwatch-estimating-accuracy-without-labels-3f2",
@@ -144,7 +144,7 @@ export const PROJECTS = [
       "Distilled bge-m3 (568M) into modernbert-ja-30m (30M) for English-Japanese cross-lingual retrieval on CPU. Captures 71% of teacher's EN-JA quality at 1/19th the index size. Matryoshka dim=64 retains 87% quality at 1/4 size. int8: 99.6% quality at 1/4 size.",
     role: "Design, training, compression, evaluation",
     stack: ["Python", "sentence-transformers", "ONNX Runtime", "MeCab", "bm25s"],
-    image: "/projects/tiny-bilingual.webp",
+    image: "/projects/tiny-bilingual_arch.png",
     link: "https://github.com/raihan-js/tiny-bilingual-retriever",
     writeup: {
       href: "https://dev.to/raihan-js/tiny-bilingual-retriever-71-of-teacher-at-1-19th-the-size-8a1",
