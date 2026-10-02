@@ -2,15 +2,16 @@
 
 export const PROFILE = {
   name: "Raihan",
-  role: "AI/ML Engineer · Full-Stack",
-  location: "Dhaka, Bangladesh",
-  status: "CTO at ClarioScope AI — building a HIPAA-compliant practice growth platform.",
-  available: "Open to senior ML / staff engineering roles.",
-  email: "raihan@clarioscope.ai",
+  role: "AI/ML Engineer · LLMOps · Evaluation · Retrieval",
+  location: "Dhaka, Bangladesh · relocating to Tokyo",
+  status: "Founding Engineer & AI/ML Lead at VETR Proposal — AI-assisted federal contracting platform.",
+  available: "Open to senior ML / LLMOps roles in Tokyo, Japan.",
+  email: "araihansikder@gmail.com",
   socials: [
     { label: "GitHub", href: "https://github.com/raihan-js", handle: "@raihan-js" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/raihan-js/", handle: "in/raihan-js" },
     { label: "Hugging Face", href: "https://huggingface.co/raihan-js", handle: "@raihan-js" },
+    { label: "Dev.to", href: "https://dev.to/raihan-js", handle: "@raihan-js" },
   ],
 };
 
@@ -23,71 +24,15 @@ export const STATS = [
 
 export const PROJECTS = [
   {
-    id: "clarioscope",
-    name: "ClarioScope AI",
-    kind: "Healthcare AI · CTO",
+    id: "vetr",
+    name: "VETR Proposal",
+    kind: "AI / B2B · Federal Contracting",
     year: "2024–Present",
     status: "Live",
     summary:
-      "HIPAA-compliant practice growth platform for healthcare clinics. AI architecture and infrastructure that keeps protected health information isolated end-to-end. Leading engineering as CTO.",
-    role: "CTO · Architecture · AI infra",
-    stack: ["Python", "PyTorch", "Next.js", "PostgreSQL", "AWS"],
-    image: "/projects/clarioscope.webp",
-    link: "https://clarioscope.ai/",
-  },
-  {
-    id: "clarioscope-slm-suite",
-    name: "ClarioScope SLM Suite",
-    kind: "Healthcare AI · Models",
-    year: "2026",
-    status: "Live",
-    summary:
-      "Three small language models composed into a real intake pipeline — PHI is redacted, intent is classified for routing, insurance info is extracted for billing. Each model matches frontier-API accuracy on its narrow task at ~50× the speed and ~1000× lower cost, all on synthetic data.",
-    role: "Data, fine-tuning, evaluation, deployment",
-    stack: ["PyTorch", "DeBERTa-v3", "RoBERTa", "Hugging Face"],
-    image: "/projects/clarioscope-slm.png",
-    link: "https://huggingface.co/raihan-js",
-    writeup: {
-      href: "https://dev.to/raihan-js/three-small-models-for-healthcare-intake-and-what-shipping-all-three-taught-me-71l",
-      label: "writeup",
-    },
-  },
-  {
-    id: "ilma-lang",
-    name: "ILMA Lang",
-    kind: "Programming Language",
-    year: "2025",
-    status: "Live",
-    summary:
-      "A C-backed, Python-inspired programming language for children and beginners — English keywords transpile to C, then compile to native binaries. Islamic-aware modules, browser playground, and a structured learning path.",
-    role: "Language design, compiler, runtime, web",
-    stack: ["C", "Python", "Monaco", "Next.js"],
-    image: "/projects/ilma-lang.webp",
-    link: "https://www.ilma-lang.dev/",
-  },
-  {
-    id: "beautycrew",
-    name: "BeautyCrew AI",
-    kind: "AI / SaaS",
-    year: "2025",
-    status: "Live",
-    summary:
-      "Booking management for the beauty industry — built to eliminate missed appointments and keep beauty professionals' calendars and client relationships reliable.",
-    role: "Full-stack, AI scheduling",
-    stack: ["Next.js", "TypeScript", "Tailwind", "AI"],
-    image: "/projects/beautycrew.webp",
-    link: "https://beautycrew.ai",
-  },
-  {
-    id: "vetr",
-    name: "VETR Proposal",
-    kind: "AI / B2B",
-    year: "2025",
-    status: "Live",
-    summary:
-      "AI-assisted proposal co-pilot that streamlines federal contracting for small business teams — makes the complex contracting process accessible without a dedicated proposal team.",
-    role: "Retrieval, LLM integration, infra",
-    stack: ["Next.js", "TypeScript", "LLM", "PostgreSQL"],
+      "AI-assisted proposal co-pilot for federal contractors (SDVOSB, WOSB, 8(a)). RFP parsing, auto-generated compliance matrices, teaming, and AI-assisted drafting. I am the founding engineer and AI/ML lead — I built the retrieval pipeline, the LLM integration, and the full stack.",
+    role: "Founding Engineer · AI/ML Lead · Full-Stack",
+    stack: ["Next.js", "TypeScript", "FastAPI", "LLM", "PostgreSQL", "AWS GovCloud"],
     image: "/projects/vetr.webp",
     link: "https://vetrproposal.com",
   },
@@ -405,18 +350,18 @@ export const STACK = [
 
 export const EXPERIENCE = [
   {
-    role: "Chief Technology Officer",
-    org: "ClarioScope AI",
+    role: "Founding Engineer · AI/ML Lead",
+    org: "VETR Proposal",
     period: "2024 — Present",
-    tags: ["Full-time", "Remote"],
+    tags: ["Full-time", "Remote", "Federal"],
     blurb:
-      "Leading technical strategy and engineering for a HIPAA-compliant healthcare practice growth platform. Owning the AI architecture and the infrastructure that keeps protected health information isolated end-to-end.",
+      "Founding engineer and AI/ML lead for an AI proposal-management platform serving federal contractors (SDVOSB, WOSB, 8(a)). I built the retrieval pipeline, the LLM integration, and the full stack — and I train the models that power it.",
     bullets: [
-      "Architect HIPAA-compliant data flows for healthcare AI use cases.",
-      "Trained the ClarioScope SLM suite — 184M intent classifier, PHI detector covering all 18 HIPAA Safe Harbor categories, and a 12-field insurance extractor — replacing frontier-LLM calls in the intake pipeline at roughly 50× the speed and 1000× lower cost.",
-      "Lead ML model selection, evaluation, and deployment strategy.",
-      "Drive the engineering roadmap for product features touching PHI.",
-      "Operate the org's Hugging Face presence (clarioscope-ai) for in-house models.",
+      "Built the RFP parser, compliance matrix generator, and AI proposal writer applying the proprietary VETR Framework (Value, Experience, Teaming, Responsiveness).",
+      "Trained FedProc-180M (ModernBERT-base, 4 task heads) — matches Claude Haiku 4.5 on clause-extraction F1 (0.800 vs 0.804) with less than half the hallucinated clauses (13.8% vs 32.1%).",
+      "Built FedProc-Bench (1,615 records, multi-task federal-procurement NLP benchmark) with per-source breakdowns and disclosed synthetic-data bias.",
+      "All AI calls in-boundary on AWS GovCloud via Amazon Bedrock — customer proposal content never reaches a third-party model provider.",
+      "Stack: Next.js, FastAPI, PostgreSQL, AWS GovCloud, Amazon Bedrock, Hugging Face.",
     ],
   },
   {
