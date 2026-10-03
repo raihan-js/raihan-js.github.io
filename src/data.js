@@ -16,9 +16,9 @@ export const PROFILE = {
 };
 
 export const STATS = [
-  { value: 8, suffix: "", label: "research projects\nwith statistical rigor" },
-  { value: 325, suffix: "", label: "tests passing\nacross all projects" },
-  { value: 10, suffix: "", label: "HF artifacts\npublished" },
+  { value: 9, suffix: "", label: "research projects\nwith statistical rigor" },
+  { value: 371, suffix: "", label: "tests passing\nacross all projects" },
+  { value: 11, suffix: "", label: "HF artifacts\npublished" },
   { value: 71, suffix: "%", label: "of teacher quality\nat 1/19th the size" },
 ];
 
@@ -50,6 +50,23 @@ export const PROJECTS = [
     link: "https://github.com/raihan-js/vocab-tax",
     writeup: {
       href: "https://dev.to/raihan-js/vocab-tax-was-my-2103-token-tokenizer-a-mistake-9f1",
+      label: "writeup",
+    },
+  },
+  {
+    id: "roofline-decoding",
+    name: "Roofline-First Decoding",
+    kind: "Systems · Triton Kernels",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Fused 4-bit dequantise-plus-GEMV Triton kernel for batch-1 decoding, measured at 6.1% of RTX 3060 roofline. Ties bitsandbytes on speed (25.5 vs 25.7 tok/s) with better perplexity. Measured bandwidth 323.9 GB/s; honest gap analysis included.",
+    role: "Kernel design, profiling, benchmarking",
+    stack: ["Python", "Triton", "PyTorch", "CUDA", "Nsight"],
+    image: "/projects/roofline.webp",
+    link: "https://github.com/raihan-js/roofline-decoding",
+    writeup: {
+      href: "https://dev.to/raihan-js/my-triton-kernel-ties-bitsandbytes-and-both-lose-to-math-2k8",
       label: "writeup",
     },
   },
