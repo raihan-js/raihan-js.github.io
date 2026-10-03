@@ -37,6 +37,23 @@ export const PROJECTS = [
     link: "https://vetrproposal.com",
   },
   {
+    id: "jacite-bench",
+    name: "JaCite-Bench",
+    kind: "ML Evaluation · Japanese Law",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Bilingual benchmark checking every statute article an LLM cites against the official e-Gov law registry. LLMs invent Japanese law articles more often when asked in Japanese: llm-jp-3-1.8b JA 4.05% vs EN 1.09%. 11 laws, 6,913 articles, 600 questions.",
+    role: "Design, implementation, evaluation",
+    stack: ["Python", "e-Gov Law API", "Transformers", "4-bit quantization"],
+    image: "/projects/jacite.webp",
+    link: "https://github.com/raihan-js/jacite-bench",
+    writeup: {
+      href: "https://dev.to/raihan-js/jacite-bench-do-llms-invent-japanese-law-articles-3k2",
+      label: "writeup",
+    },
+  },
+  {
     id: "commonroom",
     name: "CommonRoom AI",
     kind: "AI / Community · Mobile",
