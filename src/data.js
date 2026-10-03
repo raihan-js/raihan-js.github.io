@@ -16,9 +16,9 @@ export const PROFILE = {
 };
 
 export const STATS = [
-  { value: 6, suffix: "", label: "research projects\nwith statistical rigor" },
-  { value: 293, suffix: "", label: "tests passing\nacross all projects" },
-  { value: 8, suffix: "", label: "HF artifacts\npublished" },
+  { value: 8, suffix: "", label: "research projects\nwith statistical rigor" },
+  { value: 325, suffix: "", label: "tests passing\nacross all projects" },
+  { value: 10, suffix: "", label: "HF artifacts\npublished" },
   { value: 71, suffix: "%", label: "of teacher quality\nat 1/19th the size" },
 ];
 
@@ -37,8 +37,24 @@ export const PROJECTS = [
     link: "https://vetrproposal.com",
   },
   {
-    id: "jacite-bench",
-    name: "JaCite-Bench",
+    id: "vocab-tax",
+    name: "Vocab Tax",
+    kind: "Pre-training · Scaling",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Compute-matched vocabulary-size study: 12 LLaMA-style decoders trained from scratch (3 sizes x 4 BPE vocabs) on TypeScript/JavaScript. 8k-16k wins everywhere; 10M+8k beats 50M+2k. Answers whether the 2,103-token ORCH tokenizer was a mistake.",
+    role: "Design, training, scaling analysis",
+    stack: ["Python", "PyTorch", "tokenizers", "Hugging Face"],
+    image: "/projects/vocab-tax.webp",
+    link: "https://github.com/raihan-js/vocab-tax",
+    writeup: {
+      href: "https://dev.to/raihan-js/vocab-tax-was-my-2103-token-tokenizer-a-mistake-9f1",
+      label: "writeup",
+    },
+  },
+  {
+    id: "jacite-bench",    name: "JaCite-Bench",
     kind: "ML Evaluation · Japanese Law",
     year: "2026",
     status: "Published",
