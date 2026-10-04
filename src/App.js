@@ -383,15 +383,15 @@ function InlineTokenDemo() {
   const PROMPTS = [
     {
       q: "// FlipGate: detect answer flips from quantization",
-      a: "bf16: 330/1000 correct\nAWQ: 431/1000 (+10.1)\n  → 77 right-to-wrong flips\n  → p < 0.0001 (McNemar)\n\nAccuracy went up.\n77 correct answers broke silently.",
+      a: "FAR-registry check, 155 records\nbf16: 127/155 no fabricated clause\nAWQ:  104/155 (−14.8 pts)\n  → 34 new fabricated clauses\n  → p = 0.0010 (McNemar)\n\nNo LLM judge: every cited clause\nis checked against the registry.",
     },
     {
       q: "// tiny-bilingual-retriever: distill bge-m3 → 30M",
-      a: "teacher (568M): nDCG@10 = 0.674\nstudent (30M): nDCG@10 = 0.481\n  → 71% of teacher quality\n  → 1/19th the index size\n\nMatryoshka dim=64:\n  87% quality at 1/4 size",
+      a: "teacher (568M): nDCG@10 = 0.674\nstudent (30M): nDCG@10 = 0.481\n  → 71% of teacher quality\n  → 1/19th the parameters\n  → 4× smaller index\n\nMatryoshka dim=64: 87% of dim-256\n  (synthetic EN-JA eval)",
     },
     {
       q: "// OracleBench: grade small LLM judges",
-      a: "Qwen-3B false-accept: 13.2%\nQwen-0.5B false-accept: 36.1%\n\nPairwise position bias:\n  both judges pick B 85-92%\n  regardless of correctness\n\nChecker-first harness:\n  0 errors, 18× fewer judge calls",
+      a: "Qwen-3B false-accept: 10.5-13.2%\nQwen-0.5B false-accept: 33.4-36.1%\n(range = GSM8K label cleaning)\n\nPairwise position bias:\n  both judges pick B 85-92%\n\nChecker-first harness:\n  0 errors, 16.6× fewer judge calls",
     },
   ];
 
@@ -488,9 +488,9 @@ function InlineTokenDemo() {
           <Dot c="var(--fg-subtle)" />
           <Dot c="var(--fg-subtle)" />
         </span>
-        <span style={{ marginLeft: 8 }}>orch-7b · 4-bit · live demo</span>
+        <span style={{ marginLeft: 8 }}>recorded results · scripted replay</span>
         <span style={{ marginLeft: "auto", color: "var(--fg-subtle)" }}>
-          {phase === "thinking" ? "thinking…" : phase === "streaming" ? "streaming" : phase === "done" ? "done" : "ready"}
+          {phase === "thinking" ? "loading…" : phase === "streaming" ? "replaying" : phase === "done" ? "done" : "ready"}
         </span>
       </div>
       <div style={{ padding: "16px 18px", minHeight: 240 }}>
@@ -552,7 +552,7 @@ function InlineTokenDemo() {
             cursor: "pointer",
           }}
         >
-          ↻ regenerate
+          ↻ next result
         </button>
       </div>
     </div>

@@ -391,7 +391,7 @@ export const EXPERIENCE = [
     period: "2024 — 2026",
     tags: ["Past", "Healthcare", "HIPAA"],
     blurb:
-      "Joined as lead engineer and was promoted to CTO of a HIPAA-compliant healthcare-practice platform. Led a team of up to 10 engineers. Built and published the ClarioScope SLM Suite (3 models): the intent classifier scored 91.2% vs 95.2% for GPT-4o on a held-out set and ran about 22× faster than Claude Haiku 4.5.",
+      "Joined as lead engineer and was promoted to CTO of a HIPAA-compliant healthcare-practice platform. Led a small cross-functional team (a junior engineer, QA testers and marketing). Built and published the ClarioScope SLM Suite (3 models): the intent classifier scored 91.2% vs 95.2% for GPT-4o on a held-out set and ran about 22× faster than Claude Haiku 4.5.",
     bullets: [
       "Designed HIPAA-aware architecture on AWS: React frontend, Laravel backend, Python OCR/scraping, Redis queues, GitHub Actions CI/CD, Amazon Bedrock.",
       "Built ClarioScope SLM Suite: 184M intent classifier (91.2% accuracy, 22× faster than Haiku), 125M PHI detector (18 HIPAA categories), 125M insurance extractor (12 fields).",
