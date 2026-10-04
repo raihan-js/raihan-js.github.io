@@ -297,7 +297,6 @@ export const MODELS = [
       { k: "vocab", v: "32k" },
     ],
     href: "https://huggingface.co/raihan-js/orch-nextjs-3b",
-    writeup: { href: "https://github.com/raihan-js/orch", label: "code" },
   },
   {
     id: "orch-7b",
@@ -312,7 +311,6 @@ export const MODELS = [
       { k: "ctx", v: "16k" },
     ],
     href: "https://huggingface.co/raihan-js/orch-7b",
-    writeup: { href: "https://github.com/raihan-js/orch", label: "code" },
   },
   {
     id: "orch-fusion",
@@ -327,7 +325,6 @@ export const MODELS = [
       { k: "vocab", v: "2,103" },
     ],
     href: "https://huggingface.co/raihan-js/orch-fusion",
-    writeup: { href: "https://github.com/raihan-js/orch", label: "code" },
   },
   {
     id: "orch-nextjs-350m-v2",
@@ -342,7 +339,6 @@ export const MODELS = [
       { k: "vocab", v: "16k" },
     ],
     href: "https://huggingface.co/raihan-js/orch-nextjs-350m-v2",
-    writeup: { href: "https://github.com/raihan-js/orch", label: "code" },
   },
 ];
 
