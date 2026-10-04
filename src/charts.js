@@ -155,7 +155,7 @@ function graphproof() {
 function fedproc() {
   const rows = [
     { name: "Unconstrained", fab: 82, sub: 8, ok: 8 },
-    { name: "Enum grammar", fab: 0, sub: 75, ok: 8 },
+    { name: "Enum grammar", fab: 0, sub: 75, ok: 0 },
     { name: "Span grammar", fab: 0, sub: 25, ok: 0 },
     { name: "Post-hoc filter", fab: 77, sub: 10, ok: 8 },
   ];
@@ -189,10 +189,10 @@ function fedproc() {
   return frame({
     headline: "Block the fake clause, get a real wrong one",
     sub: "% of 60 prompts, Qwen2.5-1.5B-Instruct, FAR/DFARS",
-    footer: ["Enum grammar: 0% fabricated, 75% substituted (95% CI", "64-86%). 1,056-ID registry. Other = remainder."],
+    footer: ["No abstain option: all 30 fake-topic prompts are forced to", "substitute. On 15 answerable prompts, correct fell 5 → 0."],
     body,
     alt: "FedProc-Constrained: a registry grammar removes fabricated clauses but 75 percent of outputs become real but wrong clauses",
-    desc: "Unconstrained: 82% fabricated, 8% substituted, 8% correct. Enum grammar: 0% fabricated, 75% substituted, 8% correct. Span grammar: 0% fabricated, 25% substituted. Post-hoc filter: 77% fabricated, 10% substituted, 8% correct.",
+    desc: "Unconstrained: 82% fabricated, 8% substituted, 8% correct. Enum grammar: 0% fabricated, 75% substituted, 0% correct, 25% registry-valid with no gold answer. Span grammar: 0% fabricated, 25% substituted. Post-hoc filter: 77% fabricated, 10% substituted, 8% correct.",
   });
 }
 
