@@ -114,10 +114,10 @@ function flipgate() {
   return frame({
     headline: "Accuracy rose. Correct answers still broke.",
     sub: "GSM8K, 1,000 items, quantised vs bf16 baseline",
-    footer: ["Qwen2.5-3B-Instruct, HF generate, temp 0. McNemar p < 0.0001", "(AWQ) and 0.0047 (GPTQ). Measured noise floor: 0 flips."],
+    footer: ["Qwen2.5-3B-Instruct, temp 0, 256-token cap (most answers", "truncated). McNemar p < 0.0001 (AWQ), 0.0047 (GPTQ)."],
     body,
     alt: "FlipGate: quantised models gained accuracy on GSM8K but 77 to 89 previously correct answers broke",
-    desc: "GSM8K n=1000 versus bf16. AWQ: 77 right-to-wrong, 178 wrong-to-right, net +10.1 points. GPTQ-Int4: 89 right-to-wrong, 132 wrong-to-right, net +4.3 points.",
+    desc: "GSM8K n=1000 versus bf16, generation capped at 256 tokens so most answers are truncated. AWQ: 77 right-to-wrong, 178 wrong-to-right, net +10.1 points. GPTQ-Int4: 89 right-to-wrong, 132 wrong-to-right, net +4.3 points.",
   });
 }
 
