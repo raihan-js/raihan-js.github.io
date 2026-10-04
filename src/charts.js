@@ -287,7 +287,7 @@ function tiny() {
     { name: "ruri-v3-30m", v: 0.5418 },
     { name: "Distilled student", v: 0.4809, hi: true },
     { name: "multilingual-e5-small", v: 0.4795 },
-    { name: "Untrained 30M encoder", v: 0.0373 },
+    { name: "Untrained base (37M)", v: 0.0373 },
   ];
   const x0 = 150;
   const k = 262;
@@ -301,9 +301,9 @@ function tiny() {
   return frame({
     headline: "Distilled: EN→JA nDCG 0.04 → 0.48",
     sub: "Student reaches 71% of the teacher's score",
-    footer: ["Student 30M params (teacher 568M); index 4.9 vs 19.5 MB.", "Synthetic opus-100 EN-JA eval: relative comparisons only."],
+    footer: ["Student 36.7M params (teacher 568M); index 4.9 vs 19.5 MB.", "Synthetic opus-100 EN-JA eval: relative comparisons only."],
     body,
-    alt: "tiny-bilingual-retriever: distilling bge-m3 into a 30M encoder lifts English to Japanese nDCG@10 from 0.037 to 0.481, 71 percent of the teacher",
+    alt: "tiny-bilingual-retriever: distilling bge-m3 into a 36.7M-parameter encoder lifts English to Japanese nDCG@10 from 0.037 to 0.481, 71 percent of the teacher",
     desc: "EN-JA nDCG@10 on 500 queries and 5,000 passages: bge-m3 teacher 0.674, ruri-v3-30m 0.542, distilled student 0.481, multilingual-e5-small 0.480, untrained modernbert-ja-30m 0.037.",
   });
 }

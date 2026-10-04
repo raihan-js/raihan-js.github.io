@@ -143,7 +143,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Distils bge-m3 (568M) into a 30M Japanese encoder for English-to-Japanese retrieval on CPU, then compresses it with Matryoshka and int8. Fusion with BM25 hurt, and the public ruri-v3-30m scores higher.",
+      "Distils bge-m3 (568M) into a 36.7M-parameter Japanese encoder for English-to-Japanese retrieval on CPU, then compresses it with Matryoshka and int8. Fusion with BM25 hurt, and the public ruri-v3-30m scores higher.",
     role: "Design, training, evaluation",
     stack: ["Python", "PyTorch", "sentence-transformers", "ONNX Runtime", "MeCab"],
     link: "https://github.com/raihan-js/tiny-bilingual-retriever",

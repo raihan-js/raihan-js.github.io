@@ -386,8 +386,8 @@ function InlineTokenDemo() {
       a: "FAR-registry check, 155 records\nbf16: 127/155 no fabricated clause\nAWQ:  104/155 (−14.8 pts)\n  → 34 new fabricated clauses\n  → p = 0.0010 (McNemar)\n\nNo LLM judge: every cited clause\nis checked against the registry.",
     },
     {
-      q: "// tiny-bilingual-retriever: distill bge-m3 → 30M",
-      a: "teacher (568M): nDCG@10 = 0.674\nstudent (30M): nDCG@10 = 0.481\n  → 71% of teacher quality\n  → 1/19th the parameters\n  → 4× smaller index\n\nMatryoshka dim=64: 87% of dim-256\n  (synthetic EN-JA eval)",
+      q: "// tiny-bilingual-retriever: distill bge-m3 → 37M",
+      a: "teacher (568M): nDCG@10 = 0.674\nstudent (36.7M): nDCG@10 = 0.481\n  → 71% of teacher quality\n  → 15× fewer parameters\n  → 4× smaller index\n\nMatryoshka dim=64: 87% of dim-256\n  (synthetic EN-JA eval)",
     },
     {
       q: "// OracleBench: grade small LLM judges",
