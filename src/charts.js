@@ -377,7 +377,7 @@ function vocab() {
   body += legend(207, [
     { color: S1, label: "10M" },
     { color: S2, label: "25M" },
-    { color: S3, label: "50M non-embedding params" },
+    { color: S3, label: "50M (nominal size tags)" },
   ]);
   return frame({
     headline: "8k-16k vocabularies win at every size",
@@ -385,7 +385,7 @@ function vocab() {
     footer: ["16 runs, 1,000 steps each. 10M = mean of 2 seeds; seed noise", "reaches 0.13, so 8k vs 16k is a tie."].slice(0, 2),
     body,
     alt: "Vocab Tax: across three model sizes, 8k to 16k vocabularies give the lowest held-out bits per byte; 2k is worst and 32k collapses at 50M",
-    desc: "Bits per byte (2k, 8k, 16k, 32k vocab). 10M: 1.391, 1.168, 1.219, 1.321. 25M: 1.378, 1.258, 1.218, 1.280. 50M: 1.436, 1.204, 1.147, 1.458.",
+    desc: "Bits per byte by vocabulary size (2k, 8k, 16k, 32k); 10M, 25M and 50M are nominal size tags. 10M: 1.391, 1.168, 1.219, 1.321. 25M: 1.378, 1.258, 1.218, 1.280. 50M: 1.436, 1.204, 1.147, 1.458.",
   });
 }
 
