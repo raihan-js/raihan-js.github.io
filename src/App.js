@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { PROFILE, STATS, PROJECTS, MODELS, STACK, EXPERIENCE } from "./data";
+import { PROFILE, STATS, HF, PROJECTS, MODELS, STACK, EXPERIENCE } from "./data";
 import { chartSvg } from "./charts";
 
 // ============================================================
@@ -592,7 +592,31 @@ function ThinkingDots() {
 // ============================================================
 // Stats — animated counters
 // ============================================================
+// Live all-time download total for the author's public models + datasets (Hugging Face public API).
+function useHfDownloads() {
+  const [total, setTotal] = useState(null);
+  useEffect(() => {
+    let cancelled = false;
+    const get = (kind) =>
+      fetch(`https://huggingface.co/api/${kind}?author=${HF.author}&limit=100&expand%5B%5D=downloadsAllTime`).then((r) =>
+        r.ok ? r.json() : Promise.reject(r.status)
+      );
+    Promise.all([get("models"), get("datasets")])
+      .then(([m, d]) => {
+        const sum = (rows) => rows.reduce((s, x) => s + (x.downloadsAllTime || 0), 0);
+        const t = sum(m) + sum(d);
+        if (!cancelled && t > 0) setTotal(t);
+      })
+      .catch(() => {}); // keep the snapshot from data.js
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return total;
+}
+
 function StatRow() {
+  const hf = useHfDownloads();
   return (
     <Reveal>
       <div
@@ -607,7 +631,7 @@ function StatRow() {
         className="stat-row"
       >
         {STATS.map((s, i) => (
-          <Stat key={i} {...s} divider={i > 0} />
+          <Stat key={i} {...s} value={s.live && hf != null ? hf : s.value} divider={i > 0} />
         ))}
       </div>
     </Reveal>
@@ -616,6 +640,7 @@ function StatRow() {
 
 function Stat({ value, suffix, label, divider }) {
   const [n, setN] = useState(0);
+  const shown = useRef(0);
   const ref = useRef(null);
   useEffect(() => {
     const el = ref.current;
@@ -626,11 +651,13 @@ function Stat({ value, suffix, label, divider }) {
           if (!e.isIntersecting) return;
           const start = performance.now();
           const dur = 1200;
+          const from = shown.current;
           const isFloat = !Number.isInteger(value);
           const tick = (t) => {
             const p = Math.min(1, (t - start) / dur);
             const eased = 1 - Math.pow(1 - p, 3);
-            const cur = value * eased;
+            const cur = from + (value - from) * eased;
+            shown.current = cur;
             setN(isFloat ? +cur.toFixed(1) : Math.round(cur));
             if (p < 1) requestAnimationFrame(tick);
           };
@@ -665,7 +692,7 @@ function Stat({ value, suffix, label, divider }) {
           fontVariantNumeric: "tabular-nums",
         }}
       >
-        {n}
+        {n.toLocaleString("en-US")}
         <span style={{ color: "var(--accent)" }}>{suffix}</span>
       </div>
       <div

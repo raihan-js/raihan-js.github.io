@@ -16,11 +16,18 @@ export const PROFILE = {
   ],
 };
 
+// Hugging Face download totals. The site refreshes these live from the public HF API (it allows this origin);
+// the snapshot below is what shows if that request fails. Counts are all-time, models + datasets.
+export const HF = {
+  author: "raihan-js",
+  snapshot: { downloads: 2416, models: 1349, datasets: 1067, asOf: "2026-10-04" },
+};
+
 export const STATS = [
   { value: 9, suffix: "", label: "research projects\nwith statistical rigor" },
   { value: 371, suffix: "", label: "tests passing\nacross all projects" },
-  { value: 11, suffix: "", label: "HF artifacts\npublished" },
-  { value: 71, suffix: "%", label: "of teacher EN→JA nDCG\nat 1/19th the parameters" },
+  { value: 11, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
+  { id: "hf-downloads", live: true, value: 2416, suffix: "", label: "Hugging Face downloads,\nmodels + datasets (all-time)" },
 ];
 
 export const PROJECTS = [
