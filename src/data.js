@@ -6,7 +6,8 @@ export const PROFILE = {
   location: "Dhaka, Bangladesh",
   status: "Founding Engineer & AI/ML Lead at VETR Proposal (Acu-Elligent LLC) — AI-assisted federal contracting platform.",
   email: "raihan@vetrproposal.com",
-  languages: ["English (professional)", "Bangla (native)", "Japanese (reading)", "Russian (basic)"],
+  available: "Open to senior ML / LLMOps roles · relocating to Tokyo",
+  languages: ["English (professional)", "Bangla (native)", "Japanese (learning, JLPT N5 target Dec 2026)", "Russian (basic)"],
   socials: [
     { label: "GitHub", href: "https://github.com/raihan-js", handle: "@raihan-js" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/raihan-js/", handle: "in/raihan-js" },
@@ -19,12 +20,166 @@ export const STATS = [
   { value: 9, suffix: "", label: "research projects\nwith statistical rigor" },
   { value: 371, suffix: "", label: "tests passing\nacross all projects" },
   { value: 11, suffix: "", label: "HF artifacts\npublished" },
-  { value: 71, suffix: "%", label: "of teacher quality\nat 1/19th the size" },
+  { value: 71, suffix: "%", label: "of teacher EN→JA nDCG\nat 1/19th the parameters" },
 ];
 
 export const PROJECTS = [
   {
+    id: "flipgate",
+    group: "research",
+    chart: "flipgate",
+    name: "FlipGate",
+    kind: "ML Evaluation · Release Gate",
+    year: "2026",
+    status: "Published",
+    summary:
+      "A CLI and GitHub Action release gate for quantised or re-served LLMs. It counts per-item right-to-wrong flips against a measured noise floor and tests them with McNemar and a paired bootstrap, instead of trusting aggregate accuracy.",
+    role: "Design, implementation, statistics",
+    stack: ["Python", "PyTorch", "vLLM", "llama.cpp", "scipy", "GitHub Actions"],
+    link: "https://github.com/raihan-js/flipgate",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/flipgate-results" },
+    ],
+  },
+  {
+    id: "shiftwatch",
+    group: "research",
+    chart: "shiftwatch",
+    name: "ShiftWatch",
+    kind: "ML Monitoring · Label-Free",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Estimates a deployed classifier's accuracy after a data shift, before labels arrive. Benchmarks six label-free estimators on a controlled shift ladder, and ships as a FastAPI and Prometheus sidecar with a rolling window and an alert flag.",
+    role: "Design, implementation, statistics",
+    stack: ["Python", "PyTorch", "ModernBERT", "scikit-learn", "FastAPI", "Prometheus"],
+    link: "https://github.com/raihan-js/shiftwatch",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/shiftwatch-ladder" },
+    ],
+  },
+  {
+    id: "oraclebench",
+    group: "research",
+    chart: "oraclebench",
+    name: "OracleBench",
+    kind: "ML Evaluation · LLM-as-Judge",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Grades small open LLM judges against deterministic oracles instead of against other judges. Includes a checker-first harness that routes items to rule-based checkers and calls a judge only where no oracle exists.",
+    role: "Design, implementation, statistics",
+    stack: ["Python", "Transformers", "scipy", "FastAPI", "Prometheus"],
+    link: "https://github.com/raihan-js/oraclebench",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/oraclebench-items" },
+    ],
+  },
+  {
+    id: "jacite-bench",
+    group: "research",
+    chart: "jacite-bench",
+    name: "JaCite-Bench",
+    kind: "ML Evaluation · Japanese Law",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Checks every statute article an LLM cites against the official e-Gov law registry, in Japanese and in English. Local models only; it tests that an article exists, not that the legal reasoning is right.",
+    role: "Design, implementation, evaluation",
+    stack: ["Python", "e-Gov Law API", "Transformers", "4-bit quantization"],
+    link: "https://github.com/raihan-js/jacite-bench",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/jacite-bench" },
+    ],
+  },
+  {
+    id: "graphproof-qa",
+    group: "research",
+    chart: "graphproof-qa",
+    name: "GraphProof-QA",
+    kind: "QA · Constrained Decoding",
+    year: "2026",
+    status: "Published",
+    summary:
+      "A 1.5B model fine-tuned to write an executable graph query instead of answering from memory, with grammar-constrained decoding and a proof trace for every answer. Tested on entities it has never seen.",
+    role: "Design, training, evaluation",
+    stack: ["Python", "PyTorch", "Transformers", "xgrammar"],
+    link: "https://github.com/raihan-js/graphproof-qa",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/MetaQA-CF" },
+    ],
+  },
+  {
+    id: "fedproc-constrained",
+    group: "research",
+    chart: "fedproc-constrained",
+    name: "FedProc-Constrained",
+    kind: "ML Evaluation · Hallucination",
+    year: "2026",
+    status: "Published",
+    summary:
+      "What does a clause hallucination turn into when decoding makes it impossible? The 1,032-clause FAR/DFARS registry compiled into a decoding grammar, measuring substitution and speed cost (60 prompts, Qwen2.5-1.5B).",
+    role: "Design, implementation, evaluation",
+    stack: ["Python", "Transformers", "xgrammar", "FAR/DFARS registry"],
+    link: "https://github.com/raihan-js/fedproc-constrained",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/fedproc-constrained-results" },
+    ],
+  },
+  {
+    id: "tiny-bilingual-retriever",
+    group: "research",
+    chart: "tiny-bilingual-retriever",
+    name: "Tiny Bilingual Retriever",
+    kind: "Retrieval · Distillation",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Distils bge-m3 (568M) into a 30M Japanese encoder for English-to-Japanese retrieval on CPU, then compresses it with Matryoshka and int8. Fusion with BM25 hurt, and the public ruri-v3-30m scores higher.",
+    role: "Design, training, evaluation",
+    stack: ["Python", "PyTorch", "sentence-transformers", "ONNX Runtime", "MeCab"],
+    link: "https://github.com/raihan-js/tiny-bilingual-retriever",
+    links: [
+      { label: "HF model", href: "https://huggingface.co/raihan-js/tiny-rerank-ja-en-30m" },
+    ],
+  },
+  {
+    id: "roofline-decoding",
+    group: "research",
+    chart: "roofline-decoding",
+    name: "Roofline-First Decoding",
+    kind: "Systems · Triton Kernels",
+    year: "2026",
+    status: "Published",
+    summary:
+      "A fused 4-bit dequantise-plus-GEMV Triton kernel for batch-1 decoding, written after computing the bandwidth ceiling. Ties bitsandbytes NF4 on speed; documents two load-bearing bugs and a failed tl.dot rewrite.",
+    role: "Kernel design, profiling, benchmarking",
+    stack: ["Python", "Triton", "PyTorch", "CUDA"],
+    link: "https://github.com/raihan-js/roofline-decoding",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/roofline-decoding-results" },
+    ],
+  },
+  {
+    id: "vocab-tax",
+    group: "research",
+    chart: "vocab-tax",
+    name: "Vocab Tax",
+    kind: "Pre-training · Scaling",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Compute-matched study of vocabulary size: 16 LLaMA-style decoders trained from scratch on TypeScript/JavaScript. Seed noise is large, so a tie is reported as a tie. Asks whether the 2,103-token ORCH tokenizer was a mistake.",
+    role: "Design, training, scaling analysis",
+    stack: ["Python", "PyTorch", "tokenizers", "Hugging Face"],
+    link: "https://github.com/raihan-js/vocab-tax",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/vocab-tax-grid" },
+    ],
+  },
+  {
     id: "vetr",
+    group: "product",
     name: "VETR Proposal",
     kind: "AI / B2B · Federal Contracting",
     year: "2024–Present",
@@ -37,57 +192,8 @@ export const PROJECTS = [
     link: "https://vetrproposal.com",
   },
   {
-    id: "vocab-tax",
-    name: "Vocab Tax",
-    kind: "Pre-training · Scaling",
-    year: "2026",
-    status: "Published",
-    summary:
-      "Compute-matched vocabulary-size study: 12 LLaMA-style decoders trained from scratch (3 sizes x 4 BPE vocabs) on TypeScript/JavaScript. 8k-16k wins everywhere; 10M+8k beats 50M+2k. Answers whether the 2,103-token ORCH tokenizer was a mistake.",
-    role: "Design, training, scaling analysis",
-    stack: ["Python", "PyTorch", "tokenizers", "Hugging Face"],
-    image: "/projects/vocab-tax.webp",
-    link: "https://github.com/raihan-js/vocab-tax",
-    writeup: {
-      href: "https://dev.to/raihan-js/vocab-tax-was-my-2103-token-tokenizer-a-mistake-9f1",
-      label: "writeup",
-    },
-  },
-  {
-    id: "roofline-decoding",
-    name: "Roofline-First Decoding",
-    kind: "Systems · Triton Kernels",
-    year: "2026",
-    status: "Published",
-    summary:
-      "Fused 4-bit dequantise-plus-GEMV Triton kernel for batch-1 decoding, measured at 6.1% of RTX 3060 roofline. Ties bitsandbytes on speed (25.5 vs 25.7 tok/s) with better perplexity. Measured bandwidth 323.9 GB/s; honest gap analysis included.",
-    role: "Kernel design, profiling, benchmarking",
-    stack: ["Python", "Triton", "PyTorch", "CUDA", "Nsight"],
-    image: "/projects/roofline.webp",
-    link: "https://github.com/raihan-js/roofline-decoding",
-    writeup: {
-      href: "https://dev.to/raihan-js/my-triton-kernel-ties-bitsandbytes-and-both-lose-to-math-2k8",
-      label: "writeup",
-    },
-  },
-  {
-    id: "jacite-bench",    name: "JaCite-Bench",
-    kind: "ML Evaluation · Japanese Law",
-    year: "2026",
-    status: "Published",
-    summary:
-      "Bilingual benchmark checking every statute article an LLM cites against the official e-Gov law registry. LLMs invent Japanese law articles more often when asked in Japanese: llm-jp-3-1.8b JA 4.05% vs EN 1.09%. 11 laws, 6,913 articles, 600 questions.",
-    role: "Design, implementation, evaluation",
-    stack: ["Python", "e-Gov Law API", "Transformers", "4-bit quantization"],
-    image: "/projects/jacite.webp",
-    link: "https://github.com/raihan-js/jacite-bench",
-    writeup: {
-      href: "https://dev.to/raihan-js/jacite-bench-do-llms-invent-japanese-law-articles-3k2",
-      label: "writeup",
-    },
-  },
-  {
     id: "commonroom",
+    group: "product",
     name: "CommonRoom AI",
     kind: "AI / Community · Mobile",
     year: "2024",
@@ -98,108 +204,6 @@ export const PROJECTS = [
     stack: ["React Native", "Next.js", "TypeScript", "Tailwind", "Real-time"],
     image: "/projects/commonroom.webp",
     link: "https://apps.apple.com/us/app/commonroom-ai/id6759333414",
-  },
-  {
-    id: "flipgate",
-    name: "FlipGate",
-    kind: "ML Evaluation · Release Gate",
-    year: "2026",
-    status: "Published",
-    summary:
-      "A CLI + GitHub Action release gate for quantised/re-served LLMs. Counts per-item right-to-wrong answer flips vs. a measured bf16 noise floor, uses paired statistics (McNemar, paired bootstrap) instead of aggregate accuracy. Found 77-89 correct answers broke silently behind accuracy gains under AWQ/GPTQ quantization.",
-    role: "Design, implementation, statistics",
-    stack: ["Python", "PyTorch", "vLLM", "llama.cpp", "scipy", "GitHub Actions"],
-    image: "/projects/flipgate_arch.png",
-    link: "https://github.com/raihan-js/flipgate",
-    writeup: {
-      href: "https://dev.to/raihan-js/flipgate-counting-answer-flips-not-just-accuracy-7k2",
-      label: "writeup",
-    },
-  },
-  {
-    id: "graphproof-qa",
-    name: "GraphProof-QA",
-    kind: "ML Evaluation · Constrained Decoding",
-    year: "2026",
-    status: "Published",
-    summary:
-      "Small-model question answering that compiles to an executable graph query, with a proof-of-work constraint that forces the model to reason over the graph. 34% → 97% accuracy on 6,000 MetaQA questions (p≈0). Renamed entities: 81% vs 6% (p=1.2e-84).",
-    role: "Design, training, evaluation",
-    stack: ["Python", "PyTorch", "Transformers", "xgrammar"],
-    image: "/projects/graphproof_arch.png",
-    link: "https://github.com/raihan-js/graphproof-qa",
-    writeup: {
-      href: "https://dev.to/raihan-js/graphproof-qa-constrained-decoding-for-reliable-multi-hop-qa-4c1",
-      label: "writeup",
-    },
-  },
-  {
-    id: "fedproc-constrained",
-    name: "FedProc-Constrained",
-    kind: "ML Evaluation · Hallucination",
-    year: "2026",
-    status: "Published",
-    summary:
-      "What does a clause hallucination turn into when decoding makes it impossible? Compiled the 1,032-clause FAR/DFARS registry into a decoding grammar. Unconstrained fabrication: 82%. With grammar: 0% fabrication but 75% substitution — the model picks a real but wrong clause.",
-    role: "Design, implementation, evaluation",
-    stack: ["Python", "Transformers", "xgrammar", "FAR/DFARS registry"],
-    image: "/projects/fedproc_arch.png",
-    link: "https://github.com/raihan-js/fedproc-constrained",
-    writeup: {
-      href: "https://dev.to/raihan-js/fedproc-constrained-what-happens-when-hallucination-is-impossible-5d3",
-      label: "writeup",
-    },
-  },
-  {
-    id: "oraclebench",
-    name: "OracleBench",
-    kind: "ML Evaluation · LLM-as-Judge",
-    year: "2026",
-    status: "Published",
-    summary:
-      "Grades small open LLM-as-judge setups against deterministic oracles. False-accept: Qwen-3B 13.2%, Qwen-0.5B 36.1%. Pairwise judging collapses to position bias (both judges pick B 85-92% regardless of correctness). Checker-first harness: 0 errors, 18× fewer judge calls.",
-    role: "Design, implementation, statistics",
-    stack: ["Python", "Transformers", "scipy", "FastAPI", "Prometheus"],
-    image: "/projects/oraclebench_arch.png",
-    link: "https://github.com/raihan-js/oraclebench",
-    writeup: {
-      href: "https://dev.to/raihan-js/oraclebench-when-small-llm-judges-approve-wrong-answers-6e4",
-      label: "writeup",
-    },
-  },
-  {
-    id: "shiftwatch",
-    name: "ShiftWatch",
-    kind: "ML Monitoring · Label-Free",
-    year: "2026",
-    status: "Published",
-    summary:
-      "Estimates a deployed classifier's accuracy after a data shift, before any labels arrive. Benchmarks 6 label-free accuracy estimators on a controlled shift ladder. No single estimator dominates — mean confidence wins on well-calibrated models; learned error predictor wins under OOS contamination.",
-    role: "Design, implementation, statistics",
-    stack: ["Python", "PyTorch", "ModernBERT", "scikit-learn", "FastAPI", "Prometheus"],
-    image: "/projects/shiftwatch_arch.png",
-    link: "https://github.com/raihan-js/shiftwatch",
-    writeup: {
-      href: "https://dev.to/raihan-js/shiftwatch-estimating-accuracy-without-labels-3f2",
-      label: "writeup",
-    },
-  },
-  {
-    id: "tiny-bilingual-retriever",
-    name: "Tiny Bilingual Retriever",
-    kind: "Retrieval · Distillation",
-    year: "2026",
-    status: "Published",
-    summary:
-      "Distilled bge-m3 (568M) into modernbert-ja-30m (30M) for English-Japanese cross-lingual retrieval on CPU. Captures 71% of teacher's EN-JA quality at 1/19th the index size. Matryoshka dim=64 retains 87% quality at 1/4 size. int8: 99.6% quality at 1/4 size.",
-    role: "Design, training, compression, evaluation",
-    stack: ["Python", "sentence-transformers", "ONNX Runtime", "MeCab", "bm25s"],
-    image: "/projects/tiny-bilingual_arch.png",
-    link: "https://github.com/raihan-js/tiny-bilingual-retriever",
-    writeup: {
-      href: "https://dev.to/raihan-js/tiny-bilingual-retriever-71-of-teacher-at-1-19th-the-size-8a1",
-      label: "writeup",
-    },
   },
 ];
 
@@ -260,7 +264,7 @@ export const MODELS = [
     kind: "Fine-tune",
     base: "ModernBERT base",
     summary:
-      "Compact multi-task model for federal procurement NLP — notice type, NAICS sector, set-aside, and FAR / DFARS clause extraction trained jointly. Matches Claude Haiku 4.5's F1 on FAR-clause extraction with less than half its hallucination rate, at ~50× lower latency. Paired with the open FedProc-Bench dataset.",
+      "Compact multi-task model for federal procurement NLP — notice type, NAICS sector, set-aside, and FAR / DFARS clause extraction trained jointly. Within 0.004 F1 of Claude Haiku 4.5 on FAR-clause extraction (0.800 vs 0.804) with less than half its hallucination rate (13.8% vs 32.1%). Paired with the open FedProc-Bench dataset.",
     metrics: [
       { k: "params", v: "180M" },
       { k: "tasks", v: "4 heads" },
@@ -328,64 +332,32 @@ export const MODELS = [
     ],
     href: "https://huggingface.co/raihan-js/orch-nextjs-350m-v2",
   },
-  {
-    id: "medllm-10m",
-    name: "MedLLM-10M",
-    kind: "From scratch",
-    base: "GPT-2 arch",
-    summary:
-      "Lightweight GPT-2-style language model trained from scratch on medical literature (PubMed abstracts, clinical guidelines, medical Q&A). Research / educational use only.",
-    metrics: [
-      { k: "params", v: "28M" },
-      { k: "ctx", v: "512" },
-      { k: "vocab", v: "5k" },
-    ],
-    href: "https://huggingface.co/raihan-js/medllm-10m",
-  },
-  {
-    id: "orch-studio",
-    name: "ORCH Studio",
-    kind: "Product",
-    base: "Gradio Space",
-    summary:
-      "End-user product wrapping ORCH-7B in a Gradio interface. Pick a template (SaaS, e-commerce, dashboard), describe the app, download a complete Next.js 14 project ZIP.",
-    metrics: [
-      { k: "model", v: "ORCH-7B" },
-      { k: "infer", v: "cloud" },
-      { k: "templates", v: "7" },
-    ],
-    href: "https://huggingface.co/spaces/raihan-js/orch-studio",
-  },
 ];
 
 export const STACK = [
   {
     group: "AI / ML",
-    items: ["PyTorch", "Hugging Face", "Transformers", "QLoRA / PEFT", "bitsandbytes", "Gradio", "vLLM", "ONNX Runtime", "sentence-transformers"],
+    items: ["PyTorch", "Hugging Face", "Transformers", "QLoRA / PEFT", "bitsandbytes", "Triton", "xgrammar", "vLLM", "ONNX Runtime", "sentence-transformers"],
   },
   {
     group: "MLOps · LLMOps",
     items: ["MLflow", "GitHub Actions", "Prometheus", "FastAPI", "Docker", "AWS GovCloud", "Amazon Bedrock"],
   },
   {
+    group: "Evaluation · Statistics",
+    items: ["McNemar test", "Paired bootstrap CIs", "scipy", "pytest", "Rule-based oracles", "Per-item JSONL run logs"],
+  },
+  {
     group: "Frontend",
     items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "JavaScript", "Vue / Nuxt"],
   },
   {
-    group: "Backend",
-    items: ["Python", "Laravel", "Node.js", "FastAPI", "PHP", "C"],
+    group: "Backend · Data",
+    items: ["Python", "Laravel", "Node.js", "FastAPI", "PHP", "C", "PostgreSQL", "MySQL", "MongoDB", "Redis", "Firebase"],
   },
   {
     group: "Cloud · GPU · DevOps",
     items: ["AWS", "Docker", "CUDA / GPU", "RunPod", "Digital Ocean", "Git"],
-  },
-  {
-    group: "Languages & Tooling",
-    items: ["ILMA Lang", "Monaco Editor", "GCC", "Custom CUDA", "Hugging Face Spaces"],
-  },
-  {
-    group: "Data",
-    items: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Firebase"],
   },
 ];
 
@@ -394,7 +366,7 @@ export const EXPERIENCE = [
     role: "Founding Engineer · AI/ML Lead",
     org: "VETR Proposal (Acu-Elligent LLC)",
     period: "2024 — Present",
-    tags: ["Full-time", "Remote", "Federal"],
+    tags: ["Contract", "Remote", "Federal"],
     blurb:
       "Founding engineer and AI/ML lead for an AI proposal-management platform serving federal contractors (SDVOSB, WOSB, 8(a)). I built the retrieval pipeline, the LLM integration, and the full stack — and I train the models that power it.",
     bullets: [
@@ -411,7 +383,7 @@ export const EXPERIENCE = [
     period: "2024 — 2026",
     tags: ["Past", "Healthcare", "HIPAA"],
     blurb:
-      "Joined as lead engineer and was promoted to CTO of a HIPAA-compliant healthcare-practice platform. Led a team of up to 10 engineers. Built the ClarioScope SLM Suite (3 models) matching frontier-API accuracy at ~50× lower latency.",
+      "Joined as lead engineer and was promoted to CTO of a HIPAA-compliant healthcare-practice platform. Led a team of up to 10 engineers. Built and published the ClarioScope SLM Suite (3 models): the intent classifier scored 91.2% vs 95.2% for GPT-4o on a held-out set and ran about 22× faster than Claude Haiku 4.5.",
     bullets: [
       "Designed HIPAA-aware architecture on AWS: React frontend, Laravel backend, Python OCR/scraping, Redis queues, GitHub Actions CI/CD, Amazon Bedrock.",
       "Built ClarioScope SLM Suite: 184M intent classifier (91.2% accuracy, 22× faster than Haiku), 125M PHI detector (18 HIPAA categories), 125M insurance extractor (12 fields).",

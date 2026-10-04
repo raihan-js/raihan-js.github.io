@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { PROFILE, STATS, PROJECTS, MODELS, STACK, EXPERIENCE } from "./data";
+import { chartSvg } from "./charts";
 
 // ============================================================
 // Reveal — scroll-triggered fade-up
@@ -305,9 +306,7 @@ function Hero() {
                 }}
               >
                 I&rsquo;m <span style={{ color: "var(--fg)" }}>Raihan</span> — an AI/ML engineer from {PROFILE.location.split(",")[0]}.
-                I train domain-specific language models from scratch, ship the full-stack apps around them, and recently shipped my own programming language (
-                <a href="https://www.ilma-lang.dev/" target="_blank" rel="noreferrer" style={{ color: "var(--accent)" }}>ILMA Lang</a>
-                ). Currently CTO at <span style={{ color: "var(--fg)" }}>ClarioScope AI</span>.
+                I build the measurement layer for ML systems: release gates for quantised models, label-free accuracy monitoring, judge audits and grounding checks, plus small models trained from scratch on one GPU. Founding engineer and AI/ML lead at <span style={{ color: "var(--fg)" }}>VETR Proposal</span>.
               </p>
               <div style={{ display: "flex", gap: 10, marginTop: 32, flexWrap: "wrap" }}>
                 <a
@@ -687,22 +686,47 @@ function Stat({ value, suffix, label, divider }) {
 // ============================================================
 // Work
 // ============================================================
-function Work() {
+// 4-wide cards; a leftover row is filled by widening the first one or two so the grid never ends ragged.
+function spansFor(n) {
+  const a = Array(n).fill(4);
+  if (n % 3 === 1) a[0] = 8;
+  if (n % 3 === 2) { a[0] = 6; a[1] = 6; }
+  return a;
+}
+
+function SubHead({ title, note }) {
   return (
-    <Section id="work" num="01" title="Selected work" kicker={`${PROJECTS.length} featured · 200+ shipped`}>
+    <div style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap", margin: "0 0 20px" }}>
+      <h3 style={{ margin: 0, fontSize: 15, fontWeight: 600, letterSpacing: "-0.01em" }}>{title}</h3>
+      <span style={{ fontFamily: "var(--mono)", fontSize: 11.5, color: "var(--fg-muted)" }}>{note}</span>
+    </div>
+  );
+}
+
+function Work() {
+  const research = PROJECTS.filter((p) => p.group === "research");
+  const products = PROJECTS.filter((p) => p.group === "product");
+  const rs = spansFor(research.length);
+  return (
+    <Section id="work" num="01" title="Selected work" kicker={`${research.length} research projects · ${products.length} products · 200+ shipped`}>
+      <SubHead title="Research and evaluation" note="One measured result per card. Every number carries its scope; per-item data is on Hugging Face." />
       <div style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 28 }} className="work-grid">
-        {PROJECTS.map((p, i) => (
-          <ProjectCard key={p.id} project={p} index={i} />
+        {research.map((p, i) => (
+          <ProjectCard key={p.id} project={p} span={rs[i]} />
+        ))}
+      </div>
+      <div style={{ height: 56 }} />
+      <SubHead title="Products" note="Shipped with a team; my role is on each card." />
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 28 }} className="work-grid">
+        {products.map((p) => (
+          <ProjectCard key={p.id} project={p} span={6} />
         ))}
       </div>
     </Section>
   );
 }
 
-function ProjectCard({ project, index }) {
-  // 7 projects, editorial rhythm: 8+4 / 6+6 / 4+4+4 ... falls back to 6.
-  const layouts = [8, 4, 6, 6, 4, 4, 4];
-  const span = layouts[index] || 6;
+function ProjectCard({ project, span = 6 }) {
   const isHero = span === 8;
   const [hovered, setHovered] = useState(false);
   return (
@@ -734,27 +758,31 @@ function ProjectCard({ project, index }) {
         <div
           style={{
             position: "relative",
-            aspectRatio: isHero ? "16 / 9" : "4 / 3",
-            background: "var(--bg-sunken)",
+            aspectRatio: "16 / 10",
+            background: project.chart ? "var(--bg-elev)" : "var(--bg-sunken)",
             borderBottom: "1px solid var(--border)",
             overflow: "hidden",
           }}
         >
-          <img
-            src={project.image}
-            alt={`${project.name} screenshot`}
-            loading="lazy"
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "top center",
-              transition: "transform 600ms ease",
-              transform: hovered ? "scale(1.02)" : "scale(1)",
-            }}
-          />
+          {project.chart ? (
+            <div style={{ position: "absolute", inset: 0 }} dangerouslySetInnerHTML={{ __html: chartSvg(project.chart) }} />
+          ) : (
+            <img
+              src={project.image}
+              alt={`${project.name} screenshot`}
+              loading="lazy"
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "top center",
+                transition: "transform 600ms ease",
+                transform: hovered ? "scale(1.02)" : "scale(1)",
+              }}
+            />
+          )}
         </div>
         <div style={{ padding: isHero ? "28px 28px 24px" : "22px 22px 20px", flex: 1, display: "flex", flexDirection: "column" }}>
           {/* Meta row: kind, status, year — no longer overlaying the screenshot */}
@@ -819,13 +847,14 @@ function ProjectCard({ project, index }) {
               </span>
             ))}
             <div style={{ marginLeft: "auto", display: "inline-flex", alignItems: "center", gap: 8 }}>
-              {project.writeup && (
+              {[...(project.links || []), ...(project.writeup ? [project.writeup] : [])].map((l) => (
                 <button
+                  key={l.label}
                   type="button"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    window.open(project.writeup.href, "_blank", "noopener,noreferrer");
+                    window.open(l.href, "_blank", "noopener,noreferrer");
                   }}
                   style={{
                     fontFamily: "var(--mono)",
@@ -838,9 +867,9 @@ function ProjectCard({ project, index }) {
                     cursor: "pointer",
                   }}
                 >
-                  {project.writeup.label} ↗
+                  {l.label} ↗
                 </button>
-              )}
+              ))}
               <span
                 style={{
                   fontFamily: "var(--mono)",
@@ -870,7 +899,7 @@ function Models() {
     <Section id="models" num="02" title="Model case studies" kicker="open weights on Hugging Face">
       <Reveal>
         <p style={{ maxWidth: 640, color: "var(--fg-muted)", margin: "0 0 40px", fontSize: 16 }}>
-          Every model published openly on <a href="https://huggingface.co/raihan-js" target="_blank" rel="noreferrer" style={{ color: "var(--fg)", borderBottom: "1px dashed currentColor" }}>Hugging Face</a> — configs, tokenizers, and weights. Five trained from scratch on consumer hardware; the rest are QLoRA and DeBERTa-v3 fine-tunes that ship in production.
+          Every model published openly on <a href="https://huggingface.co/raihan-js" target="_blank" rel="noreferrer" style={{ color: "var(--fg)", borderBottom: "1px dashed currentColor" }}>Hugging Face</a> — configs, tokenizers, and weights. Three ORCH decoders trained from scratch (two on a single RTX 3060, the 3B on a rented A40) and five fine-tunes (DeBERTa-v3, RoBERTa, ModernBERT, QLoRA). All built and published with benchmarks and stated limitations.
         </p>
       </Reveal>
       <Reveal as="div" stagger style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }} className="models-grid">
@@ -1155,16 +1184,16 @@ function About() {
             <em style={{ color: "var(--accent)", fontStyle: "normal" }}>shipping them to real users</em> is where I do my best work.
           </p>
           <p style={{ fontSize: 16, lineHeight: 1.65, color: "var(--fg-muted)", margin: 0 }}>
-            Today I lead engineering at <a href="https://clarioscope.ai/" target="_blank" rel="noreferrer" style={{ color: "var(--fg)", borderBottom: "1px dashed currentColor" }}>ClarioScope AI</a> — a HIPAA-compliant healthcare practice growth platform. I'm especially interested in parameter-efficient training, on-device inference, and language design (
+            Today I&rsquo;m the founding engineer and AI/ML lead at <a href="https://vetrproposal.com" target="_blank" rel="noreferrer" style={{ color: "var(--fg)", borderBottom: "1px dashed currentColor" }}>VETR Proposal</a>. Before that I was CTO of ClarioScope AI (2024&ndash;2026), a healthcare startup that was sunset; its three models are open source. I&rsquo;m especially interested in parameter-efficient training, on-device inference, and language design (
             <a href="https://www.ilma-lang.dev/" target="_blank" rel="noreferrer" style={{ color: "var(--accent)" }}>ILMA Lang</a>
             ) — a beginner-friendly programming language I built for the Muslim community, especially children, with Islamic-aware standard library modules.
           </p>
 
           <div style={{ marginTop: 36, display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 14 }} className="about-facts">
             <Fact k="LOCATION" v={PROFILE.location} />
-            <Fact k="ROLE" v="CTO · AI/ML Engineer" />
-            <Fact k="LANGUAGES" v="EN · BN" />
-            <Fact k="AVAILABILITY" v="Senior / Staff roles" />
+            <Fact k="ROLE" v="AI/ML Engineer · LLMOps" />
+            <Fact k="LANGUAGES" v="EN · BN · JA (learning)" />
+            <Fact k="AVAILABILITY" v="Senior ML roles · relocating to Tokyo" />
           </div>
         </Reveal>
       </div>
