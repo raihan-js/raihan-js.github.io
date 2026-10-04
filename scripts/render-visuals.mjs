@@ -79,4 +79,20 @@ for (const id of Object.keys(CHARTS)) {
   shot(page("light", cover, 1000, 420), 1000, 420, 2, join(dir, "cover.png"));
   console.log("rendered", id, "-", chartAlt(id).slice(0, 70));
 }
+// Social share card (1200x630, dark) -> <outDir>/og-image.png ; copy to public/og-image.png and public/twitter-image.png
+if (!only.length || only.includes("og")) {
+  const og = `<div class="wrap" style="display:flex;align-items:center;gap:52px;padding:0 72px;box-sizing:border-box;background:var(--bg)">
+    <div style="flex:1;min-width:0">
+      <div style="font:500 22px var(--sans);color:var(--fg-muted);margin-bottom:26px">raihan-js.github.io</div>
+      <div style="font:500 36px var(--sans);color:var(--fg-muted)">Raihan Sikder</div>
+      <div style="font:700 70px/1 var(--sans);letter-spacing:-.03em;color:var(--fg);margin:10px 0 26px;white-space:nowrap">AI/ML Engineer</div>
+      <div style="font:400 28px/1.35 var(--sans);color:var(--fg-muted)">LLM evaluation, monitoring and release gating. Small models trained from scratch.</div>
+      <div style="font:500 20px var(--sans);color:var(--fg);margin-top:26px;opacity:.85">9 research projects · open data on Hugging Face</div>
+    </div>
+    <div style="width:470px;flex:none;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--bg-elev)">${chartSvg("flipgate")}</div>
+  </div>`;
+  mkdirSync(outDir, { recursive: true });
+  shot(page("dark", og, 1200, 630), 1200, 630, 1, join(outDir, "og-image.png"));
+  console.log("rendered og-image");
+}
 rmSync(tmp, { recursive: true, force: true });
