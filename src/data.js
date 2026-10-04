@@ -148,7 +148,8 @@ export const PROJECTS = [
     stack: ["Python", "PyTorch", "sentence-transformers", "ONNX Runtime", "MeCab"],
     link: "https://github.com/raihan-js/tiny-bilingual-retriever",
     links: [
-      { label: "HF model", href: "https://huggingface.co/raihan-js/tiny-rerank-ja-en-30m" },
+      { label: "HF model (71%)", href: "https://huggingface.co/raihan-js/tiny-rerank-ja-en-30m-distilled" },
+      { label: "HF model (Matryoshka)", href: "https://huggingface.co/raihan-js/tiny-rerank-ja-en-30m" },
     ],
   },
   {
