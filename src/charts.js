@@ -189,7 +189,7 @@ function fedproc() {
   return frame({
     headline: "Block the fake clause, get a real wrong one",
     sub: "% of 60 prompts, Qwen2.5-1.5B-Instruct, FAR/DFARS",
-    footer: ["Enum grammar: 0% fabricated, 75% substituted (95% CI", "64-86%). 1,032-clause registry. Other = remainder."],
+    footer: ["Enum grammar: 0% fabricated, 75% substituted (95% CI", "64-86%). 1,056-ID registry. Other = remainder."],
     body,
     alt: "FedProc-Constrained: a registry grammar removes fabricated clauses but 75 percent of outputs become real but wrong clauses",
     desc: "Unconstrained: 82% fabricated, 8% substituted, 8% correct. Enum grammar: 0% fabricated, 75% substituted, 8% correct. Span grammar: 0% fabricated, 25% substituted. Post-hoc filter: 77% fabricated, 10% substituted, 8% correct.",
