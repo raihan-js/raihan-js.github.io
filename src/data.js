@@ -62,6 +62,7 @@ export const PROJECTS = [
     stack: ["Python", "PyTorch", "ModernBERT", "scikit-learn", "FastAPI", "Prometheus"],
     link: "https://github.com/raihan-js/shiftwatch",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/how-accurate-is-your-model-right-now-estimating-accuracy-without-labels-59kp" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/shiftwatch-ladder" },
     ],
   },
