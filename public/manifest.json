@@ -1,7 +1,7 @@
 {
   "name": "Raihan Sikder — AI/ML Engineer",
   "short_name": "Raihan",
-  "description": "AI/ML engineer based in Bangladesh. Trains small language models from scratch. CTO at ClarioScope AI.",
+  "description": "AI/ML engineer (LLMOps, evaluation) based in Bangladesh. Release gates, monitoring and judge audits for LLM systems; small models trained from scratch.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
