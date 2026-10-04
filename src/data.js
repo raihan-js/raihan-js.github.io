@@ -274,7 +274,7 @@ export const MODELS = [
     summary:
       "Compact multi-task model for federal procurement NLP — notice type, NAICS sector, set-aside, and FAR / DFARS clause extraction trained jointly. Within 0.004 F1 of Claude Haiku 4.5 on FAR-clause extraction (0.800 vs 0.804) with less than half its hallucination rate (13.8% vs 32.1%). Paired with the open FedProc-Bench dataset.",
     metrics: [
-      { k: "params", v: "180M" },
+      { k: "params", v: "149M" },
       { k: "tasks", v: "4 heads" },
       { k: "FAR F1", v: "0.800" },
     ],
