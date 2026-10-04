@@ -126,7 +126,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "What does a clause hallucination turn into when decoding makes it impossible? The FAR/DFARS registry (1,056 canonical clause IDs) compiled into a decoding grammar, measuring substitution and speed cost (60 prompts, Qwen2.5-1.5B).",
+      "What does a clause hallucination turn into when decoding makes it impossible? The FAR/DFARS registry (1,056 canonical clause IDs) compiled into a decoding grammar: fabricated clause numbers fall from 57/60 to 0, but with an abstain option the 1.5B model refuses every prompt that names a clause number, real or not (75 prompts, Qwen2.5-1.5B).",
     role: "Design, implementation, evaluation",
     stack: ["Python", "Transformers", "xgrammar", "FAR/DFARS registry"],
     link: "https://github.com/raihan-js/fedproc-constrained",

@@ -151,21 +151,24 @@ function graphproof() {
 }
 
 // -------------------------------------------------------- FedProc-Constrained
-// Source: fedproc-constrained/scripts/rescore_v1.py (v1 runs re-scored with corrected labels:
-// the old "near-miss" prompts all name real clauses). Percent of each prompt kind.
+// Source: fedproc-constrained/results/v2_summary.json (v2 run, Qwen2.5-1.5B-Instruct, 75 prompts).
+// Percent of each prompt kind. "good" = right clause, or NONE where none applies.
 function fedproc() {
   const groups = [
-    { name: "Real clause", n: 15, rows: [
-      { tag: "free", fab: 27, sub: 60, ok: 13 },       // 4 fabricated, 9 wrong real clause, 2 correct of 15
-      { tag: "grammar", fab: 0, sub: 0, ok: 100 },      // 15 of 15 correct
+    { name: "Fake topic", rows: [
+      { tag: "free", fab: 97, sub: 3, good: 0, other: 0 },        // 29 fabricated, 1 real-but-wrong of 30
+      { tag: "grammar", fab: 0, sub: 100, good: 0, other: 0 },    // forced: no abstain option
+      { tag: "+ NONE", fab: 0, sub: 27, good: 73, other: 0 },     // 22 abstained, 8 real-but-wrong
     ] },
-    { name: "Fake topic", n: 30, rows: [
-      { tag: "free", fab: 97, sub: 3, ok: 0 },          // 29 fabricated, 1 real-but-wrong of 30
-      { tag: "grammar", fab: 0, sub: 100, ok: 0 },      // forced: no abstain option
+    { name: "Real clause", rows: [
+      { tag: "free", fab: 0, sub: 0, good: 100, other: 0 },       // 15 of 15 (the number is in the prompt)
+      { tag: "grammar", fab: 0, sub: 0, good: 100, other: 0 },
+      { tag: "+ NONE", fab: 0, sub: 0, good: 0, other: 100 },     // 15 of 15 wrongly abstained
     ] },
-    { name: "Obscure real", n: 15, rows: [
-      { tag: "free", fab: 93, sub: 0, ok: 0 },          // 14 fabricated, 1 valid ID (no gold)
-      { tag: "grammar", fab: 0, sub: 0, ok: 0 },        // 15 valid IDs (no gold): shown as grey
+    { name: "Absent number", rows: [
+      { tag: "free", fab: 93, sub: 0, good: 0, other: 0 },        // 14 fabricated; 1 malformed output is not drawn
+      { tag: "grammar", fab: 0, sub: 87, good: 13, other: 0 },    // 13 real-but-wrong, 2 correct
+      { tag: "+ NONE", fab: 0, sub: 0, good: 100, other: 0 },     // 15 of 15 abstained
     ] },
   ];
   const x0 = 136;
@@ -173,35 +176,34 @@ function fedproc() {
   let body = "";
   groups.forEach((g, gi) => {
     g.rows.forEach((r, ri) => {
-      const y = 58 + gi * 44 + ri * 18;
-      if (ri === 0) body += text(16, y + 10, g.name, { size: 10.5, weight: 600, fill: INK });
-      body += text(128, y + 10, r.tag, { size: 10, fill: INK2, anchor: "end" });
-      const other = Math.max(0, 100 - r.fab - r.sub - r.ok);
+      const y = 54 + gi * 48 + ri * 13;
+      if (ri === 0) body += text(16, y + 9, g.name, { size: 10.5, weight: 600, fill: INK });
+      body += text(128, y + 9, r.tag, { size: 10, fill: INK2, anchor: "end" });
       const segs = [
-        { v: r.fab, c: S2 }, { v: r.sub, c: S1 }, { v: r.ok, c: S3 }, { v: other, c: CTX },
+        { v: r.fab, c: S2 }, { v: r.sub, c: S1 }, { v: r.good, c: S3 }, { v: r.other, c: CTX },
       ].filter((s) => s.v > 0);
       let x = x0;
       segs.forEach((s, j) => {
         const w = s.v * k - (j < segs.length - 1 ? 2 : 0);
-        body += j === segs.length - 1 ? hbar(x, y, w, 13, s.c) : rect(x, y, w, 13, s.c);
-        if (s.v >= 25 && s.c !== CTX) body += text(x + 5, y + 10, `${s.v}%`, { size: 10, weight: 600, fill: "#fff" });
+        body += j === segs.length - 1 ? hbar(x, y, w, 11, s.c) : rect(x, y, w, 11, s.c);
+        if (s.v >= 25) body += text(x + 5, y + 9, `${s.v}%`, { size: 9.5, weight: 600, fill: s.c === CTX ? INK : "#fff" });
         x += s.v * k;
       });
     });
   });
   body += legend(204, [
     { color: S2, label: "Fabricated" },
-    { color: S1, label: "Real but wrong" },
-    { color: S3, label: "Correct" },
-    { color: CTX, label: "Valid ID, no gold" },
+    { color: S1, label: "Real, wrong" },
+    { color: S3, label: "Good" },
+    { color: CTX, label: "Wrongly refused" },
   ]);
   return frame({
-    headline: "A registry grammar fixes real clauses, not fake ones",
-    sub: "% per prompt kind (n = 15, 30, 15), v1 re-scored",
-    footer: ["Qwen2.5-1.5B. No abstain option, so every fake topic is forced", "to a real ID. A v2 run with an abstain option is in progress."],
+    headline: "Grammar + abstain: it refuses real clauses too",
+    sub: "% per prompt kind (n = 30, 15, 15), Qwen2.5-1.5B",
+    footer: ["Good = right clause, or NONE where none applies. With NONE", "it refused all 30 prompts that name a clause number."],
     body,
-    alt: "FedProc-Constrained: a registry grammar makes the model answer real clauses correctly 15 of 15 times versus 2 of 15 free, and removes fabrication, but without an abstain option it must return a real but wrong clause for every fake topic",
-    desc: "v1 runs re-scored with corrected labels. Real clause prompts (15): free generation 4 fabricated, 9 real-but-wrong, 2 correct; enum grammar 15 correct. Fake topic prompts (30): free 29 fabricated, 1 real-but-wrong; enum 30 real-but-wrong (forced, no abstain option). Obscure real prompts (15): free 14 fabricated, 1 valid; enum 15 valid IDs with no gold answer.",
+    alt: "FedProc-Constrained v2: a registry grammar removes fabricated clause numbers, and adding an abstain option makes the model refuse every prompt that names a clause number, including all 15 real clauses",
+    desc: "v2 run, 75 prompts. Fake topics (30): free 29 fabricated and 1 real-but-wrong; enum grammar 30 real-but-wrong; grammar plus NONE 22 abstained and 8 real-but-wrong. Real clauses (15): free 15 correct; grammar 15 correct; grammar plus NONE 15 wrongly abstained. Absent numbers (15): free 14 fabricated and 1 malformed output (not drawn); grammar 13 real-but-wrong and 2 correct; grammar plus NONE 15 abstained.",
   });
 }
 
