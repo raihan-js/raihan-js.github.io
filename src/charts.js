@@ -143,7 +143,7 @@ function graphproof() {
   return frame({
     headline: "Writing a query beats answering directly",
     sub: "MetaQA Hits@1, Qwen2.5-1.5B + LoRA, same data and budget",
-    footer: ["Renamed-entity test: names never seen in training,", "B vs A McNemar p = 1.2e-84."],
+    footer: ["Renamed-entity test: names never seen in training,", "B vs A McNemar p < 1e-80."],
     body,
     alt: "GraphProof-QA: compile-to-query system B scores 93.3 percent versus 34.2 percent for direct answering, and 81.4 versus 5.8 on renamed entities",
     desc: "Hits@1 on 6,000 MetaQA questions: A direct 34.2%, B DSL 93.3%, C constrained 96.8%. On 531 renamed-entity questions: A 5.8%, B 81.4%.",
