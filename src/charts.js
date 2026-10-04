@@ -234,10 +234,10 @@ function oraclebench() {
   return frame({
     headline: "Small judges approve wrong answers",
     sub: "False-accept: judged CORRECT when the oracle says wrong",
-    footer: ["1,655 oracle-checked items, 95% CI on overall. Pairwise", "mode: both judges pick answer B 85-92% (chance: 50%)."],
+    footer: ["1,655 items, 95% CI on overall. 51 of 398 GSM8K error labels", "are mislabelled (README). Pairwise: both pick B 85-92%."],
     body,
     alt: "OracleBench: a 3B judge falsely accepts 13.2 percent of wrong answers and a 0.5B judge 36.1 percent; the 0.5B judge accepts 94 percent of wrong arithmetic",
-    desc: "False-accept rate. Overall: Qwen-3B 13.2% [11.4, 15.1], Qwen-0.5B 36.1% [33.4, 38.7]. GSM8K 15.8 and 94.0. IFEval 22.1 and 13.9. FedProc 0.5 and 2.0 (blanket rejection, 0% true-accept).",
+    desc: "False-accept rate. Overall: Qwen-3B 13.2% [11.4, 15.1], Qwen-0.5B 36.1% [33.4, 38.7]. GSM8K 15.8 and 94.0. IFEval 22.1 and 13.9. FedProc 0.5 and 2.0 (blanket rejection, 0% true-accept). With 51 mislabelled GSM8K items excluded the overall rates are 10.5% and 33.4%.",
   });
 }
 
