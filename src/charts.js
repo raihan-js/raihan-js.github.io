@@ -151,48 +151,57 @@ function graphproof() {
 }
 
 // -------------------------------------------------------- FedProc-Constrained
-// Source: fedproc-constrained/README.md (60 prompts, Qwen2.5-1.5B-Instruct).
+// Source: fedproc-constrained/scripts/rescore_v1.py (v1 runs re-scored with corrected labels:
+// the old "near-miss" prompts all name real clauses). Percent of each prompt kind.
 function fedproc() {
-  const rows = [
-    { name: "Unconstrained", fab: 82, sub: 8, ok: 8 },
-    { name: "Enum grammar", fab: 0, sub: 75, ok: 0 },
-    { name: "Span grammar", fab: 0, sub: 25, ok: 0 },
-    { name: "Post-hoc filter", fab: 77, sub: 10, ok: 8 },
+  const groups = [
+    { name: "Real clause", n: 15, rows: [
+      { tag: "free", fab: 27, sub: 60, ok: 13 },       // 4 fabricated, 9 wrong real clause, 2 correct of 15
+      { tag: "grammar", fab: 0, sub: 0, ok: 100 },      // 15 of 15 correct
+    ] },
+    { name: "Fake topic", n: 30, rows: [
+      { tag: "free", fab: 97, sub: 3, ok: 0 },          // 29 fabricated, 1 real-but-wrong of 30
+      { tag: "grammar", fab: 0, sub: 100, ok: 0 },      // forced: no abstain option
+    ] },
+    { name: "Obscure real", n: 15, rows: [
+      { tag: "free", fab: 93, sub: 0, ok: 0 },          // 14 fabricated, 1 valid ID (no gold)
+      { tag: "grammar", fab: 0, sub: 0, ok: 0 },        // 15 valid IDs (no gold): shown as grey
+    ] },
   ];
-  const x0 = 116;
-  const k = 2.68;
+  const x0 = 136;
+  const k = 2.5;
   let body = "";
-  rows.forEach((r, i) => {
-    const y = 62 + i * 28;
-    body += text(16, y + 12, r.name, { size: 11, fill: INK, weight: i === 1 ? 600 : 400 });
-    const other = Math.max(0, 100 - r.fab - r.sub - r.ok);
-    const segs = [
-      { v: r.fab, c: S2, label: true },
-      { v: r.sub, c: S1, label: true },
-      { v: r.ok, c: S3, label: false },
-      { v: other, c: CTX, label: false },
-    ].filter((s) => s.v > 0);
-    let x = x0;
-    segs.forEach((s, j) => {
-      const w = s.v * k - (j < segs.length - 1 ? 2 : 0);
-      body += j === segs.length - 1 ? hbar(x, y, w, 16, s.c) : rect(x, y, w, 16, s.c);
-      if (s.label && s.v >= 14) body += text(x + 6, y + 12, `${s.v}%`, { size: 11, weight: 600, fill: "#fff" });
-      x += s.v * k;
+  groups.forEach((g, gi) => {
+    g.rows.forEach((r, ri) => {
+      const y = 58 + gi * 44 + ri * 18;
+      if (ri === 0) body += text(16, y + 10, g.name, { size: 10.5, weight: 600, fill: INK });
+      body += text(128, y + 10, r.tag, { size: 10, fill: INK2, anchor: "end" });
+      const other = Math.max(0, 100 - r.fab - r.sub - r.ok);
+      const segs = [
+        { v: r.fab, c: S2 }, { v: r.sub, c: S1 }, { v: r.ok, c: S3 }, { v: other, c: CTX },
+      ].filter((s) => s.v > 0);
+      let x = x0;
+      segs.forEach((s, j) => {
+        const w = s.v * k - (j < segs.length - 1 ? 2 : 0);
+        body += j === segs.length - 1 ? hbar(x, y, w, 13, s.c) : rect(x, y, w, 13, s.c);
+        if (s.v >= 25 && s.c !== CTX) body += text(x + 5, y + 10, `${s.v}%`, { size: 10, weight: 600, fill: "#fff" });
+        x += s.v * k;
+      });
     });
   });
-  body += legend(186, [
+  body += legend(204, [
     { color: S2, label: "Fabricated" },
     { color: S1, label: "Real but wrong" },
     { color: S3, label: "Correct" },
-    { color: CTX, label: "Other" },
+    { color: CTX, label: "Valid ID, no gold" },
   ]);
   return frame({
-    headline: "Block the fake clause, get a real wrong one",
-    sub: "% of 60 prompts, Qwen2.5-1.5B-Instruct, FAR/DFARS",
-    footer: ["No abstain option: all 30 fake-topic prompts are forced to", "substitute. On 15 answerable prompts, correct fell 5 → 0."],
+    headline: "A registry grammar fixes real clauses, not fake ones",
+    sub: "% per prompt kind (n = 15, 30, 15), v1 re-scored",
+    footer: ["Qwen2.5-1.5B. No abstain option, so every fake topic is forced", "to a real ID. A v2 run with an abstain option is in progress."],
     body,
-    alt: "FedProc-Constrained: a registry grammar removes fabricated clauses but 75 percent of outputs become real but wrong clauses",
-    desc: "Unconstrained: 82% fabricated, 8% substituted, 8% correct. Enum grammar: 0% fabricated, 75% substituted, 0% correct, 25% registry-valid with no gold answer. Span grammar: 0% fabricated, 25% substituted. Post-hoc filter: 77% fabricated, 10% substituted, 8% correct.",
+    alt: "FedProc-Constrained: a registry grammar makes the model answer real clauses correctly 15 of 15 times versus 2 of 15 free, and removes fabrication, but without an abstain option it must return a real but wrong clause for every fake topic",
+    desc: "v1 runs re-scored with corrected labels. Real clause prompts (15): free generation 4 fabricated, 9 real-but-wrong, 2 correct; enum grammar 15 correct. Fake topic prompts (30): free 29 fabricated, 1 real-but-wrong; enum 30 real-but-wrong (forced, no abstain option). Obscure real prompts (15): free 14 fabricated, 1 valid; enum 15 valid IDs with no gold answer.",
   });
 }
 
