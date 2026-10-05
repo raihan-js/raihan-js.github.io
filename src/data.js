@@ -75,7 +75,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Grades small open LLM judges against deterministic oracles instead of against other judges. Includes a checker-first harness that routes items to rule-based checkers and calls a judge only where no oracle exists.",
+      "Grades small open LLM judges against deterministic oracles instead of against other judges: a 3B judge falsely accepts 11% of wrong answers, a 0.5B judge 41% (1,760 items). Includes a checker-first harness that calls a judge only where no oracle exists, with 17.6× fewer judge calls.",
     role: "Design, implementation, statistics",
     stack: ["Python", "Transformers", "scipy", "FastAPI", "Prometheus"],
     link: "https://github.com/raihan-js/oraclebench",

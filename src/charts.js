@@ -208,13 +208,13 @@ function fedproc() {
 }
 
 // ---------------------------------------------------------------- OracleBench
-// Source: oraclebench/README.md false-accept table (1,655 oracle-checked items).
+// Source: oraclebench/results/summary.json (1,760 oracle-checked items, rebuilt 2026-10-05).
 function oraclebench() {
   const rows = [
-    { name: "Overall", a: 13.2, b: 36.1, ciA: [11.4, 15.1], ciB: [33.4, 38.7], bold: true },
-    { name: "GSM8K", a: 15.8, b: 94.0 },
-    { name: "IFEval", a: 22.1, b: 13.9 },
-    { name: "FedProc", a: 0.5, b: 2.0 },
+    { name: "Overall", a: 11.0, b: 40.6, ciA: [9.5, 12.8], ciB: [38.0, 43.2], bold: true },
+    { name: "GSM8K", a: 10.1, b: 94.8 },
+    { name: "IFEval", a: 21.4, b: 13.7 },
+    { name: "FedProc", a: 0.5, b: 1.0 },
   ];
   const x0 = 70;
   const k = 2.7;
@@ -245,10 +245,10 @@ function oraclebench() {
   return frame({
     headline: "Small judges approve wrong answers",
     sub: "False-accept: judged CORRECT when the oracle says wrong",
-    footer: ["1,655 items, 95% CI on overall. 51 of 398 GSM8K error labels", "are mislabelled (README). Pairwise: both pick B 85-92%."],
+    footer: ["1,760 items, 95% CI on overall. Matched pairwise: the 3B judge", "picks the right answer 80.5% of the time, the 0.5B judge 53.8%."],
     body,
-    alt: "OracleBench: a 3B judge falsely accepts 13.2 percent of wrong answers and a 0.5B judge 36.1 percent; the 0.5B judge accepts 94 percent of wrong arithmetic",
-    desc: "False-accept rate. Overall: Qwen-3B 13.2% [11.4, 15.1], Qwen-0.5B 36.1% [33.4, 38.7]. GSM8K 15.8 and 94.0. IFEval 22.1 and 13.9. FedProc 0.5 and 2.0 (blanket rejection, 0% true-accept). With 51 mislabelled GSM8K items excluded the overall rates are 10.5% and 33.4%.",
+    alt: "OracleBench: a 3B judge falsely accepts 11.0 percent of wrong answers and a 0.5B judge 40.6 percent; the 0.5B judge accepts 94.8 percent of wrong arithmetic",
+    desc: "False-accept rate on 1,760 items. Overall: Qwen-3B 11.0% [9.5, 12.8], Qwen-0.5B 40.6% [38.0, 43.2]. GSM8K 10.1 and 94.8. IFEval 21.4 and 13.7. FedProc 0.5 and 1.0 (blanket rejection, 0% true-accept). Matched pairwise: the 3B judge picks the right answer 80.5% of the time, the 0.5B judge 53.8%.",
   });
 }
 
