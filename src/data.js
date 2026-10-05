@@ -40,7 +40,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "A CLI and GitHub Action release gate for quantised or re-served LLMs. It counts per-item right-to-wrong flips against a measured noise floor and tests them with McNemar and a paired bootstrap, instead of trusting aggregate accuracy.",
+      "A CLI and GitHub Action release gate for quantised or re-served LLMs. It counts per-item right-to-wrong flips against a measured noise floor and tests them with McNemar and a paired bootstrap, instead of trusting aggregate accuracy. On Qwen2.5-3B, AWQ and GPTQ each broke 91 correct GSM8K answers; the gate also refuses comparisons truncated by the generation cap.",
     role: "Design, implementation, statistics",
     stack: ["Python", "PyTorch", "vLLM", "llama.cpp", "scipy", "GitHub Actions"],
     link: "https://github.com/raihan-js/flipgate",

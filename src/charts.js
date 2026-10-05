@@ -88,11 +88,11 @@ function frame({ headline, sub, footer = [], body, alt, desc }) {
 }
 
 // ---------------------------------------------------------------- FlipGate
-// Source: flipgate/README.md, GSM8K n=1000, bf16 vs AWQ / GPTQ-Int4 (HF generate).
+// Source: flipgate/README.md, GSM8K n=1000, bf16 vs AWQ / GPTQ-Int4 (HF generate, 1,024-token cap, 0% truncated; re-run 2026-10-05).
 function flipgate() {
   const rows = [
-    { name: "AWQ", delta: "+10.1", broke: 77, fixed: 178 },
-    { name: "GPTQ-Int4", delta: "+4.3", broke: 89, fixed: 132 },
+    { name: "AWQ", delta: "\u22123.5", broke: 91, fixed: 56 },
+    { name: "GPTQ-Int4", delta: "\u22123.7", broke: 91, fixed: 54 },
   ];
   const cx = 160;
   const k = 0.95;
@@ -112,12 +112,12 @@ function flipgate() {
     { color: S1, label: "Wrong → right (fixed)" },
   ]);
   return frame({
-    headline: "Accuracy rose. Correct answers still broke.",
+    headline: "Quantised: 91 correct answers broke",
     sub: "GSM8K, 1,000 items, quantised vs bf16 baseline",
-    footer: ["Qwen2.5-3B-Instruct, temp 0, 256-token cap (most answers", "truncated). McNemar p < 0.0001 (AWQ), 0.0047 (GPTQ)."],
+    footer: ["Qwen2.5-3B-Instruct, temp 0, 1,024-token cap, 0% truncated.", "McNemar p = 0.0050 (AWQ), 0.0028 (GPTQ). The gate fails both."],
     body,
-    alt: "FlipGate: quantised models gained accuracy on GSM8K but 77 to 89 previously correct answers broke",
-    desc: "GSM8K n=1000 versus bf16, generation capped at 256 tokens so most answers are truncated. AWQ: 77 right-to-wrong, 178 wrong-to-right, net +10.1 points. GPTQ-Int4: 89 right-to-wrong, 132 wrong-to-right, net +4.3 points.",
+    alt: "FlipGate: on GSM8K, 91 previously correct answers broke under both AWQ and GPTQ-Int4, with accuracy down 3.5 and 3.7 points",
+    desc: "GSM8K n=1000 versus bf16, 1,024-token cap, no truncated answers. AWQ: 91 right-to-wrong, 56 wrong-to-right, net -3.5 points, McNemar p = 0.0050. GPTQ-Int4: 91 right-to-wrong, 54 wrong-to-right, net -3.7 points, p = 0.0028.",
   });
 }
 
