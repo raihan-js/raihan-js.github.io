@@ -470,7 +470,40 @@ function demodoctor() {
   });
 }
 
-export const CHARTS = { flipgate, "graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor };
+// ------------------------------------------------------------ Invoice-Check JP
+// Source: invoice-check-jp/results/REPORT.md (600 synthetic test invoices; full check rule).
+function invoicecheck() {
+  const rows = [
+    { name: "OCR + rules", exact: 37.8, auto: 55.0, wrong: "0 of 292" },
+    { name: "VLM zero-shot", exact: 5.3, auto: 8.1, wrong: "3 of 43" },
+    { name: "VLM fine-tuned", exact: 83.0, auto: 86.8, wrong: "0 of 461" },
+  ];
+  const x0 = 100;
+  const k = 1.8;
+  let body = "";
+  rows.forEach((r, i) => {
+    const y = 74 + i * 42;
+    body += text(16, y + 14, r.name, { size: 10.5, fill: INK });
+    body += hbar(x0, y, r.exact * k, 9, CTX, 3) + text(x0 + r.exact * k + 4, y + 8, r.exact.toFixed(1) + "%", { size: 10, fill: INK2 });
+    body += hbar(x0, y + 12, r.auto * k, 9, S1, 3) + text(x0 + r.auto * k + 4, y + 20, r.auto.toFixed(1) + "%", { size: 10, weight: 600, fill: INK });
+    body += text(384, y + 14, r.wrong, { size: 10, fill: r.wrong.startsWith("3") ? S2 : INK2, anchor: "end" });
+  });
+  body += text(384, 66, "wrong, among approved", { size: 9.5, fill: INK2, anchor: "end" });
+  body += legend(205, [
+    { color: CTX, label: "All fields right, no checks" },
+    { color: S1, label: "Auto-approved by the checks" },
+  ]);
+  return frame({
+    headline: "86.8% automated, 0 wrong covered fields",
+    sub: "Fine-tuned VLM + checks, 600 synthetic invoices",
+    footer: ["Covered = registration no., issuer, tax basis, totals, item numbers.", "Synthetic data; vertical layouts are the weak spot (40%)."],
+    body,
+    alt: "Invoice-Check JP: exact match and auto-approval rate of three extractors on 600 synthetic Japanese invoices; the fine-tuned model is auto-approved on 86.8% with none of 461 approved invoices wrong in a field a check can catch",
+    desc: "Exact match without checks / auto-approved by the full check rule: OCR plus rules 37.8 / 55.0 percent (0 of 292 approved had a wrong checkable field); VLM zero-shot 5.3 / 8.1 (3 of 43); VLM fine-tuned with QLoRA 83.0 / 86.8 (0 of 461).",
+  });
+}
+
+export const CHARTS = { flipgate, "graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];

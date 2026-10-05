@@ -24,9 +24,9 @@ export const HF = {
 };
 
 export const STATS = [
-  { value: 10, suffix: "", label: "research projects\nwith statistical rigor" },
-  { value: 446, suffix: "", label: "tests passing\nacross all projects" },
-  { value: 11, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
+  { value: 11, suffix: "", label: "research projects\nwith statistical rigor" },
+  { value: 515, suffix: "", label: "tests passing\nacross all projects" },
+  { value: 13, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
   { id: "hf-downloads", live: true, value: 2416, suffix: "", label: "Hugging Face downloads,\nmodels + datasets (all-time)" },
 ];
 
@@ -201,6 +201,24 @@ export const PROJECTS = [
     stack: ["Python", "PyTorch", "LeRobot", "ACT", "gym-pusht"],
     link: "https://github.com/raihan-js/demodoctor",
     links: [
+    ],
+  },
+  {
+    id: "invoice-check-jp",
+    group: "research",
+    chart: "invoice-check-jp",
+    name: "Invoice-Check JP",
+    kind: "Document AI · Verification",
+    year: "2026",
+    status: "Published",
+    summary:
+      "A QLoRA-tuned Qwen2.5-VL-3B reads Japanese qualified invoices (適格請求書); a corporate-number check digit, an NTA-style registry lookup, issuer-name matching and per-rate tax arithmetic decide what is auto-approved. On 600 synthetic test invoices: 86.8% automated with none of the 461 approved invoices wrong in a field a check can catch; vertical layouts are the weak spot, and recipient and invoice number have no check. Fictitious companies only; the adapter is non-commercial.",
+    role: "Design, training, evaluation",
+    stack: ["Python", "PyTorch", "Qwen2.5-VL", "PEFT / QLoRA", "PaddleOCR", "FastAPI"],
+    link: "https://github.com/raihan-js/invoice-check-jp",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/invoice-check-jp" },
+      { label: "HF adapter", href: "https://huggingface.co/raihan-js/invoice-check-jp-qwen2.5-vl-3b-lora" },
     ],
   },
   {
