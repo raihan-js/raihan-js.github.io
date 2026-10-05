@@ -429,7 +429,48 @@ function roofline() {
   });
 }
 
-export const CHARTS = { flipgate, "graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline };
+// ---------------------------------------------------------------- DemoDoctor
+// Source: demodoctor/README.md policy tables (ACT on PushT, 60k steps, 3 seeds x 50 rollouts per condition).
+function demodoctor() {
+  const rows = [
+    { name: "Clean", mean: 0.425, lo: 0.369, hi: 0.488, dots: [0.395, 0.403, 0.477] },
+    { name: "Corrupted", mean: 0.397, lo: 0.344, hi: 0.454, dots: [0.375, 0.379, 0.437] },
+    { name: "Auto-cleaned", mean: 0.359, lo: 0.302, hi: 0.423, dots: [0.331, 0.333, 0.414] },
+    { name: "Random 175", mean: 0.432, lo: 0.386, hi: 0.476, dots: [0.407, 0.442, 0.446] },
+  ];
+  const x0 = 112;
+  const x1 = 380;
+  const lo = 0.28;
+  const hi = 0.52;
+  const sx = (v) => x0 + ((v - lo) / (hi - lo)) * (x1 - x0);
+  let body = "";
+  [0.3, 0.4, 0.5].forEach((v) => {
+    body += line(sx(v), 58, sx(v), 176, RULE) + text(sx(v), 188, v.toFixed(2), { size: 10, anchor: "middle", fill: INK2 });
+  });
+  rows.forEach((r, i) => {
+    const yc = 70 + i * 30;
+    body += text(16, yc + 4, r.name, { size: 10.5, fill: INK });
+    body += rect(sx(r.lo), yc - 3, sx(r.hi) - sx(r.lo), 6, S1, ";opacity:0.28");
+    r.dots.forEach((d) => {
+      body += `<circle cx="${f(sx(d))}" cy="${f(yc + 11)}" r="3.5" style="fill:${CTX}"/>`;
+    });
+    body += rect(sx(r.mean) - 1.5, yc - 7, 3, 14, S1);
+  });
+  body += legend(205, [
+    { color: CTX, label: "One policy" },
+    { color: S1, label: "Condition mean, 95% CI" },
+  ]);
+  return frame({
+    headline: "Data quality did not separate the policies",
+    sub: "Mean max reward per policy (higher is better)",
+    footer: ["ACT on PushT, 60k steps, 3 seeds x 50 rollouts per condition.", "Random 175 = size-matched control. No pairwise CI excludes 0."],
+    body,
+    alt: "DemoDoctor: mean max reward of ACT policies trained on clean, corrupted, auto-cleaned and random-175 PushT demonstrations; the intervals overlap and no pairwise difference excludes zero",
+    desc: "Mean max reward, 3 policies per condition, 95% bootstrap interval. Clean 0.425 [0.369, 0.488]; corrupted 0.397 [0.344, 0.454]; auto-cleaned 0.359 [0.302, 0.423]; random 175 0.432 [0.386, 0.476]. Success rate is 0 to 4 percent in every condition.",
+  });
+}
+
+export const CHARTS = { flipgate, "graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];

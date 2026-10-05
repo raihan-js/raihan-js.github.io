@@ -24,8 +24,8 @@ export const HF = {
 };
 
 export const STATS = [
-  { value: 9, suffix: "", label: "research projects\nwith statistical rigor" },
-  { value: 409, suffix: "", label: "tests passing\nacross all projects" },
+  { value: 10, suffix: "", label: "research projects\nwith statistical rigor" },
+  { value: 446, suffix: "", label: "tests passing\nacross all projects" },
   { value: 11, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
   { id: "hf-downloads", live: true, value: 2416, suffix: "", label: "Hugging Face downloads,\nmodels + datasets (all-time)" },
 ];
@@ -185,6 +185,21 @@ export const PROJECTS = [
     links: [
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/vocab-tax-grid" },
     ],
+  },
+  {
+    id: "demodoctor",
+    group: "research",
+    chart: "demodoctor",
+    name: "DemoDoctor",
+    kind: "Robot Learning · Data Quality",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Injects known faults into robot demonstrations (PushT), detects stalls and jitter without labels (F1 0.87 and 0.69 on injected faults), then trains ACT policies on clean, corrupted, auto-cleaned and size-matched random data. A null result, reported as one: across 12 policies no interval excludes zero, success is 0–4%, and the grid is too small to rule an effect out.",
+    role: "Design, implementation, statistics",
+    stack: ["Python", "PyTorch", "LeRobot", "ACT", "gym-pusht"],
+    link: "https://github.com/raihan-js/demodoctor",
+    links: [],
   },
   {
     id: "vetr",
