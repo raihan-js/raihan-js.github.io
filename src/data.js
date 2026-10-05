@@ -45,6 +45,7 @@ export const PROJECTS = [
     stack: ["Python", "PyTorch", "vLLM", "llama.cpp", "scipy", "GitHub Actions"],
     link: "https://github.com/raihan-js/flipgate",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/awq-looked-10-points-better-on-gsm8k-until-i-stopped-truncating-the-answers-18a7" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/flipgate-results" },
     ],
   },
