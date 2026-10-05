@@ -199,7 +199,8 @@ export const PROJECTS = [
     role: "Design, implementation, statistics",
     stack: ["Python", "PyTorch", "LeRobot", "ACT", "gym-pusht"],
     link: "https://github.com/raihan-js/demodoctor",
-    links: [],
+    links: [
+    ],
   },
   {
     id: "vetr",
