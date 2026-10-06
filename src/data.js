@@ -24,8 +24,8 @@ export const HF = {
 };
 
 export const STATS = [
-  { value: 11, suffix: "", label: "research projects\nwith statistical rigor" },
-  { value: 515, suffix: "", label: "tests passing\nacross all projects" },
+  { value: 12, suffix: "", label: "research projects\nwith statistical rigor" },
+  { value: 588, suffix: "", label: "tests passing\nacross all projects" },
   { value: 13, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
   { id: "hf-downloads", live: true, value: 2416, suffix: "", label: "Hugging Face downloads,\nmodels + datasets (all-time)" },
 ];
@@ -219,6 +219,22 @@ export const PROJECTS = [
     links: [
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/invoice-check-jp" },
       { label: "HF adapter", href: "https://huggingface.co/raihan-js/invoice-check-jp-qwen2.5-vl-3b-lora" },
+    ],
+  },
+  {
+    id: "keiri-agent",
+    group: "research",
+    chart: "keiri-agent",
+    name: "Keiri-Agent",
+    kind: "LLM agents · Back-office automation",
+    year: "2026",
+    status: "Published",
+    summary:
+      "A LangGraph agent for Japanese qualified invoices: extract, verify against a registry and tax rules, check duplicates, match a purchase order, then post, pause for a human reviewer with interrupt(), or reject. State lives in PostgreSQL and survives a SIGKILL (durability=sync kept the previous step in 10 of 10 kills, the default in 0 of 10). Pre-registered on 300 synthetic invoices: checks cut unsafe auto-approvals from 17.0% to 4.0%; PO matching adds little where the PO cannot see the error. A CI gate fails a pull request on any invoice that newly slips through. Synthetic data and POs; no reviewer simulated.",
+    role: "Design, implementation, evaluation",
+    stack: ["Python", "LangGraph", "LangSmith", "PostgreSQL", "FastAPI", "GitHub Actions"],
+    link: "https://github.com/raihan-js/keiri-agent",
+    links: [
     ],
   },
   {

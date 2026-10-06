@@ -503,7 +503,38 @@ function invoicecheck() {
   });
 }
 
-export const CHARTS = { flipgate, "graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck };
+// ------------------------------------------------------------------ Keiri-Agent
+// Source: keiri-agent/results/REPORT.md (300 synthetic test invoices; pre-registered run, 2026-10-06).
+function keiriagent() {
+  const rows = [
+    { name: "No checks", unsafe: 17.0, auto: 100.0 },
+    { name: "+ verification", unsafe: 4.0, auto: 77.3 },
+    { name: "+ PO matching", unsafe: 2.0, auto: 50.3 },
+  ];
+  const x1 = 108;
+  const x2 = 262;
+  const ku = 5.2;
+  const ka = 0.78;
+  let body = text(x1, 64, "Approved with a wrong field", { size: 10, weight: 600, fill: INK });
+  body += text(x2, 64, "Automation", { size: 10, weight: 600, fill: INK });
+  body += line(x1, 69, x1, 69 + rows.length * 40, RULE2) + line(x2, 69, x2, 69 + rows.length * 40, RULE2);
+  rows.forEach((r, i) => {
+    const y = 78 + i * 40;
+    body += text(16, y + 11, r.name, { size: 10.5, fill: INK });
+    body += hbar(x1 + 1, y, r.unsafe * ku, 14, S2, 3) + text(x1 + 1 + r.unsafe * ku + 4, y + 11, r.unsafe.toFixed(1) + "%", { size: 10, weight: 600, fill: INK });
+    body += hbar(x2 + 1, y, r.auto * ka, 14, S1, 3) + text(x2 + 1 + r.auto * ka + 4, y + 11, r.auto.toFixed(1) + "%", { size: 10, fill: INK2 });
+  });
+  return frame({
+    headline: "Checks cut unsafe approvals 17% to 4%",
+    sub: "LangGraph invoice agent, 300 synthetic invoices",
+    footer: ["PO matching: 2.0%, but most of it is routing (automation 77% to", "50%), not detection. Synthetic POs; no reviewer simulated."],
+    body,
+    alt: "Keiri-Agent: share of 300 synthetic invoices auto-approved with a wrong field and automation rate for three graph versions; verification cuts unsafe approvals from 17.0 to 4.0 percent, PO matching to 2.0 percent while automation falls from 77.3 to 50.3 percent",
+    desc: "Unsafe auto-approval rate / automation rate: no checks 17.0 / 100.0 percent; plus verification 4.0 / 77.3; plus duplicate check and purchase-order matching 2.0 / 50.3. Exact 95 percent intervals: 12.9 to 21.7, 2.1 to 6.9, 0.7 to 4.3. Most of the PO-matching gain on this sample comes from invoices routed away because the synthetic PO world disagreed, not from catching extraction errors.",
+  });
+}
+
+export const CHARTS = { flipgate, "graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];
