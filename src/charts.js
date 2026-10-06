@@ -534,7 +534,46 @@ function keiriagent() {
   });
 }
 
-export const CHARTS = { flipgate, "graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent };
+// ------------------------------------------------------------ Agent Shootout
+// Source: agent-shootout/results/analysis_test.md (240 synthetic test questions per design; pre-registered run, 2026-10-06).
+function agentshootout() {
+  const rows = [
+    { name: "ReAct", mean: 59.6, lo: 53.1, hi: 65.8, tok: 4663 },
+    { name: "Draft + verify", mean: 63.7, lo: 57.3, hi: 69.8, tok: 4905 },
+    { name: "Supervisor", mean: 65.0, lo: 58.6, hi: 71.0, tok: 7494 },
+    { name: "Plan + execute", mean: 61.7, lo: 55.2, hi: 67.8, tok: 10535 },
+  ];
+  const x0 = 106;
+  const x1 = 250;
+  const lo = 50;
+  const hi = 72;
+  const sx = (v) => x0 + ((v - lo) / (hi - lo)) * (x1 - x0);
+  const t0 = 286;
+  const kt = 0.0062;
+  let body = text(x0, 64, "Correct, 95% CI", { size: 10, weight: 600, fill: INK }) + text(t0, 64, "Mean tokens", { size: 10, weight: 600, fill: INK });
+  [50, 60, 70].forEach((v) => {
+    body += line(sx(v), 72, sx(v), 186, RULE) + text(sx(v), 198, v + "%", { size: 10, anchor: "middle", fill: INK2 });
+  });
+  body += line(t0, 72, t0, 186, RULE2);
+  rows.forEach((r, i) => {
+    const yc = 84 + i * 28;
+    body += text(16, yc + 4, r.name, { size: 10.5, fill: INK });
+    body += rect(sx(r.lo), yc - 3, sx(r.hi) - sx(r.lo), 6, S1, ";opacity:0.28");
+    body += rect(sx(r.mean) - 1.5, yc - 7, 3, 14, S1);
+    body += text(sx(r.mean), yc + 18, r.mean.toFixed(1), { size: 9.5, anchor: "middle", fill: INK2 });
+    body += hbar(t0 + 1, yc - 6, r.tok * kt, 12, CTX, 3) + text(t0 + 1 + r.tok * kt + 4, yc + 4, (r.tok / 1000).toFixed(1) + "k", { size: 10, weight: 600, fill: INK });
+  });
+  return frame({
+    headline: "2.3x the tokens, no detectable gain",
+    sub: "Four LangGraph agents, 240 questions each",
+    footer: ["qwen3.5 9B (Q4), one run. No pair differs at p < 0.0083;", "it would have taken a 6 to 9 point gap. Synthetic questions."],
+    body,
+    alt: "Agent Shootout: correct-answer rate and mean tokens per question for four LangGraph designs on 240 synthetic Japanese-law questions; plan-and-execute uses 2.3 times the tokens of ReAct with an indistinguishable correct rate",
+    desc: "Correct rate with exact 95 percent interval / mean tokens per question: ReAct 59.6 percent [53.1, 65.8] / 4,663; draft-verify 63.7 [57.3, 69.8] / 4,905; supervisor 65.0 [58.6, 71.0] / 7,494; plan-and-execute 61.7 [55.2, 67.8] / 10,535. No pairwise McNemar test clears the pre-registered threshold of 0.0083 (smallest p 0.0525, ReAct vs draft-verify). A pair would have needed a gap of about 6 to 9 points to clear it.",
+  });
+}
+
+export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];

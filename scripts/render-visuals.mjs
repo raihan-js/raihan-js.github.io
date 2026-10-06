@@ -57,6 +57,7 @@ const TITLES = {
   "jacite-bench": ["JaCite-Bench", "Do LLMs invent Japanese law articles?"],
   "vocab-tax": ["Vocab Tax", "A compute-matched vocabulary study"],
   "roofline-decoding": ["Roofline-First Decoding", "A W4A16 Triton kernel vs the memory roofline"],
+  "agent-shootout": ["Agent Shootout", "Four agent architectures, one question set, one budget"],
 };
 
 for (const id of Object.keys(CHARTS)) {

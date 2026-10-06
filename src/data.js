@@ -24,9 +24,9 @@ export const HF = {
 };
 
 export const STATS = [
-  { value: 12, suffix: "", label: "research projects\nwith statistical rigor" },
-  { value: 589, suffix: "", label: "tests passing\nacross all projects" },
-  { value: 13, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
+  { value: 13, suffix: "", label: "research projects\nwith statistical rigor" },
+  { value: 631, suffix: "", label: "tests passing\nacross all projects" },
+  { value: 14, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
   { id: "hf-downloads", live: true, value: 2416, suffix: "", label: "Hugging Face downloads,\nmodels + datasets (all-time)" },
 ];
 
@@ -235,6 +235,23 @@ export const PROJECTS = [
     stack: ["Python", "LangGraph", "LangSmith", "PostgreSQL", "FastAPI", "GitHub Actions"],
     link: "https://github.com/raihan-js/keiri-agent",
     links: [
+    ],
+  },
+  {
+    id: "agent-shootout",
+    group: "research",
+    chart: "agent-shootout",
+    name: "Agent Shootout",
+    kind: "LLM agents · Evaluation",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Four LangGraph designs (ReAct, plan-and-execute, supervisor, draft-and-verify) answer the same 240 synthetic questions about Japanese statutes with the same tools, prompt, local 9B model and token budget, compared on correctness and cost with paired tests fixed in a pre-registration. Plan-and-execute used 2.3x the tokens of plain ReAct with no detectable accuracy gain (59.6% to 65.0% correct, no pair clears the threshold). A post-hoc replay of the tool calls shows that \"correct\" is a citation check: about 8% to 9% of correct answers cite an article the model never saw. One model, one run; not legal advice.",
+    role: "Design, implementation, evaluation",
+    stack: ["Python", "LangGraph", "LangSmith", "llama.cpp", "Qwen3.5", "GitHub Actions"],
+    link: "https://github.com/raihan-js/agent-shootout",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/agent-shootout" },
     ],
   },
   {
