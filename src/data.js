@@ -98,6 +98,7 @@ export const PROJECTS = [
     stack: ["Python", "e-Gov Law API", "Transformers", "4-bit quantization"],
     link: "https://github.com/raihan-js/jacite-bench",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/do-llms-invent-japanese-law-articles-a-bilingual-benchmark-42l7" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/jacite-bench" },
     ],
   },
