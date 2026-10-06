@@ -25,7 +25,7 @@ export const HF = {
 
 export const STATS = [
   { value: 12, suffix: "", label: "research projects\nwith statistical rigor" },
-  { value: 588, suffix: "", label: "tests passing\nacross all projects" },
+  { value: 589, suffix: "", label: "tests passing\nacross all projects" },
   { value: 13, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
   { id: "hf-downloads", live: true, value: 2416, suffix: "", label: "Hugging Face downloads,\nmodels + datasets (all-time)" },
 ];
