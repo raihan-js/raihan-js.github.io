@@ -320,11 +320,11 @@ function tiny() {
 }
 
 // ------------------------------------------------------------------ JaCite-Bench
-// Source: jacite-bench/README.md results (invented = cited article not in the e-Gov registry).
+// Source: jacite-bench/README.md results, corrected 2026-10-06 (invented = cited article not in the e-Gov registry; per mention).
 function jacite() {
   const groups = [
-    { name: "llm-jp-3-1.8b", ja: 4.05, en: 1.09 },
-    { name: "Qwen2.5-7B", ja: 1.4, en: 0 },
+    { name: "llm-jp-3-1.8b", ja: 4.57, en: 1.09 },
+    { name: "Qwen2.5-7B", ja: 1.17, en: 0 },
     { name: "Swallow-8B", ja: 0, en: 0 },
   ];
   const base = 172;
@@ -348,12 +348,12 @@ function jacite() {
     { color: S2, label: "English prompts" },
   ]);
   return frame({
-    headline: "A 1.8B model invents 3.7× more in Japanese",
+    headline: "A 1.8B model invents 4.2× more in Japanese",
     sub: "Share of cited statute articles absent from the e-Gov registry",
-    footer: ["600 questions (300 JA, 300 EN), 11 laws, 6,913 articles.", "llm-jp: 63/1,554 JA vs 7/642 EN. Local models only."],
+    footer: ["600 questions (300 JA, 300 EN), 11 laws, 6,913 articles.", "llm-jp: 63/1,379 JA vs 7/642 EN. Local models only."],
     body,
-    alt: "JaCite-Bench: llm-jp-3-1.8b invents 4.05 percent of cited Japanese law articles in Japanese versus 1.09 percent in English; Swallow-8B invents none",
-    desc: "Invented citation rate, Japanese vs English prompts. llm-jp-3-1.8b 4.05% (63/1554) vs 1.09% (7/642). Qwen2.5-7B 1.40% (9/643) vs 0.00% (0/567). Swallow-8B 0.00% (0/793) vs 0.00% (0/670).",
+    alt: "JaCite-Bench: llm-jp-3-1.8b invents 4.57 percent of cited Japanese law articles in Japanese versus 1.09 percent in English; Swallow-8B invents none",
+    desc: "Invented citation rate, Japanese vs English prompts. llm-jp-3-1.8b 4.57% (63/1,379) vs 1.09% (7/642). Qwen2.5-7B 1.17% (7/597) vs 0.00% (0/567). Swallow-8B 0.00% (0/753) vs 0.00% (0/670). Corrected 2026-10-06 after fixing a phantom-citation bug in the extractor.",
   });
 }
 
