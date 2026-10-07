@@ -81,6 +81,7 @@ export const PROJECTS = [
     stack: ["Python", "Transformers", "scipy", "FastAPI", "Prometheus"],
     link: "https://github.com/raihan-js/oraclebench",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/small-llm-judges-approved-11-and-41-of-wrong-answers-then-i-fixed-my-own-pairwise-test-3lpm" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/oraclebench-items" },
     ],
   },
