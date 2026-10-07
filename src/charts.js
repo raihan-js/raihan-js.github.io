@@ -573,7 +573,43 @@ function agentshootout() {
   });
 }
 
-export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout };
+// ------------------------------------------------------------ FedProc-Ledger
+// Source: fedproc-ledger/results/round{4,5,6,7}_report.json (majority gold of agent + 2 judges;
+// R5 primary is the stacker, equal to max-q within +0.004). Binding-set F1, cluster bootstrap over documents.
+function fedprocledger() {
+  const rows = [
+    { name: "R4 · v1.2", model: 0.921, b0: 0.78, diff: "+0.142" },
+    { name: "R5 · v1.2", model: 0.926, b0: 0.829, diff: "+0.097" },
+    { name: "R6 · v1.3", model: 0.914, b0: 0.807, diff: "+0.107" },
+    { name: "R7 · v1.4", model: 0.89, b0: 0.806, diff: "+0.084" },
+  ];
+  const x0 = 150;
+  const x1 = 360;
+  const lo = 0.7;
+  const hi = 1.0;
+  const sx = (v) => x0 + ((v - lo) / (hi - lo)) * (x1 - x0);
+  let body = text(16, 60, "Binding-set F1 — model (blue) vs status-quo regexes (grey)", { size: 10, weight: 600, fill: INK });
+  [0.7, 0.8, 0.9, 1.0].forEach((v) => {
+    body += line(sx(v), 66, sx(v), 192, RULE) + text(sx(v), 204, v.toFixed(1), { size: 10, anchor: "middle", fill: INK2 });
+  });
+  rows.forEach((r, i) => {
+    const y = 70 + i * 32;
+    body += text(16, y + 11, r.name, { size: 10.5, fill: INK });
+    body += hbar(sx(lo) + 1, y, sx(r.b0) - sx(lo) - 1, 11, CTX, 3);
+    body += hbar(sx(lo) + 1, y + 13, sx(r.model) - sx(lo) - 1, 11, S1, 3);
+    body += text(sx(r.model) + 5, y + 22, r.model.toFixed(3) + " (" + r.diff + ")", { size: 9.5, weight: 600, fill: INK });
+  });
+  return frame({
+    headline: "Four fresh rounds above the status quo",
+    sub: "Pre-registered binding-set F1, 24-27 new docs each",
+    footer: ["Diffs with 95% CIs above zero: +0.142, +0.097, +0.107,", "+0.084. Specificity 70-79% vs 8-19% at equal recall."],
+    body,
+    alt: "FedProc-Ledger: binding-set F1 of the model versus status-quo regexes across four pre-registered fresh rounds; the model leads by 0.08 to 0.14 with intervals above zero",
+    desc: "Binding-set F1, model vs status-quo regexes (majority gold): round 4 (26 docs) 0.921 vs 0.780, difference +0.142 [0.085, 0.210]; round 5 (24 docs) 0.926 vs 0.829, +0.097 [0.040, 0.158]; round 6 (24 docs) 0.914 vs 0.807, +0.107 [0.057, 0.161]; round 7 temporal hold-out (27 docs) 0.890 vs 0.806, +0.084 [0.028, 0.143]. Specificity 70 to 79 percent vs 8 to 19 percent.",
+  });
+}
+
+export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];

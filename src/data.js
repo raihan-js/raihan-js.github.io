@@ -24,9 +24,9 @@ export const HF = {
 };
 
 export const STATS = [
-  { value: 13, suffix: "", label: "research projects\nwith statistical rigor" },
-  { value: 631, suffix: "", label: "tests passing\nacross all projects" },
-  { value: 14, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
+  { value: 14, suffix: "", label: "research projects\nwith statistical rigor" },
+  { value: 1253, suffix: "", label: "tests passing\nacross all projects" },
+  { value: 16, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
   { id: "hf-downloads", live: true, value: 2416, suffix: "", label: "Hugging Face downloads,\nmodels + datasets (all-time)" },
 ];
 
@@ -256,6 +256,24 @@ export const PROJECTS = [
     ],
   },
   {
+    id: "fedproc-ledger",
+    group: "research",
+    chart: "fedproc-ledger",
+    name: "FedProc-Ledger",
+    kind: "Document AI · Federal Contracting",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Which FAR/DFARS clauses in a solicitation actually bind the contract — mentioned is not binding. Rules (checkbox states, 52.212-5(a), SF 1449 block 27, exclusion vetoes) plus a 0.46 MB mention-role classifier, evaluated in seven pre-registered rounds on fresh documents including a temporal hold-out: round 7 gives binding-set F1 0.890 vs 0.806 for the status-quo regexes (+0.084, interval above zero), specificity 70% vs 14% at equal recall. Annotator-free audit: 13.8% of regex entries (58,294 of 423,328) are clauses whose own checklist box is empty. No human-expert labels; public model, data, code and paper draft (submitted to arXiv).",
+    role: "Design, implementation, evaluation",
+    stack: ["Python", "scikit-learn", "PyMuPDF", "FastAPI", "Hugging Face", "GitHub Actions"],
+    link: "https://github.com/raihan-js/fedproc-ledger",
+    links: [
+      { label: "HF model", href: "https://huggingface.co/raihan-js/fedproc-ledger-v1" },
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/fedproc-ledger-bench" },
+    ],
+  },
+  {
     id: "vetr",
     group: "product",
     name: "VETR Proposal",
@@ -353,6 +371,20 @@ export const MODELS = [
       href: "https://dev.to/raihan-js/i-built-the-first-open-benchmark-for-federal-contracting-ai-heres-what-it-shows-about-frontier-5a03",
       label: "writeup",
     },
+  },
+  {
+    id: "fedproc-ledger-v1",
+    name: "FedProc-Ledger v1",
+    kind: "Classifier",
+    base: "Logistic regression + rules",
+    summary:
+      "Mention-role classifier that decides which FAR/DFARS clause numbers in a solicitation actually bind the contract. 0.46 MB numpy weights (no pickle), CPU-only. Round 7 on a temporal hold-out: binding-set F1 0.890 vs 0.806 for regexes, specificity 70% vs 14%.",
+    metrics: [
+      { k: "size", v: "0.46 MB" },
+      { k: "F1", v: "0.890" },
+      { k: "spec", v: "70%" },
+    ],
+    href: "https://huggingface.co/raihan-js/fedproc-ledger-v1",
   },
   {
     id: "orch-nextjs-3b",

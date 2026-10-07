@@ -58,6 +58,7 @@ const TITLES = {
   "vocab-tax": ["Vocab Tax", "A compute-matched vocabulary study"],
   "roofline-decoding": ["Roofline-First Decoding", "A W4A16 Triton kernel vs the memory roofline"],
   "agent-shootout": ["Agent Shootout", "Four agent architectures, one question set, one budget"],
+  "fedproc-ledger": ["FedProc-Ledger", "Which solicitation clauses actually bind?"],
 };
 
 for (const id of Object.keys(CHARTS)) {
@@ -88,7 +89,7 @@ if (!only.length || only.includes("og")) {
       <div style="font:500 36px var(--sans);color:var(--fg-muted)">Raihan Sikder</div>
       <div style="font:700 70px/1 var(--sans);letter-spacing:-.03em;color:var(--fg);margin:10px 0 26px;white-space:nowrap">AI/ML Engineer</div>
       <div style="font:400 28px/1.35 var(--sans);color:var(--fg-muted)">LLM evaluation, monitoring and release gating. Small models trained from scratch.</div>
-      <div style="font:500 20px var(--sans);color:var(--fg);margin-top:26px;opacity:.85">9 research projects · open data on Hugging Face</div>
+      <div style="font:500 20px var(--sans);color:var(--fg);margin-top:26px;opacity:.85">10 research projects · open data on Hugging Face</div>
     </div>
     <div style="width:470px;flex:none;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--bg-elev)">${chartSvg("flipgate")}</div>
   </div>`;
