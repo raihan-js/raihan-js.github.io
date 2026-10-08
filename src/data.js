@@ -271,6 +271,7 @@ export const PROJECTS = [
     stack: ["Python", "scikit-learn", "PyMuPDF", "FastAPI", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/fedproc-ledger",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/mentioned-is-not-binding-which-solicitation-clauses-actually-bind-the-contract-1cio" },
       { label: "HF model", href: "https://huggingface.co/raihan-js/fedproc-ledger-v1" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/fedproc-ledger-bench" },
     ],
