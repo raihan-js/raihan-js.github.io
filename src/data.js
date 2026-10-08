@@ -117,6 +117,7 @@ export const PROJECTS = [
     stack: ["Python", "PyTorch", "Transformers", "xgrammar"],
     link: "https://github.com/raihan-js/graphproof-qa",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/graphproof-qa-teaching-a-small-model-to-prove-its-answers-3b2k" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/MetaQA-CF" },
     ],
   },
