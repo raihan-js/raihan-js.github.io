@@ -135,6 +135,7 @@ export const PROJECTS = [
     stack: ["Python", "Transformers", "xgrammar", "FAR/DFARS registry"],
     link: "https://github.com/raihan-js/fedproc-constrained",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/a-grammar-stopped-my-model-inventing-far-clauses-it-also-made-it-refuse-the-real-ones-59ap" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/fedproc-constrained-results" },
     ],
   },
