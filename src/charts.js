@@ -685,7 +685,7 @@ function fewhumans() {
 function akusento() {
   const rows = [
     { name: "Majority", v: 0.504 },
-    { name: "Scorer", v: 0.736 },
+    { name: "Scorer", v: 0.789 },
   ];
   const x0 = 150;
   const x1 = 330;
@@ -704,12 +704,12 @@ function akusento() {
   body += text(16, 178, "Tone control: cross-synthesis follows tones (0.82-0.92)", { size: 10, fill: INK2 });
   body += text(16, 194, "Word exact-match 0.237; no human checked any label", { size: 10, fill: INK2 });
   return frame({
-    headline: "Hearing pitch accent: 0.736 vs 0.504",
+    headline: "Hearing pitch accent: 0.789 vs 0.504",
     sub: "Logistic scorer on F0 features, 2,020 held-out morae",
     footer: ["Directional transitions: 743 agree / 363 contradict dictionary;", "peak delay is real. Kana CER 0.105."],
     body,
     alt: "Akusento: mora high/low accuracy 0.736 versus majority baseline 0.504 on held-out Japanese read speech, with tone-control cross-synthesis correlations 0.82 to 0.92",
-    desc: "Mora high/low accuracy with 9 F0 features: scorer 0.736 vs majority 0.504 on 2,020 held-out morae (100 JSUT utterances, one speaker). Word accent-type exact match 0.237 over 409 phrases. Cross-synthesis (same phones, swapped tones) follows tones at contour correlations 0.82 to 0.92 on rain/candy, inconclusive on chopsticks/bridge.",
+    desc: "Mora high/low accuracy with 12 F0 features: scorer 0.789 vs majority 0.504 on 2,020 held-out morae (100 JSUT utterances, one speaker). Word accent-type exact match 0.460 over 398 phrases. Cross-synthesis (same phones, swapped tones) follows tones at contour correlations 0.82 to 0.92 on rain/candy, inconclusive on chopsticks/bridge.",
   });
 }
 
