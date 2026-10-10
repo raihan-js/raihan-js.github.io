@@ -643,7 +643,44 @@ function editbench() {
   });
 }
 
-export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench };
+// ------------------------------------------------------------ FewHumans
+// Source: fewhumans/results/study_summary.json (pooled DL random-effects savings ratios, 7 tasks, pre-registered, 2026-10-10).
+function fewhumans() {
+  const rows = [
+    { name: "PPI++", ratio: 0.908, lo: 0.865, hi: 0.952 },
+    { name: "Stratified", ratio: 0.907, lo: 0.843, hi: 0.977 },
+    { name: "Active, uniform", ratio: 1.239, lo: 1.087, hi: 1.412 },
+    { name: "Fixed PPI", ratio: 2.269, lo: 1.558, hi: 3.302 },
+    { name: "Disagreement", ratio: 2.636, lo: 2.505, hi: 2.773 },
+  ];
+  const x0 = 150;
+  const x1 = 330;
+  const lo = 0.5;
+  const hi = 3.0;
+  const sx = (v) => x0 + ((v - lo) / (hi - lo)) * (x1 - x0);
+  let body = text(16, 60, "Human labels vs human-only (ratio, <1 saves)", { size: 10, weight: 600, fill: INK });
+  [0.5, 1.0, 2.0, 3.0].forEach((v) => {
+    body += line(sx(v), 66, sx(v), 196, RULE) + text(sx(v), 208, v.toFixed(1) + "x", { size: 10, anchor: "middle", fill: INK2 });
+  });
+  body += line(sx(1.0), 66, sx(1.0), 196, RULE2, 1.5);
+  rows.forEach((r, i) => {
+    const y = 74 + i * 26;
+    body += text(16, y + 4, r.name, { size: 10.5, fill: INK });
+    body += rect(sx(r.lo), y - 3, sx(r.hi) - sx(r.lo), 6, r.ratio < 1 ? S3 : S2, ";opacity:0.3");
+    body += rect(sx(r.ratio) - 1.5, y - 7, 3, 14, r.ratio < 1 ? S3 : S2);
+    body += text(sx(r.ratio), y + 18, r.ratio.toFixed(2) + "x", { size: 9, anchor: "middle", fill: INK2 });
+  });
+  return frame({
+    headline: "PPI++ saves 9% of labels; routing costs 2.6x",
+    sub: "7 tasks, 3-judge panel, pre-registered savings ratios",
+    footer: ["Fixed PPI and disagreement routing never reach target on most tasks", "(ratios are censored lower bounds). Judge-only misses 18/21."],
+    body,
+    alt: "FewHumans: pooled human-label savings ratios versus human-only labeling; PPI++ 0.91 and stratified 0.91 save labels, active-uniform 1.24, fixed PPI 2.27 and disagreement routing 2.64 cost labels",
+    desc: "Pooled DerSimonian-Laird savings ratio with 95 percent interval: PPI++ 0.908 [0.865, 0.952]; stratified 0.907 [0.843, 0.977]; active-uniform 1.239 [1.087, 1.412]; fixed PPI 2.269 [1.558, 3.302]; disagreement routing 2.636 [2.505, 2.773]. Fixed-PPI and disagreement ratios are censored lower bounds (target never reached on most tasks).",
+  });
+}
+
+export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];
