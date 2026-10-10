@@ -24,9 +24,9 @@ export const HF = {
 };
 
 export const STATS = [
-  { value: 16, suffix: "", label: "research projects\nwith statistical rigor" },
-  { value: 1306, suffix: "", label: "tests passing\nacross all projects" },
-  { value: 18, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
+  { value: 17, suffix: "", label: "research projects\nwith statistical rigor" },
+  { value: 1316, suffix: "", label: "tests passing\nacross all projects" },
+  { value: 19, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
   { id: "hf-downloads", live: true, value: 2416, suffix: "", label: "Hugging Face downloads,\nmodels + datasets (all-time)" },
 ];
 
@@ -310,6 +310,24 @@ export const PROJECTS = [
     link: "https://github.com/raihan-js/fewhumans",
     links: [
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/fewhumans-judgebank" },
+      { label: "PyPI", href: "https://pypi.org/project/fewhumans/" },
+    ],
+  },
+  {
+    id: "akusento",
+    group: "research",
+    chart: "akusento",
+    name: "Akusento",
+    kind: "Speech · Japanese Pitch Accent",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Open tools that hear Japanese pitch accent: mora labels from OpenJTalk full-context (Kurihara parsing, triple-validated on 500 utterances), a logistic scorer on F0 features (0.736 mora accuracy vs 0.504 baseline, weights public), and accent control in Style-Bert-VITS2 verified by cross-synthesis (output follows forced tones at 0.82-0.92). Acoustic cross-check of the dictionary labels included with every caveat: no fluent listener was available, so nothing is passed off as human-checked. Kana CER 0.105.",
+    role: "Design, implementation, evaluation",
+    stack: ["Python", "PyTorch", "pyopenjtalk", "pyworld", "scikit-learn", "Gradio", "Hugging Face", "GitHub Actions"],
+    link: "https://github.com/raihan-js/akusento",
+    links: [
+      { label: "HF model", href: "https://huggingface.co/raihan-js/akusento-scorer" },
     ],
   },
   {

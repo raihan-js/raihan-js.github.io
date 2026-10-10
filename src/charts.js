@@ -680,7 +680,40 @@ function fewhumans() {
   });
 }
 
-export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans };
+// ------------------------------------------------------------ Akusento
+// Source: akusento/results/scorer.json (2,020 held-out morae, JSUT read speech) + xswap.json.
+function akusento() {
+  const rows = [
+    { name: "Majority", v: 0.504 },
+    { name: "Scorer", v: 0.736 },
+  ];
+  const x0 = 150;
+  const x1 = 330;
+  const lo = 0.4;
+  const hi = 0.8;
+  const sx = (v) => x0 + ((v - lo) / (hi - lo)) * (x1 - x0);
+  let body = text(16, 60, "Mora high/low accuracy, held-out utterances", { size: 10, weight: 600, fill: INK });
+  [0.4, 0.5, 0.6, 0.7, 0.8].forEach((v) => {
+    body += line(sx(v), 66, sx(v), 150, RULE) + text(sx(v), 162, v.toFixed(1), { size: 10, anchor: "middle", fill: INK2 });
+  });
+  rows.forEach((r, i) => {
+    const y = 74 + i * 34;
+    body += text(16, y + 11, r.name, { size: 10.5, fill: INK });
+    body += hbar(x0 + 1, y, sx(r.v) - x0 - 1, 14, i ? S3 : CTX, 3) + text(sx(r.v) + 5, y + 11, r.v.toFixed(3), { size: 10, weight: 600, fill: INK });
+  });
+  body += text(16, 178, "Tone control: cross-synthesis follows tones (0.82-0.92)", { size: 10, fill: INK2 });
+  body += text(16, 194, "Word exact-match 0.237; no human checked any label", { size: 10, fill: INK2 });
+  return frame({
+    headline: "Hearing pitch accent: 0.736 vs 0.504",
+    sub: "Logistic scorer on F0 features, 2,020 held-out morae",
+    footer: ["Directional transitions: 743 agree / 363 contradict dictionary;", "peak delay is real. Kana CER 0.105."],
+    body,
+    alt: "Akusento: mora high/low accuracy 0.736 versus majority baseline 0.504 on held-out Japanese read speech, with tone-control cross-synthesis correlations 0.82 to 0.92",
+    desc: "Mora high/low accuracy with 9 F0 features: scorer 0.736 vs majority 0.504 on 2,020 held-out morae (100 JSUT utterances, one speaker). Word accent-type exact match 0.237 over 409 phrases. Cross-synthesis (same phones, swapped tones) follows tones at contour correlations 0.82 to 0.92 on rain/candy, inconclusive on chopsticks/bridge.",
+  });
+}
+
+export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans, akusento };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];
