@@ -24,7 +24,7 @@ export const HF = {
 };
 
 export const STATS = [
-  { value: 14, suffix: "", label: "research projects\nwith statistical rigor" },
+  { value: 15, suffix: "", label: "research projects\nwith statistical rigor" },
   { value: 1253, suffix: "", label: "tests passing\nacross all projects" },
   { value: 16, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
   { id: "hf-downloads", live: true, value: 2416, suffix: "", label: "Hugging Face downloads,\nmodels + datasets (all-time)" },
@@ -275,6 +275,23 @@ export const PROJECTS = [
       { label: "writeup", href: "https://dev.to/raihan-js/mentioned-is-not-binding-which-solicitation-clauses-actually-bind-the-contract-1cio" },
       { label: "HF model", href: "https://huggingface.co/raihan-js/fedproc-ledger-v1" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/fedproc-ledger-bench" },
+    ],
+  },
+  {
+    id: "edit-rag-graph",
+    group: "research",
+    chart: "edit-rag-graph",
+    name: "EditBench-3Way",
+    kind: "LLM Evaluation · Knowledge Editing",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Same 1,500 facts, same Qwen2.5-1.5B model: weight editing (ROME/MEMIT) vs retrieval vs graph lookup, pre-registered with ripple effects. Weight edits generalize (0.55–0.71) but trample neighbors (locality 12–14% vs 29–37% without touching weights); graph lookup leads where it covers (0.627); a gold fact in context is answered 23% of the time. Rule scorers only, no LLM judge.",
+    role: "Design, implementation, evaluation",
+    stack: ["Python", "PyTorch", "EasyEdit", "FAISS", "Hugging Face", "GitHub Actions"],
+    link: "https://github.com/raihan-js/edit-rag-graph",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/editbench-3way" },
     ],
   },
   {

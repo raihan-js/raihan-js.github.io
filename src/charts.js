@@ -609,7 +609,41 @@ function fedprocledger() {
   });
 }
 
-export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger };
+function editbench() {
+  const rows = [
+    { name: "B-oracle", gen: 0.527, loc: 0.287 },
+    { name: "B-real", gen: 0.455, loc: 0.285 },
+    { name: "C-covered", gen: 0.627, loc: 0.369 },
+    { name: "ROME", gen: 0.707, loc: 0.144 },
+    { name: "MEMIT", gen: 0.553, loc: 0.124 },
+  ];
+  const x0 = 150;
+  const x1 = 360;
+  const lo = 0.0;
+  const hi = 0.8;
+  const sx = (v) => x0 + ((v - lo) / (hi - lo)) * (x1 - x0);
+  let body = text(16, 60, "Generalization (blue) vs locality intact (grey)", { size: 10, weight: 600, fill: INK });
+  [0.0, 0.2, 0.4, 0.6, 0.8].forEach((v) => {
+    body += line(sx(v), 66, sx(v), 200, RULE) + text(sx(v), 212, v.toFixed(1), { size: 10, anchor: "middle", fill: INK2 });
+  });
+  rows.forEach((r, i) => {
+    const y = 70 + i * 26;
+    body += text(16, y + 11, r.name, { size: 10.5, fill: INK });
+    body += hbar(sx(lo) + 1, y, sx(r.loc) - sx(lo) - 1, 11, CTX, 3);
+    body += hbar(sx(lo) + 1, y + 13, sx(r.gen) - sx(lo) - 1, 11, S1, 3);
+    body += text(sx(r.gen) + 5, y + 22, r.gen.toFixed(2) + " · " + r.loc.toFixed(2), { size: 9, weight: 600, fill: INK });
+  });
+  return frame({
+    headline: "Edits generalize, neighbors pay",
+    sub: "Same 1,500 facts, Qwen2.5-1.5B, alias-match rates",
+    footer: ["Weight edits: gen 0.55-0.71 but locality 0.12-0.14.", "No-touch methods keep 0.29-0.37."],
+    body,
+    alt: "EditBench-3Way: generalization versus locality for five update methods; weight editing generalizes but locality collapses to 12-14 percent",
+    desc: "Generalization / locality intact: B-oracle 0.527 / 0.287; B-real 0.455 / 0.285; graph-covered 0.627 / 0.369; ROME 0.707 / 0.144; MEMIT 0.553 / 0.124. Same 1,500 facts and model throughout.",
+  });
+}
+
+export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];
