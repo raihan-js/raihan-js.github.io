@@ -26,7 +26,7 @@ export const HF = {
 export const STATS = [
   { value: 16, suffix: "", label: "research projects\nwith statistical rigor" },
   { value: 1304, suffix: "", label: "tests passing\nacross all projects" },
-  { value: 17, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
+  { value: 18, suffix: "", label: "research artifacts on\nHugging Face (data + models)" },
   { id: "hf-downloads", live: true, value: 2416, suffix: "", label: "Hugging Face downloads,\nmodels + datasets (all-time)" },
 ];
 
@@ -305,9 +305,10 @@ export const PROJECTS = [
     summary:
       "A library that combines a few human labels with many LLM-judge labels into unbiased estimates with valid confidence intervals: routing (uniform to learned), PPI/PPI++ and active estimators, anytime-valid stopping, and a judge report card. Pre-registered on 7 annotation tasks with a 3-judge panel: PPI++ and stratification save about 9% of human labels, disagreement routing costs 2.6x, and judge-only intervals miss the full-human value 18 of 21 times. Every default interval passed a 196-configuration coverage gate. Rule scorers only, no LLM judge.",
     role: "Design, implementation, statistics",
-    stack: ["Python", "scipy", "PyPI", "Hugging Face", "GitHub Actions"],
+    stack: ["Python", "scipy", "Ollama", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/fewhumans",
     links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/fewhumans-judgebank" },
     ],
   },
   {
