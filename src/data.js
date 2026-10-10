@@ -327,6 +327,7 @@ export const PROJECTS = [
     stack: ["Python", "PyTorch", "pyopenjtalk", "pyworld", "scikit-learn", "Gradio", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/akusento",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/teaching-a-computer-to-hear-japanese-pitch-accent-42b1" },
       { label: "HF model", href: "https://huggingface.co/raihan-js/akusento-scorer" },
     ],
   },
