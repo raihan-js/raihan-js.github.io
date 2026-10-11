@@ -752,7 +752,38 @@ function koebridge() {
   });
 }
 
-export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans, akusento, koebridge };
+// Source: kotoba-tutor/results/m3.json + m3_rows.jsonl (n=300, frozen prompt,
+// Swallow-8B memoryless arm; gold = Tatoeba + script injection, undisclosed nowhere).
+function kotobatutor() {
+  const types = ["part.", "conj.", "polite.", "choice", "correct"];
+  const rec = [0.97, 0.0, 0.0, 0.0, 0.0];
+  const flagged = [0.97, 0.92, 0.95, 0.97, 0.94];
+  const x0 = 120;
+  const x1 = 330;
+  const sx = (v) => x0 + v * (x1 - x0);
+  let body = text(16, 44, "Recall per type + flagged rate (correct = false alarm)", { size: 10, weight: 600, fill: INK });
+  [0, 0.5, 1.0].forEach((v) => {
+    body += line(sx(v), 50, sx(v), 158, RULE) + text(sx(v), 170, v.toFixed(1), { size: 10, anchor: "middle", fill: INK2 });
+  });
+  types.forEach((t, j) => {
+    const y = 56 + j * 21;
+    body += text(16, y + 11, t, { size: 10.5, fill: INK });
+    body += hbar(x0 + 1, y, Math.max(sx(rec[j]) - x0 - 1, 2), 8, S3, 2);
+    body += hbar(x0 + 1, y + 9, Math.max(sx(flagged[j]) - x0 - 1, 2), 8, S1, 2);
+  });
+  body += text(16, 182, "Green = recall; blue = flagged. Type collapse: all blue.", { size: 10, fill: INK2 });
+  body += text(16, 198, "Memory reminder: no effect (0.92 vs 0.94)", { size: 10, fill: INK2 });
+  return frame({
+    headline: "Tutor brain: 0.97 / 0 / 0 / 0",
+    sub: "Recall by error type + false-correction 0.94, Swallow-8B, n=300",
+    footer: ["Predicts particle on 285/300 rows; never the other types.", "Pre-registered null on memory; v1.1 needs constrained output."],
+    body,
+    alt: "Kotoba-tutor: recall 0.97 on particles and zero on conjugation, politeness and choice, with false-correction 0.94 on correct sentences",
+    desc: "M3 frozen-prompt eval: recall particle 0.97, conjugation/politeness/choice 0.0; false-correction 0.94 (upper bound, unverified gold); strict correction 0.15; memory vs memoryless indistinguishable.",
+  });
+}
+
+export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans, akusento, koebridge, "kotoba-tutor": kotobatutor };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];
