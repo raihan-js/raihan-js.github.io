@@ -713,7 +713,46 @@ function akusento() {
   });
 }
 
-export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans, akusento };
+// Source: koe-bridge/results/m3.json (n=100/direction, reference transcripts,
+// canonical pipeline backends: Qwen en->ja, opus ja->en, Qwen ja->en control).
+function koebridge() {
+  const fracs = ["25%", "50%", "75%"];
+  const enJa = [0.007, 0.014, 0.02];
+  const jaEn = [0.077, 0.088, 0.132];
+  const jaEnQ = [0.134, 0.184, 0.204];
+  const x0 = 120;
+  const x1 = 330;
+  const sx = (v) => x0 + (v / 0.22) * (x1 - x0);
+  let body = text(16, 44, "Prefix-survival: share of early guess kept in final", { size: 10, weight: 600, fill: INK });
+  [0, 0.1, 0.2].forEach((v) => {
+    body += line(sx(v), 50, sx(v), 158, RULE) + text(sx(v), 170, v.toFixed(1), { size: 10, anchor: "middle", fill: INK2 });
+  });
+  const series = [
+    { name: "EN→JA Qwen", vals: enJa, c: S1 },
+    { name: "JA→EN opus", vals: jaEn, c: S3 },
+    { name: "JA→EN Qwen", vals: jaEnQ, c: CTX },
+  ];
+  fracs.forEach((f, j) => {
+    const y = 56 + j * 36;
+    body += text(16, y + 22, f, { size: 10.5, weight: 600, fill: INK });
+    series.forEach((s, k) => {
+      const by = y + k * 10 - 2;
+      body += hbar(x0 + 1, by, Math.max(sx(s.vals[j]) - x0 - 1, 2), 8, s.c, 2);
+    });
+  });
+  body += text(16, 182, "Same backend (Qwen) at 50%: 0.184 vs 0.014 (~13x)", { size: 10, fill: INK2 });
+  body += text(16, 198, "M2 first-audio lag p50 1.86s ja→en / 1.26s en→ja", { size: 10, fill: INK2 });
+  return frame({
+    headline: "Verb-final wait cost: 0.014 vs 0.184",
+    sub: "Prefix-translation survival at 50% of source, EN→JA vs JA→EN (Qwen both)",
+    footer: ["Retranslation flickers en→ja; hold output till the verb.", "FLEURS read speech, n=100/direction."],
+    body,
+    alt: "Koe-bridge: prefix-translation survival at 50 percent of source words is 0.014 English-to-Japanese versus 0.184 Japanese-to-English with the same Qwen backend",
+    desc: "Word-order wait cost: translating prefixes of reference transcripts and measuring longest-common-prefix survival against the full translation. EN-JA (Qwen): 0.007/0.014/0.020 at 25/50/75%. JA-EN opus: 0.077/0.088/0.132. JA-EN Qwen control: 0.134/0.184/0.204. Streaming sim first-audio lag p50 1.86s ja-en, 1.26s en-ja.",
+  });
+}
+
+export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans, akusento, koebridge };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];
