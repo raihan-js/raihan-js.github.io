@@ -172,6 +172,7 @@ export const PROJECTS = [
     stack: ["Python", "Triton", "PyTorch", "CUDA"],
     link: "https://github.com/raihan-js/roofline-decoding",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/my-triton-kernel-ties-bitsandbytes-and-both-lose-to-math-2bie" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/roofline-decoding-results" },
     ],
   },
