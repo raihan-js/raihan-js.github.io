@@ -357,7 +357,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Voice-first Japanese tutor in LangGraph, all local (Swallow-8B AWQ, faster-whisper, Akusento accent scorer, SBV2 voice): listens, corrects, scores accent, remembers mistake types in a store, schedules drills. Loop proven live end to end (TTS-spoken error → exact gold restoration → spoken explanation). Pre-registered eval on 300 script-labelled sentences: the brain collapses — predicts particle on 285/300, recall 0 on the other three types, false-correction 0.94 (upper bound); memory reminder has no detectable effect. A measured failure with a queued v1.1 (constrained type output).",
+      "Voice-first Japanese tutor in LangGraph, all local (Swallow-8B AWQ, faster-whisper, Akusento accent scorer, SBV2 voice): listens, corrects, scores accent, remembers mistake types in a store, schedules drills. Loop proven live end to end (TTS-spoken error → exact gold restoration → spoken explanation). Pre-registered eval on 300 script-labelled sentences: the brain collapses — predicts particle on 285/300, recall 0 on the other three types, false-correction 0.94 (upper bound); memory reminder has no detectable effect. v1.1 on 1,288 human-gold rows replicates it (false-correction 0.95) — confound dead. A measured failure with a queued brain fix.",
     role: "Design, implementation, evaluation",
     stack: ["Python", "LangGraph", "vLLM", "Qwen Swallow", "faster-whisper", "LangSmith", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/kotoba-tutor",
