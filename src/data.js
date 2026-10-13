@@ -58,6 +58,65 @@ export const PUBLICATIONS = [
   },
 ];
 
+export const DATASETS = [
+  {
+    id: "agent-shootout-data",
+    name: "Agent Shootout runs",
+    stat: "960 test runs",
+    summary: "Every model reply and tool call from 960 agent runs on Japanese law questions — the evidence behind the 2.3×-tokens finding.",
+    href: "https://huggingface.co/datasets/raihan-js/agent-shootout",
+  },
+  {
+    id: "editbench-3way-data",
+    name: "EditBench-3Way",
+    stat: "1,500 facts",
+    summary: "Frozen benchmark plus every arm's results: weight edits vs retrieval vs graph lookup on identical facts.",
+    href: "https://huggingface.co/datasets/raihan-js/editbench-3way",
+  },
+  {
+    id: "flipgate-results-data",
+    name: "FlipGate results",
+    stat: "49 runs · 14,368 items",
+    summary: "Per-item right/wrong flips for quantised and re-served models, with the measured noise floor.",
+    href: "https://huggingface.co/datasets/raihan-js/flipgate-results",
+  },
+  {
+    id: "jacite-bench-data",
+    name: "JaCite-Bench",
+    stat: "1,800 rows",
+    summary: "Every cited article checked against the official registry — the 4.2× Japanese-vs-English invention gap, row by row.",
+    href: "https://huggingface.co/datasets/raihan-js/jacite-bench",
+  },
+  {
+    id: "fedproc-ledger-bench-data",
+    name: "FedProc-Ledger Bench",
+    stat: "7 rounds of golds",
+    summary: "Per-mention tables, all gold labels and round reports behind the which-clauses-bind paper.",
+    href: "https://huggingface.co/datasets/raihan-js/fedproc-ledger-bench",
+  },
+  {
+    id: "fewhumans-judgebank-data",
+    name: "FewHumans JudgeBank",
+    stat: "8 tasks",
+    summary: "Human plus AI labels across 8 annotation tasks for testing estimators that mix both.",
+    href: "https://huggingface.co/datasets/raihan-js/fewhumans-judgebank",
+  },
+  {
+    id: "koe-bridge-eval-data",
+    name: "Koe-Bridge eval",
+    stat: "quality · lag · wait-cost",
+    summary: "Translation quality, streaming lag, and verb-wait measurements for local JA-EN speech translation.",
+    href: "https://huggingface.co/datasets/raihan-js/koe-bridge-eval",
+  },
+  {
+    id: "kotoba-tutor-eval-data",
+    name: "Kotoba-Tutor eval",
+    stat: "300 + 1,288 rows",
+    summary: "Tutor corrections scored against script labels and human gold — the type-collapse failure, item by item.",
+    href: "https://huggingface.co/datasets/raihan-js/kotoba-tutor-eval",
+  },
+];
+
 // Hugging Face download totals. The site refreshes these live from the public HF API (it allows this origin);
 // the snapshot below is what shows if that request fails. Counts are all-time, models + datasets.
 export const HF = {
@@ -82,7 +141,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "A CLI and GitHub Action release gate for quantised or re-served LLMs. It counts per-item right-to-wrong flips against a measured noise floor and tests them with McNemar and a paired bootstrap, instead of trusting aggregate accuracy. On Qwen2.5-3B, AWQ and GPTQ each broke 91 correct GSM8K answers; the gate also refuses comparisons truncated by the generation cap.",
+      "Stops bad model updates from shipping. Catches when a smaller or faster model silently breaks answers that used to work — found 91 broken answers hiding behind a higher accuracy score.",
     role: "Design, implementation, statistics",
     stack: ["Python", "PyTorch", "vLLM", "llama.cpp", "scipy", "GitHub Actions"],
     link: "https://github.com/raihan-js/flipgate",
@@ -100,7 +159,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Estimates a deployed classifier's accuracy after a data shift, before labels arrive. Benchmarks six label-free estimators on a controlled shift ladder, and ships as a FastAPI and Prometheus sidecar with a rolling window and an alert flag.",
+      "Tells you if your live model is getting worse before any labels come back. Tests six no-label methods side by side — none wins everywhere, and two never raise the alarm at all.",
     role: "Design, implementation, statistics",
     stack: ["Python", "PyTorch", "ModernBERT", "scikit-learn", "FastAPI", "Prometheus"],
     link: "https://github.com/raihan-js/shiftwatch",
@@ -118,7 +177,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Grades small open LLM judges against deterministic oracles instead of against other judges: a 3B judge falsely accepts 11% of wrong answers, a 0.5B judge 41% (1,760 items). Includes a checker-first harness that calls a judge only where no oracle exists, with 17.6× fewer judge calls.",
+      "Checks whether small AI judges can be trusted to grade answers. A 3B judge wrongly approves 11% of wrong answers, a 0.5B judge 41% — so check with rules first and call a judge only where no rule exists.",
     role: "Design, implementation, statistics",
     stack: ["Python", "Transformers", "scipy", "FastAPI", "Prometheus"],
     link: "https://github.com/raihan-js/oraclebench",
@@ -136,7 +195,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Checks every statute article an LLM cites against the official e-Gov law registry, in Japanese and in English. Local models only; it tests that an article exists, not that the legal reasoning is right.",
+      "Catches AI models inventing Japanese law citations. One model makes up 4.6% of the articles it cites in Japanese but only 1% in English; another invents none.",
     role: "Design, implementation, evaluation",
     stack: ["Python", "e-Gov Law API", "Transformers", "4-bit quantization"],
     link: "https://github.com/raihan-js/jacite-bench",
@@ -154,7 +213,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "A 1.5B model fine-tuned to write an executable graph query instead of answering from memory, with grammar-constrained decoding and a proof trace for every answer. Tested on entities it has never seen.",
+      "Makes a small model prove its answers with database queries instead of guessing from memory. Accuracy jumps 34% to 93% — and still holds on names it has never seen.",
     role: "Design, training, evaluation",
     stack: ["Python", "PyTorch", "Transformers", "xgrammar"],
     link: "https://github.com/raihan-js/graphproof-qa",
@@ -172,7 +231,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "What does a clause hallucination turn into when decoding makes it impossible? The FAR/DFARS registry (1,056 canonical clause IDs) compiled into a decoding grammar: fabricated clause numbers fall from 57/60 to 0, but with an abstain option the 1.5B model refuses every prompt that names a clause number, real or not (75 prompts, Qwen2.5-1.5B).",
+      "Locks a model so it can only cite real regulation numbers. Invented citations fall from 57 to zero — but with an opt-out allowed, the model also refuses real ones.",
     role: "Design, implementation, evaluation",
     stack: ["Python", "Transformers", "xgrammar", "FAR/DFARS registry"],
     link: "https://github.com/raihan-js/fedproc-constrained",
@@ -190,7 +249,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Distils bge-m3 (568M) into a 36.7M-parameter Japanese encoder for English-to-Japanese retrieval on CPU, then compresses it with Matryoshka and int8. Fusion with BM25 hurt, and the public ruri-v3-30m scores higher.",
+      "Shrinks a 568M-parameter search model into a 37M one for English-to-Japanese search on an ordinary CPU — keeping 71% of the quality at a quarter of the size.",
     role: "Design, training, evaluation",
     stack: ["Python", "PyTorch", "sentence-transformers", "ONNX Runtime", "MeCab"],
     link: "https://github.com/raihan-js/tiny-bilingual-retriever",
@@ -209,7 +268,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "A fused 4-bit dequantise-plus-GEMV Triton kernel for batch-1 decoding, written after computing the bandwidth ceiling. Ties bitsandbytes NF4 on speed; documents two load-bearing bugs and a failed tl.dot rewrite.",
+      "Writes a faster AI chip routine by doing the hardware math first. Ties the standard fast loader at 25.5 tokens/sec — with honest notes on the bugs and dead ends.",
     role: "Kernel design, profiling, benchmarking",
     stack: ["Python", "Triton", "PyTorch", "CUDA"],
     link: "https://github.com/raihan-js/roofline-decoding",
@@ -227,7 +286,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Compute-matched study of vocabulary size: 16 LLaMA-style decoders trained from scratch on TypeScript/JavaScript. Seed noise is large, so a tie is reported as a tie. Asks whether the 2,103-token ORCH tokenizer was a mistake.",
+      "Asks whether a bigger dictionary or a bigger brain matters more for code AI. A small model with a good dictionary beats a far bigger one with a bad dictionary.",
     role: "Design, training, scaling analysis",
     stack: ["Python", "PyTorch", "tokenizers", "Hugging Face"],
     link: "https://github.com/raihan-js/vocab-tax",
@@ -244,7 +303,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Injects known faults into robot demonstrations (PushT), detects stalls and jitter without labels (F1 0.87 and 0.69 on injected faults), then trains ACT policies on clean, corrupted, auto-cleaned and size-matched random data. A null result, reported as one: across 12 policies no interval excludes zero, success is 0–4%, and the grid is too small to rule an effect out.",
+      "Asks whether messy robot demo videos hurt learning. Two fault types get caught automatically; the final answer is an honest null — no measurable difference on a small test.",
     role: "Design, implementation, statistics",
     stack: ["Python", "PyTorch", "LeRobot", "ACT", "gym-pusht"],
     link: "https://github.com/raihan-js/demodoctor",
@@ -260,7 +319,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "A QLoRA-tuned Qwen2.5-VL-3B reads Japanese qualified invoices (適格請求書); a corporate-number check digit, an NTA-style registry lookup, issuer-name matching and per-rate tax arithmetic decide what is auto-approved. On 600 synthetic test invoices: 86.8% automated with none of the 461 approved invoices wrong in a field a check can catch; vertical layouts are the weak spot, and recipient and invoice number have no check. Fictitious companies only; the adapter is non-commercial.",
+      "Reads Japanese invoices with a tuned vision model and auto-approves 87% — with zero wrong approvals in the fields it checks. Vertical layouts are the weak spot.",
     role: "Design, training, evaluation",
     stack: ["Python", "PyTorch", "Qwen2.5-VL", "PEFT / QLoRA", "PaddleOCR", "FastAPI"],
     link: "https://github.com/raihan-js/invoice-check-jp",
@@ -278,7 +337,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "A LangGraph agent for Japanese qualified invoices: extract, verify against a registry and tax rules, check duplicates, match a purchase order, then post, pause for a human reviewer with interrupt(), or reject. State lives in PostgreSQL and survives a SIGKILL (durability=sync kept the previous step in 10 of 10 kills, the default in 0 of 10). Pre-registered on 300 synthetic invoices: checks cut unsafe auto-approvals from 17.0% to 4.0%; PO matching adds little where the PO cannot see the error. A CI gate fails a pull request on any invoice that newly slips through. Synthetic data and POs; no reviewer simulated.",
+      "A back-office agent that checks invoices against registries and purchase orders, asking a human when unsure — and survives a server kill mid-task. Cut unsafe approvals from 17% to 4%.",
     role: "Design, implementation, evaluation",
     stack: ["Python", "LangGraph", "LangSmith", "PostgreSQL", "FastAPI", "GitHub Actions"],
     link: "https://github.com/raihan-js/keiri-agent",
@@ -294,7 +353,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Four LangGraph designs (ReAct, plan-and-execute, supervisor, draft-and-verify) answer the same 240 synthetic questions about Japanese statutes with the same tools, prompt, local 9B model and token budget, compared on correctness and cost with paired tests fixed in a pre-registration. Plan-and-execute used 2.3x the tokens of plain ReAct with no detectable accuracy gain (59.6% to 65.0% correct, no pair clears the threshold). A post-hoc replay of the tool calls shows that \"correct\" is a citation check: about 8% to 9% of correct answers cite an article the model never saw. One model, one run; not legal advice.",
+      "Races four AI agent designs on Japanese law questions. The fancy planner burns 2.3× the tokens with no accuracy gain over the simple one.",
     role: "Design, implementation, evaluation",
     stack: ["Python", "LangGraph", "LangSmith", "llama.cpp", "Qwen3.5", "GitHub Actions"],
     link: "https://github.com/raihan-js/agent-shootout",
@@ -311,7 +370,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Which FAR/DFARS clauses in a solicitation actually bind the contract — mentioned is not binding. Rules (checkbox states, 52.212-5(a), SF 1449 block 27, exclusion vetoes) plus a 0.46 MB mention-role classifier, evaluated in seven pre-registered rounds on fresh documents including a temporal hold-out: round 7 gives binding-set F1 0.890 vs 0.806 for the status-quo regexes (+0.084, interval above zero), specificity 70% vs 14% at equal recall. Annotator-free audit: 13.8% of regex entries (58,294 of 423,328) are clauses whose own checklist box is empty. No human-expert labels; public model, data, code and paper draft (submitted to arXiv).",
+      "Works out which regulation clauses in a bid actually apply, instead of just finding numbers. Beats plain text search (F1 0.89 vs 0.81) — and found 14% of its hits are clauses sitting in unchecked boxes.",
     role: "Design, implementation, evaluation",
     stack: ["Python", "scikit-learn", "PyMuPDF", "FastAPI", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/fedproc-ledger",
@@ -331,7 +390,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Same 1,500 facts, same Qwen2.5-1.5B model: weight editing (ROME/MEMIT) vs retrieval vs graph lookup, pre-registered with ripple effects. Weight edits generalize (0.55–0.71) but trample neighbors (locality 12–14% vs 29–37% without touching weights); graph lookup leads where it covers (0.627); a gold fact in context is answered 23% of the time. Rule scorers only, no LLM judge.",
+      "Compares three ways to fix a fact a model knows: brain surgery on weights vs looking it up. Surgery works but damages neighboring facts; lookup wins wherever it covers.",
     role: "Design, implementation, evaluation",
     stack: ["Python", "PyTorch", "EasyEdit", "FAISS", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/edit-rag-graph",
@@ -348,7 +407,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "A library that combines a few human labels with many LLM-judge labels into unbiased estimates with valid confidence intervals: routing (uniform to learned), PPI/PPI++ and active estimators, anytime-valid stopping, and a judge report card. Pre-registered on 7 annotation tasks with a 3-judge panel: PPI++ and stratification save about 9% of human labels, disagreement routing costs 2.6x, and judge-only intervals miss the full-human value 18 of 21 times. Every default interval passed a 196-configuration coverage gate. Rule scorers only, no LLM judge.",
+      "Gets trustworthy accuracy numbers from a few human labels plus many AI labels. Saves about 9% of human work — with statistics that stay honest.",
     role: "Design, implementation, statistics",
     stack: ["Python", "scipy", "PyPI", "Ollama", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/fewhumans",
@@ -366,7 +425,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Open tools that hear Japanese pitch accent: mora labels from OpenJTalk full-context (Kurihara parsing, triple-validated on 500 utterances), a logistic scorer on F0 features (0.789 mora accuracy vs 0.504 baseline, 0.713 on 10 unseen speakers, weights public), and accent control in Style-Bert-VITS2 verified by cross-synthesis (output follows forced tones at 0.82-0.92). Acoustic cross-check of the dictionary labels included with every caveat: no fluent listener was available, so nothing is passed off as human-checked. Kana CER 0.105.",
+      "Open tools that hear Japanese pitch accent from speech. Right 79% of the time per sound, tested on speakers it never heard — built without a native listener to check against.",
     role: "Design, implementation, evaluation",
     stack: ["Python", "PyTorch", "pyopenjtalk", "pyworld", "scikit-learn", "Gradio", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/akusento",
@@ -384,7 +443,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "All-local streaming Japanese-English speech translator (Whisper-small, opus-mt / Qwen2.5-1.5B, Kokoro / Style-Bert-VITS2) built to price the verb-final wait cost on FLEURS read speech. Cascade audit (n=200/direction): ASR CER 0.091 / WER 0.104, MT BLEU barely drops on ASR output; a dead opus-mt-en-jap (BLEU 0.0) forced an honest NMT-vs-LLM arm. Streaming sim first-audio lag p50 1.86s ja-to-en / 1.26s en-to-ja. Prefix-translation survival at matched 50% prefixes with the same backend: 0.184 ja-to-en vs 0.014 en-to-ja (~13x) — retranslation flickers en-to-ja, so hold output till the verb. Follow-up negation study (40 negated sentences/direction): prefix polarity flips 0.7 to 0.25, no directional asymmetry, and full-sentence translations drop explicit negation markers 22-25% of the time. Bugs caught and fixed mid-project: stateful VAD, spaceless-Japanese prefixes, backend prompt mismatch.",
+      "A live Japanese-English speech translator running fully on local models. Measured the real cost of waiting for the verb: one direction flickers about 13× more than the other.",
     role: "Design, implementation, evaluation",
     stack: ["Python", "PyTorch", "Whisper", "MarianMT", "Qwen", "Kokoro", "FLEURS", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/koe-bridge",
@@ -401,7 +460,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Voice-first Japanese tutor in LangGraph, all local (Swallow-8B AWQ, faster-whisper, Akusento accent scorer, SBV2 voice): listens, corrects, scores accent, remembers mistake types in a store, schedules drills. Loop proven live end to end (TTS-spoken error → exact gold restoration → spoken explanation). Pre-registered eval on 300 script-labelled sentences: the brain collapses — predicts particle on 285/300, recall 0 on the other three types, false-correction 0.94 (upper bound); memory reminder has no detectable effect. v1.1 on 1,288 human-gold rows replicates it (false-correction 0.95) — confound dead. A measured failure with a queued brain fix.",
+      "A voice tutor for Japanese learners that listens, corrects speech, and tracks mistakes. Its brain over-predicts one error type and ignores the rest — a measured failure with a fix queued.",
     role: "Design, implementation, evaluation",
     stack: ["Python", "LangGraph", "vLLM", "Qwen Swallow", "faster-whisper", "LangSmith", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/kotoba-tutor",
@@ -418,7 +477,7 @@ export const PROJECTS = [
     year: "2026",
     status: "Published",
     summary:
-      "Sparse autoencoders per layer on llm-jp-3-1.8B (hand-rolled TopK, 32k features, streaming Wikipedia JA+EN): cross-lingual sharing rises then falls with depth (r>.5 share 0.25/0.29/0.13 on 20k Tatoeba pairs). Top features ladder from names (L4 Mary) to concepts (L12 burning, EN+JA) to script features (L20 英 kanji-prefix). Pre-registered causal tests: ablation weak in Japanese, null in English, steering uninformative — stated, not spun. Held-out numbers only; weights + browser public.",
+      "Peeks inside a Japanese AI to find features shared across languages. Sharing peaks in the middle layers and fades at the ends; cause-and-effect tests come back weak.",
     role: "Design, implementation, evaluation",
     stack: ["Python", "PyTorch", "SAELens", "llm-jp", "Tatoeba", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/sae-bilingual",
@@ -434,7 +493,7 @@ export const PROJECTS = [
     year: "2024–Present",
     status: "Live",
     summary:
-      "AI-assisted proposal co-pilot for federal contractors (SDVOSB, WOSB, 8(a)). RFP parsing, auto-generated compliance matrices, teaming, and AI-assisted drafting. I am the founding engineer and AI/ML lead — I built the retrieval pipeline, the LLM integration, and the full stack.",
+      "AI co-pilot for federal contractors: parses bids, builds compliance checklists, drafts proposals. I'm the founding engineer — search, AI, and full stack.",
     role: "Founding Engineer · AI/ML Lead · Full-Stack",
     stack: ["Next.js", "TypeScript", "FastAPI", "LLM", "PostgreSQL", "AWS GovCloud"],
     image: "/projects/vetr.webp",
@@ -448,7 +507,7 @@ export const PROJECTS = [
     year: "2024",
     status: "Live",
     summary:
-      "Collaborative digital workspace — 15 purpose-built group-coordination tools (tasks, voting, attendance, expenses), shareable via link or QR with no install or account for guests. Live on iOS and Google Play.",
+      "Shared workspace for groups — tasks, voting, expenses and more, joinable by link with no install. Live on iOS and Android.",
     role: "Full-stack, real-time sync, mobile",
     stack: ["React Native", "Next.js", "TypeScript", "Tailwind", "Real-time"],
     image: "/projects/commonroom.webp",

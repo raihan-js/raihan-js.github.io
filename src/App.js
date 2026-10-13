@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { PROFILE, STATS, HF, PROJECTS, PUBLICATIONS, SCHOLAR, MODELS, STACK, EXPERIENCE } from "./data";
+import { PROFILE, STATS, HF, PROJECTS, PUBLICATIONS, SCHOLAR, MODELS, DATASETS, STACK, EXPERIENCE } from "./data";
 import { chartSvg } from "./charts";
 
 // ============================================================
@@ -45,7 +45,7 @@ function TopNav({ theme, onToggleTheme }) {
   const items = [
     { id: "work", label: "Work" },
     { id: "papers", label: "Papers" },
-    { id: "models", label: "Models" },
+    { id: "models", label: "Case studies" },
     { id: "stack", label: "Stack" },
     { id: "experience", label: "Experience" },
     { id: "about", label: "About" },
@@ -714,14 +714,6 @@ function Stat({ value, suffix, label, divider }) {
 // ============================================================
 // Work
 // ============================================================
-// 4-wide cards; a leftover row is filled by widening the first one or two so the grid never ends ragged.
-function spansFor(n) {
-  const a = Array(n).fill(4);
-  if (n % 3 === 1) a[0] = 8;
-  if (n % 3 === 2) { a[0] = 6; a[1] = 6; }
-  return a;
-}
-
 function SubHead({ title, note }) {
   return (
     <div style={{ display: "flex", alignItems: "baseline", gap: 16, flexWrap: "wrap", margin: "0 0 20px" }}>
@@ -734,13 +726,12 @@ function SubHead({ title, note }) {
 function Work() {
   const research = PROJECTS.filter((p) => p.group === "research");
   const products = PROJECTS.filter((p) => p.group === "product");
-  const rs = spansFor(research.length);
   return (
     <Section id="work" num="01" title="Selected work" kicker={`${research.length} research projects · ${products.length} products · 200+ shipped`}>
-      <SubHead title="Research and evaluation" note="One measured result per card. Every number carries its scope; per-item data is on Hugging Face." />
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 28 }} className="work-grid">
-        {research.map((p, i) => (
-          <ProjectCard key={p.id} project={p} span={rs[i]} />
+      <SubHead title="Research and evaluation" note="Plain-language cards. Every number carries its test scope; full data on Hugging Face." />
+      <div className="work-masonry">
+        {research.map((p) => (
+          <ProjectCard key={p.id} project={p} />
         ))}
       </div>
       <div style={{ height: 56 }} />
@@ -755,14 +746,11 @@ function Work() {
 }
 
 function ProjectCard({ project, span = 6 }) {
-  const isHero = span === 8;
   const [hovered, setHovered] = useState(false);
+  const links = [...(project.links || []), ...(project.writeup ? [project.writeup] : [])];
   return (
     <Reveal as="article" className={`work-card span-${span}`} style={{ gridColumn: `span ${span} / span ${span}`, display: "flex" }}>
-      <a
-        href={project.link}
-        target="_blank"
-        rel="noreferrer"
+      <div
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         style={{
@@ -779,40 +767,47 @@ function ProjectCard({ project, span = 6 }) {
           borderColor: hovered ? "var(--border-strong)" : "var(--border)",
           transform: hovered ? "translateY(-2px)" : "none",
           boxShadow: hovered ? "var(--shadow)" : "none",
-          cursor: "pointer",
           color: "inherit",
         }}
       >
-        <div
-          style={{
-            position: "relative",
-            aspectRatio: "16 / 10",
-            background: project.chart ? "var(--bg-elev)" : "var(--bg-sunken)",
-            borderBottom: "1px solid var(--border)",
-            overflow: "hidden",
-          }}
+        <a
+          href={project.link}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${project.name} — main link`}
+          style={{ display: "block" }}
         >
-          {project.chart ? (
-            <div style={{ position: "absolute", inset: 0 }} dangerouslySetInnerHTML={{ __html: chartSvg(project.chart) }} />
-          ) : (
-            <img
-              src={project.image}
-              alt={`${project.name} screenshot`}
-              loading="lazy"
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "top center",
-                transition: "transform 600ms ease",
-                transform: hovered ? "scale(1.02)" : "scale(1)",
-              }}
-            />
-          )}
-        </div>
-        <div style={{ padding: isHero ? "28px 28px 24px" : "22px 22px 20px", flex: 1, display: "flex", flexDirection: "column" }}>
+          <div
+            style={{
+              position: "relative",
+              aspectRatio: "16 / 10",
+              background: project.chart ? "var(--bg-elev)" : "var(--bg-sunken)",
+              borderBottom: "1px solid var(--border)",
+              overflow: "hidden",
+            }}
+          >
+            {project.chart ? (
+              <div style={{ position: "absolute", inset: 0 }} dangerouslySetInnerHTML={{ __html: chartSvg(project.chart) }} />
+            ) : (
+              <img
+                src={project.image}
+                alt={`${project.name} screenshot`}
+                loading="lazy"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "top center",
+                  transition: "transform 600ms ease",
+                  transform: hovered ? "scale(1.02)" : "scale(1)",
+                }}
+              />
+            )}
+          </div>
+        </a>
+        <div style={{ padding: "22px 22px 20px", flex: 1, display: "flex", flexDirection: "column" }}>
           {/* Meta row: kind, status, year — no longer overlaying the screenshot */}
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
             <span
@@ -846,75 +841,62 @@ function ProjectCard({ project, span = 6 }) {
             </span>
             <span style={{ marginLeft: "auto", fontFamily: "var(--mono)", fontSize: 12, color: "var(--fg-subtle)" }}>{project.year}</span>
           </div>
-          <h3 style={{ margin: "0 0 10px", fontSize: isHero ? 26 : 20, fontWeight: 500, letterSpacing: "-0.015em" }}>{project.name}</h3>
-          <p style={{ margin: 0, color: "var(--fg-muted)", fontSize: isHero ? 15 : 14, lineHeight: 1.55, flex: 1 }}>{project.summary}</p>
+          <h3 style={{ margin: "0 0 10px", fontSize: 20, fontWeight: 500, letterSpacing: "-0.015em" }}>
+            <a href={project.link} target="_blank" rel="noreferrer" style={{ color: "inherit" }}>
+              {project.name}
+            </a>
+          </h3>
+          <p style={{ margin: 0, color: "var(--fg-muted)", fontSize: 14, lineHeight: 1.55, flex: 1 }}>{project.summary}</p>
           <div
             style={{
               display: "flex",
-              gap: 6,
+              gap: 8,
               flexWrap: "wrap",
+              alignItems: "center",
               marginTop: 18,
               paddingTop: 16,
               borderTop: "1px dashed var(--border)",
             }}
           >
-            {project.stack.map((s) => (
-              <span
-                key={s}
+            {links.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                target="_blank"
+                rel="noreferrer"
                 style={{
                   fontFamily: "var(--mono)",
                   fontSize: 11,
                   padding: "3px 8px",
-                  background: "var(--bg-sunken)",
+                  background: "transparent",
                   border: "1px solid var(--border)",
                   borderRadius: 4,
                   color: "var(--fg-muted)",
                 }}
               >
-                {s}
-              </span>
+                {l.label} ↗
+              </a>
             ))}
-            <div style={{ marginLeft: "auto", display: "inline-flex", alignItems: "center", gap: 8 }}>
-              {[...(project.links || []), ...(project.writeup ? [project.writeup] : [])].map((l) => (
-                <button
-                  key={l.label}
-                  type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    window.open(l.href, "_blank", "noopener,noreferrer");
-                  }}
-                  style={{
-                    fontFamily: "var(--mono)",
-                    fontSize: 11,
-                    padding: "3px 8px",
-                    background: "transparent",
-                    border: "1px solid var(--border)",
-                    borderRadius: 4,
-                    color: "var(--fg-muted)",
-                    cursor: "pointer",
-                  }}
-                >
-                  {l.label} ↗
-                </button>
-              ))}
-              <span
-                style={{
-                  fontFamily: "var(--mono)",
-                  fontSize: 11,
-                  color: hovered ? "var(--accent)" : "var(--fg-subtle)",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 6,
-                  transition: "color 160ms",
-                }}
-              >
-                visit <span style={{ transform: hovered ? "translateX(2px)" : "none", transition: "transform 160ms" }}>→</span>
-              </span>
-            </div>
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                marginLeft: "auto",
+                fontFamily: "var(--mono)",
+                fontSize: 11,
+                color: hovered ? "var(--accent)" : "var(--fg-subtle)",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                transition: "color 160ms",
+              }}
+            >
+              visit <span style={{ transform: hovered ? "translateX(2px)" : "none", transition: "transform 160ms" }}>→</span>
+            </a>
           </div>
         </div>
-      </a>
+      </div>
     </Reveal>
   );
 }
@@ -1015,28 +997,88 @@ function PaperRow({ paper }) {
 // ============================================================
 function Models() {
   return (
-    <Section id="models" num="03" title="Model case studies" kicker="open weights on Hugging Face">
+    <Section id="models" num="03" title="Case studies" kicker="open models and evidence on Hugging Face">
       <Reveal>
         <p style={{ maxWidth: 640, color: "var(--fg-muted)", margin: "0 0 40px", fontSize: 16 }}>
-          Every model published openly on <a href="https://huggingface.co/raihan-js" target="_blank" rel="noreferrer" style={{ color: "var(--fg)", borderBottom: "1px dashed currentColor" }}>Hugging Face</a> — configs, tokenizers, and weights. Three ORCH decoders trained from scratch (two on a single RTX 3060, the 3B on a rented A40) and five fine-tunes (DeBERTa-v3, RoBERTa, ModernBERT, QLoRA). All built and published with benchmarks and stated limitations.
+          Models and the datasets behind the findings — all open on{" "}
+          <a href="https://huggingface.co/raihan-js" target="_blank" rel="noreferrer" style={{ color: "var(--fg)", borderBottom: "1px dashed currentColor" }}>
+            Hugging Face
+          </a>
+          . Three ORCH decoders trained from scratch (two on a single RTX 3060, the 3B on a rented A40) and five fine-tunes. All published with benchmarks and stated limitations.
         </p>
       </Reveal>
+      <SubHead title="Models" note="weights you can download" />
       <Reveal as="div" stagger style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }} className="models-grid">
         {MODELS.map((m) => (
           <ModelCard key={m.id} model={m} />
+        ))}
+      </Reveal>
+      <div style={{ height: 56 }} />
+      <SubHead title="Datasets" note="the evidence behind the cards" />
+      <Reveal as="div" stagger style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }} className="models-grid">
+        {DATASETS.map((d) => (
+          <DatasetCard key={d.id} dataset={d} />
         ))}
       </Reveal>
     </Section>
   );
 }
 
+function DatasetCard({ dataset }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        border: "1px solid var(--border)",
+        borderRadius: 10,
+        padding: 26,
+        background: hovered ? "var(--bg-elev)" : "transparent",
+        borderColor: hovered ? "var(--border-strong)" : "var(--border)",
+        transition: "background 200ms, border-color 200ms",
+        display: "block",
+        color: "inherit",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18, gap: 16 }}>
+        <span
+          style={{
+            fontFamily: "var(--mono)",
+            fontSize: 11,
+            padding: "3px 8px",
+            borderRadius: 4,
+            background: "var(--bg-sunken)",
+            color: "var(--fg-muted)",
+            border: "1px solid var(--border)",
+            letterSpacing: "0.04em",
+          }}
+        >
+          {dataset.stat}
+        </span>
+        <a
+          href={dataset.href}
+          target="_blank"
+          rel="noreferrer"
+          style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--fg-subtle)", display: "inline-flex", alignItems: "center", gap: 6 }}
+        >
+          🤗 view dataset
+        </a>
+      </div>
+      <h3 style={{ margin: "0 0 10px", fontSize: 22, fontWeight: 500, letterSpacing: "-0.015em" }}>
+        <a href={dataset.href} target="_blank" rel="noreferrer" style={{ color: "inherit" }}>
+          {dataset.name}
+        </a>
+      </h3>
+      <p style={{ margin: 0, color: "var(--fg-muted)", fontSize: 14, lineHeight: 1.55 }}>{dataset.summary}</p>
+    </div>
+  );
+}
+
 function ModelCard({ model }) {
   const [hovered, setHovered] = useState(false);
   return (
-    <a
-      href={model.href}
-      target="_blank"
-      rel="noreferrer"
+    <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -1072,13 +1114,10 @@ function ModelCard({ model }) {
         </div>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
           {model.writeup && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                window.open(model.writeup.href, "_blank", "noopener,noreferrer");
-              }}
+            <a
+              href={model.writeup.href}
+              target="_blank"
+              rel="noreferrer"
               style={{
                 fontFamily: "var(--mono)",
                 fontSize: 11,
@@ -1087,18 +1126,26 @@ function ModelCard({ model }) {
                 border: "1px solid var(--border)",
                 borderRadius: 4,
                 color: "var(--fg-muted)",
-                cursor: "pointer",
               }}
             >
               {model.writeup.label} ↗
-            </button>
+            </a>
           )}
-          <span style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--fg-subtle)", display: "inline-flex", alignItems: "center", gap: 6 }}>
+          <a
+            href={model.href}
+            target="_blank"
+            rel="noreferrer"
+            style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--fg-subtle)", display: "inline-flex", alignItems: "center", gap: 6 }}
+          >
             🤗 view weights
-          </span>
+          </a>
         </div>
       </div>
-      <h3 style={{ margin: "0 0 10px", fontSize: 22, fontWeight: 500, letterSpacing: "-0.015em" }}>{model.name}</h3>
+      <h3 style={{ margin: "0 0 10px", fontSize: 22, fontWeight: 500, letterSpacing: "-0.015em" }}>
+        <a href={model.href} target="_blank" rel="noreferrer" style={{ color: "inherit" }}>
+          {model.name}
+        </a>
+      </h3>
       <p style={{ margin: "0 0 18px", color: "var(--fg-muted)", fontSize: 14, lineHeight: 1.55 }}>{model.summary}</p>
       <div style={{ display: "flex", borderTop: "1px solid var(--border)", paddingTop: 14, gap: 0 }}>
         {model.metrics.map((m, i) => (
@@ -1118,7 +1165,7 @@ function ModelCard({ model }) {
           </div>
         ))}
       </div>
-    </a>
+    </div>
   );
 }
 
