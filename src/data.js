@@ -291,6 +291,7 @@ export const PROJECTS = [
     stack: ["Python", "PyTorch", "tokenizers", "Hugging Face"],
     link: "https://github.com/raihan-js/vocab-tax",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/was-my-2103-token-tokenizer-a-mistake-pf9" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/vocab-tax-grid" },
     ],
   },
