@@ -12,9 +12,51 @@ export const PROFILE = {
     { label: "GitHub", href: "https://github.com/raihan-js", handle: "@raihan-js" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/raihan-js/", handle: "in/raihan-js" },
     { label: "Hugging Face", href: "https://huggingface.co/raihan-js", handle: "@raihan-js" },
+    { label: "Scholar", href: "https://scholar.google.com/citations?hl=en&user=nNv6V0gAAAAJ", handle: "scholar" },
     { label: "Dev.to", href: "https://dev.to/raihan-js", handle: "@raihan-js" },
   ],
 };
+
+export const SCHOLAR = "https://scholar.google.com/citations?hl=en&user=nNv6V0gAAAAJ";
+
+export const PUBLICATIONS = [
+  {
+    id: "rsna-validation",
+    title:
+      "When the Validation Set Cannot See: Measurement-Disciplined Development of a Knee-MRI Classifier Supervised by Machine-Read Radiology Reports",
+    venue: "Zenodo preprint, 2026",
+    summary:
+      "Full record of an RSNA knee-MRI Kaggle entry (4,407 report-labelled exams, ~290 experiments): CV against training labels is blind to label-target changes; ensemble gains transfer ~0%, input gains at/above prediction; 0.950 public board with a shared-error floor. 30 pages.",
+    links: [
+      { label: "Zenodo record", href: "https://zenodo.org/records/23334291" },
+      { label: "DOI", href: "https://doi.org/10.5281/zenodo.23334290" },
+    ],
+  },
+  {
+    id: "fedproc-ledger-paper",
+    title:
+      "Mentioned Is Not Binding: A Rules-plus-Small-Model Clause Ledger and a Pre-registered Audit of Regex Extraction on US Federal Solicitations",
+    venue: "Zenodo preprint, 2026",
+    summary:
+      "Rules plus a 0.46 MB mention-role classifier for which FAR/DFARS clauses bind a solicitation; seven pre-registered rounds incl. a temporal hold-out (round 7: F1 0.890 vs 0.806, specificity 70% vs 14%). 13.8% of regex entries sit in empty checklist boxes. arXiv on hold.",
+    links: [
+      { label: "Zenodo record", href: "https://zenodo.org/records/23334661" },
+      { label: "DOI", href: "https://doi.org/10.5281/zenodo.23334660" },
+    ],
+  },
+  {
+    id: "fedproc-bench-paper",
+    title:
+      "FedProc-Bench: A Multi-Task Benchmark for Federal Procurement NLP, and a Compact 180M-Parameter Model for Low-Hallucination Clause Extraction",
+    venue: "Zenodo preprint, 2026",
+    summary:
+      "Four-task federal-procurement benchmark with FedProc-180M (ModernBERT-base, 4 heads): clause F1 0.800 vs 0.804 for Claude Haiku 4.5 with 13.8% vs 32.1% hallucinated clauses. arXiv submit/7913776 on hold.",
+    links: [
+      { label: "Zenodo record", href: "https://zenodo.org/records/23334788" },
+      { label: "DOI", href: "https://doi.org/10.5281/zenodo.23334787" },
+    ],
+  },
+];
 
 // Hugging Face download totals. The site refreshes these live from the public HF API (it allows this origin);
 // the snapshot below is what shows if that request fails. Counts are all-time, models + datasets.
@@ -275,6 +317,7 @@ export const PROJECTS = [
     link: "https://github.com/raihan-js/fedproc-ledger",
     links: [
       { label: "writeup", href: "https://dev.to/raihan-js/mentioned-is-not-binding-which-solicitation-clauses-actually-bind-the-contract-1cio" },
+      { label: "paper (Zenodo)", href: "https://doi.org/10.5281/zenodo.23334660" },
       { label: "HF model", href: "https://huggingface.co/raihan-js/fedproc-ledger-v1" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/fedproc-ledger-bench" },
     ],

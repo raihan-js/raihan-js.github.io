@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { PROFILE, STATS, HF, PROJECTS, MODELS, STACK, EXPERIENCE } from "./data";
+import { PROFILE, STATS, HF, PROJECTS, PUBLICATIONS, SCHOLAR, MODELS, STACK, EXPERIENCE } from "./data";
 import { chartSvg } from "./charts";
 
 // ============================================================
@@ -44,6 +44,7 @@ function TopNav({ theme, onToggleTheme }) {
   }, []);
   const items = [
     { id: "work", label: "Work" },
+    { id: "papers", label: "Papers" },
     { id: "models", label: "Models" },
     { id: "stack", label: "Stack" },
     { id: "experience", label: "Experience" },
@@ -919,11 +920,102 @@ function ProjectCard({ project, span = 6 }) {
 }
 
 // ============================================================
+// Papers
+// ============================================================
+function Papers() {
+  return (
+    <Section id="papers" num="02" title="Papers" kicker={`${PUBLICATIONS.length} preprints on Zenodo · indexed on Scholar`}>
+      <Reveal>
+        <p style={{ maxWidth: 640, color: "var(--fg-muted)", margin: "0 0 40px", fontSize: 16 }}>
+          Preprints with open artifacts on{" "}
+          <a href="https://zenodo.org" target="_blank" rel="noreferrer" style={{ color: "var(--fg)", borderBottom: "1px dashed currentColor" }}>
+            Zenodo
+          </a>{" "}
+          and indexed on{" "}
+          <a href={SCHOLAR} target="_blank" rel="noreferrer" style={{ color: "var(--fg)", borderBottom: "1px dashed currentColor" }}>
+            Google Scholar
+          </a>
+          . arXiv submissions on hold.
+        </p>
+      </Reveal>
+      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        {PUBLICATIONS.map((p) => (
+          <PaperRow key={p.id} paper={p} />
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function PaperRow({ paper }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <Reveal>
+      <div
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          border: "1px solid var(--border)",
+          borderRadius: 10,
+          padding: "24px 26px",
+          background: hovered ? "var(--bg-elev)" : "transparent",
+          borderColor: hovered ? "var(--border-strong)" : "var(--border)",
+          transition: "background 200ms, border-color 200ms",
+        }}
+      >
+        <div style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--fg-subtle)", letterSpacing: "0.04em", marginBottom: 8 }}>
+          {paper.venue}
+        </div>
+        <h3 style={{ margin: "0 0 10px", fontSize: 19, fontWeight: 500, letterSpacing: "-0.015em", lineHeight: 1.35 }}>{paper.title}</h3>
+        <p style={{ margin: "0 0 16px", color: "var(--fg-muted)", fontSize: 14, lineHeight: 1.55, maxWidth: 860 }}>{paper.summary}</p>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          {paper.links.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                fontFamily: "var(--mono)",
+                fontSize: 11,
+                padding: "3px 8px",
+                background: "transparent",
+                border: "1px solid var(--border)",
+                borderRadius: 4,
+                color: "var(--fg-muted)",
+              }}
+            >
+              {l.label} ↗
+            </a>
+          ))}
+          <a
+            href={SCHOLAR}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              fontFamily: "var(--mono)",
+              fontSize: 11,
+              padding: "3px 8px",
+              background: "transparent",
+              border: "1px solid var(--border)",
+              borderRadius: 4,
+              color: "var(--fg-muted)",
+            }}
+          >
+            Scholar ↗
+          </a>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
+// ============================================================
 // Models
 // ============================================================
 function Models() {
   return (
-    <Section id="models" num="02" title="Model case studies" kicker="open weights on Hugging Face">
+    <Section id="models" num="03" title="Model case studies" kicker="open weights on Hugging Face">
       <Reveal>
         <p style={{ maxWidth: 640, color: "var(--fg-muted)", margin: "0 0 40px", fontSize: 16 }}>
           Every model published openly on <a href="https://huggingface.co/raihan-js" target="_blank" rel="noreferrer" style={{ color: "var(--fg)", borderBottom: "1px dashed currentColor" }}>Hugging Face</a> — configs, tokenizers, and weights. Three ORCH decoders trained from scratch (two on a single RTX 3060, the 3B on a rented A40) and five fine-tunes (DeBERTa-v3, RoBERTa, ModernBERT, QLoRA). All built and published with benchmarks and stated limitations.
@@ -1035,7 +1127,7 @@ function ModelCard({ model }) {
 // ============================================================
 function Stack() {
   return (
-    <Section id="stack" num="03" title="Stack" kicker="day-to-day tools">
+    <Section id="stack" num="04" title="Stack" kicker="day-to-day tools">
       <div
         style={{
           display: "grid",
@@ -1099,7 +1191,7 @@ function Stack() {
 // ============================================================
 function Experience() {
   return (
-    <Section id="experience" num="04" title="Experience">
+    <Section id="experience" num="05" title="Experience">
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
         {EXPERIENCE.map((role, i) => (
           <ExperienceRow key={i} role={role} />
@@ -1173,7 +1265,7 @@ function ExperienceRow({ role }) {
 // ============================================================
 function About() {
   return (
-    <Section id="about" num="05" title="About">
+    <Section id="about" num="06" title="About">
       <div
         style={{
           display: "grid",
@@ -1253,7 +1345,7 @@ function Contact() {
       <div style={{ maxWidth: 1240, margin: "0 auto" }}>
         <Reveal>
           <div style={{ fontFamily: "var(--mono)", fontSize: 12, color: "var(--fg-subtle)", letterSpacing: "0.04em", marginBottom: 28 }}>
-            06 · CONTACT
+            07 · CONTACT
           </div>
           <h2
             style={{
@@ -1351,6 +1443,7 @@ function App() {
         <Hero />
         <StatRow />
         <Work />
+        <Papers />
         <Models />
         <Stack />
         <Experience />
