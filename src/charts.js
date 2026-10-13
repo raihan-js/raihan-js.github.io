@@ -783,7 +783,37 @@ function kotobatutor() {
   });
 }
 
-export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans, akusento, koebridge, "kotoba-tutor": kotobatutor };
+// Source: sae-bilingual/results/sharing_l{4,12,20}.json (20k Tatoeba pairs,
+// sentence-max Pearson on top-2k both-firing candidates per layer).
+function saebilingual() {
+  const layers = ["L4", "L12", "L20"];
+  const share = [0.246, 0.287, 0.131];
+  const x0 = 120;
+  const x1 = 330;
+  const sx = (v) => x0 + (v / 0.35) * (x1 - x0);
+  let body = text(16, 44, "Share of features with paired r > 0.5", { size: 10, weight: 600, fill: INK });
+  [0, 0.1, 0.2, 0.3].forEach((v) => {
+    body += line(sx(v), 50, sx(v), 150, RULE) + text(sx(v), 162, v.toFixed(1), { size: 10, anchor: "middle", fill: INK2 });
+  });
+  layers.forEach((t, j) => {
+    const y = 58 + j * 32;
+    body += text(16, y + 11, t, { size: 10.5, weight: 600, fill: INK });
+    body += hbar(x0 + 1, y, Math.max(sx(share[j]) - x0 - 1, 2), 14, j === 2 ? S1 : S3, 3)
+      + text(sx(share[j]) + 5, y + 11, share[j].toFixed(3), { size: 10, weight: 600, fill: INK });
+  });
+  body += text(16, 182, "L4 names (Mary) · L12 concepts (burning) · L20 script (英)", { size: 10, fill: INK2 });
+  body += text(16, 198, "Causal: weak JA, null EN (pre-registered, n=30+30)", { size: 10, fill: INK2 });
+  return frame({
+    headline: "Sharing rises then falls: 0.25 / 0.29 / 0.13",
+    sub: "Cross-lingual SAE feature share by layer, llm-jp-3-1.8B",
+    footer: ["L20 SAE undertrained — its drop may be quality, not property.", "Hand-rolled TopK (32k feats); held-out numbers only."],
+    body,
+    alt: "Sae-bilingual: share of cross-lingual features 0.246 on layer 4, 0.287 on layer 12, 0.131 on layer 20",
+    desc: "Paired-sentence Pearson sharing per layer on 20k Tatoeba pairs. Top features ladder from names (L4) to concepts (L12) to script features (L20). Causal ablation weak in Japanese, null in English.",
+  });
+}
+
+export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans, akusento, koebridge, "kotoba-tutor": kotobatutor, "sae-bilingual": saebilingual };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];

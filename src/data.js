@@ -367,6 +367,23 @@ export const PROJECTS = [
     ],
   },
   {
+    id: "sae-bilingual",
+    group: "research",
+    chart: "sae-bilingual",
+    name: "SAE-Bilingual",
+    kind: "Interpretability · JA-EN Features",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Sparse autoencoders per layer on llm-jp-3-1.8B (hand-rolled TopK, 32k features, streaming Wikipedia JA+EN): cross-lingual sharing rises then falls with depth (r>.5 share 0.25/0.29/0.13 on 20k Tatoeba pairs). Top features ladder from names (L4 Mary) to concepts (L12 burning, EN+JA) to script features (L20 英 kanji-prefix). Pre-registered causal tests: ablation weak in Japanese, null in English, steering uninformative — stated, not spun. Held-out numbers only; weights + browser public.",
+    role: "Design, implementation, evaluation",
+    stack: ["Python", "PyTorch", "SAELens", "llm-jp", "Tatoeba", "Hugging Face", "GitHub Actions"],
+    link: "https://github.com/raihan-js/sae-bilingual",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/sae-bilingual" },
+    ],
+  },
+  {
     id: "vetr",
     group: "product",
     name: "VETR Proposal",
