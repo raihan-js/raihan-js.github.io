@@ -813,7 +813,36 @@ function saebilingual() {
   });
 }
 
-export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans, akusento, koebridge, "kotoba-tutor": kotobatutor, "sae-bilingual": saebilingual };
+// Source: serve-bench/results/summary.json (RTX 3060, c64 x 256-out stress).
+function servebench() {
+  const cfgs = ["seqs32", "seqs128", "llm-jp"];
+  const ttft = [8.287, 0.432, 0.119];
+  const x0 = 120;
+  const x1 = 330;
+  const sx = (v) => x0 + (Math.log10(v + 0.01) + 2) / (1 - 0 + 2) * (x1 - x0);
+  let body = text(16, 44, "TTFT p50 under stress, s (log scale)", { size: 10, weight: 600, fill: INK });
+  [0.1, 1.0, 10.0].forEach((v) => {
+    body += line(sx(v), 50, sx(v), 150, RULE) + text(sx(v), 162, v.toFixed(1) + "s", { size: 10, anchor: "middle", fill: INK2 });
+  });
+  cfgs.forEach((t, j) => {
+    const y = 58 + j * 32;
+    body += text(16, y + 11, t, { size: 10.5, weight: 600, fill: INK });
+    body += hbar(x0 + 1, y, Math.max(sx(ttft[j]) - x0 - 1, 2), 14, j === 0 ? S1 : S3, 3)
+      + text(sx(ttft[j]) + 5, y + 11, ttft[j].toFixed(3) + "s", { size: 10, weight: 600, fill: INK });
+  });
+  body += text(16, 182, "19x on one knob (seqs); llm-jp 3.6x faster than Swallow", { size: 10, fill: INK2 });
+  body += text(16, 198, "temp-0 drift: 10/50 same-server (reasoning model)", { size: 10, fill: INK2 });
+  return frame({
+    headline: "One knob, 19x latency: 8.3s vs 0.4s",
+    sub: "TTFT p50 under stress by server config, single RTX 3060",
+    footer: ["Gentle loads show zero difference — stress arm mandatory.", "Quality probe per config; drift is exact-hash match."],
+    body,
+    alt: "Serve-bench: time to first token under stress is 8.287 seconds at max-num-seqs 32, 0.432 at 128, 0.119 for llm-jp",
+    desc: "Serving knob comparison under c64 x 256-token stress. max-num-seqs 32 vs 128: 8.287s vs 0.432s TTFT p50. llm-jp-1.8B: 0.119s. Temp-0 determinism fails on the reasoning model (10/50 back-to-back diffs).",
+  });
+}
+
+export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans, akusento, koebridge, "kotoba-tutor": kotobatutor, "sae-bilingual": saebilingual, "serve-bench": servebench };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];

@@ -487,6 +487,23 @@ export const PROJECTS = [
     ],
   },
   {
+    id: "serve-bench",
+    group: "research",
+    chart: "serve-bench",
+    name: "Serve-Bench",
+    kind: "LLMOps · vLLM Serving",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Single-GPU vLLM serving benchmark with per-config quality probes (client-only harness, Poisson + fixed loads, TTFT/TPOT, output-hash drift). max-num-seqs 32 vs 128: identical when gentle, 19x TTFT gap under stress (8.3s vs 0.4s) — config comparisons require a stress arm. llm-jp-1.8B serves 3.6x faster than Swallow-8B. temp-0 determinism fails on the reasoning model (10/50 back-to-back diffs, verified same-server) while llm-jp is deterministic.",
+    role: "Design, implementation, evaluation",
+    stack: ["Python", "vLLM", "asyncio", "Hugging Face", "GitHub Actions"],
+    link: "https://github.com/raihan-js/serve-bench",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/serve-bench-eval" },
+    ],
+  },
+  {
     id: "vetr",
     group: "product",
     name: "VETR Proposal",
