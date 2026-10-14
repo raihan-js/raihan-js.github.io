@@ -309,6 +309,7 @@ export const PROJECTS = [
     stack: ["Python", "PyTorch", "LeRobot", "ACT", "gym-pusht"],
     link: "https://github.com/raihan-js/demodoctor",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/demodoctor-bad-robot-demonstrations-are-detectable-do-they-matter-548p" },
     ],
   },
   {
