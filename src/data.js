@@ -326,6 +326,7 @@ export const PROJECTS = [
     stack: ["Python", "PyTorch", "Qwen2.5-VL", "PEFT / QLoRA", "PaddleOCR", "FastAPI"],
     link: "https://github.com/raihan-js/invoice-check-jp",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/invoice-check-jp-a-3b-model-reads-the-invoice-checks-decide-whether-to-trust-it-39mf" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/invoice-check-jp" },
       { label: "HF adapter", href: "https://huggingface.co/raihan-js/invoice-check-jp-qwen2.5-vl-3b-lora" },
     ],
