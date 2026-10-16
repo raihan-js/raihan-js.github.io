@@ -345,6 +345,7 @@ export const PROJECTS = [
     stack: ["Python", "LangGraph", "LangSmith", "PostgreSQL", "FastAPI", "GitHub Actions"],
     link: "https://github.com/raihan-js/keiri-agent",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/po-matching-looked-like-it-halved-unsafe-invoice-approvals-until-i-checked-why-1hj8" },
     ],
   },
   {
