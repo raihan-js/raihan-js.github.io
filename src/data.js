@@ -362,6 +362,7 @@ export const PROJECTS = [
     stack: ["Python", "LangGraph", "LangSmith", "llama.cpp", "Qwen3.5", "GitHub Actions"],
     link: "https://github.com/raihan-js/agent-shootout",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/i-pre-registered-a-four-way-langgraph-shootout-plan-and-execute-cost-23x-and-bought-nothing-i-3k25" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/agent-shootout" },
     ],
   },
