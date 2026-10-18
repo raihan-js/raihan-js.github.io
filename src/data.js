@@ -400,6 +400,7 @@ export const PROJECTS = [
     stack: ["Python", "PyTorch", "EasyEdit", "FAISS", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/edit-rag-graph",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/edit-the-weights-retrieve-the-fact-or-look-it-up-in-a-graph-22dk" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/editbench-3way" },
     ],
   },
