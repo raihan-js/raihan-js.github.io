@@ -418,6 +418,7 @@ export const PROJECTS = [
     stack: ["Python", "scipy", "PyPI", "Ollama", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/fewhumans",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/your-llm-judge-is-lying-to-you-a-little-1lke" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/fewhumans-judgebank" },
       { label: "PyPI", href: "https://pypi.org/project/fewhumans/" },
     ],
