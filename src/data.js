@@ -455,6 +455,7 @@ export const PROJECTS = [
     stack: ["Python", "PyTorch", "Whisper", "MarianMT", "Qwen", "Kokoro", "FLEURS", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/koe-bridge",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/the-verb-comes-last-measuring-why-japanese-english-live-translation-waits-559f" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/koe-bridge-eval" },
     ],
   },
