@@ -842,7 +842,37 @@ function servebench() {
   });
 }
 
-export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans, akusento, koebridge, "kotoba-tutor": kotobatutor, "sae-bilingual": saebilingual, "serve-bench": servebench };
+// Source: asof-rag/results/retrieval_scores.json (n=1000 frozen items).
+function asofrag() {
+  const arms = ["naive", "range", "graph", "sql"];
+  const rec = [0.697, 0.717, 0.838, 0.985];
+  const leak = [0.80, 0.654, 0.0, 0.834];
+  const x0 = 120;
+  const x1 = 330;
+  const sx = (v) => x0 + v * (x1 - x0);
+  let body = text(16, 44, "Recall@5 (green) vs leakage (red) per arm", { size: 10, weight: 600, fill: INK });
+  [0, 0.5, 1.0].forEach((v) => {
+    body += line(sx(v), 50, sx(v), 158, RULE) + text(sx(v), 170, v.toFixed(1), { size: 10, anchor: "middle", fill: INK2 });
+  });
+  arms.forEach((t, j) => {
+    const y = 56 + j * 26;
+    body += text(16, y + 11, t, { size: 10.5, fill: INK });
+    body += hbar(x0 + 1, y, Math.max(sx(rec[j]) - x0 - 1, 2), 8, S3, 2);
+    body += hbar(x0 + 1, y + 9, Math.max(sx(leak[j]) - x0 - 1, 2), 8, S1, 2);
+  });
+  body += text(16, 182, "Green = recall; red = leakage. Graph kills leakage.", { size: 10, fill: INK2 });
+  body += text(16, 198, "Material leakage: 0.32 / 0.28 / 0.00 / 0.66", { size: 10, fill: INK2 });
+  return frame({
+    headline: "Date handling: leakage 0.80 to 0.00",
+    sub: "Recall vs version-leakage per RAG design, 1000 as-of questions",
+    footer: ["sql-first recalls everything incl. wrong versions.", "1.8B generator echoes; synthesis ~0 all arms."],
+    body,
+    alt: "Asof-rag: recall at 5 from 0.70 to 0.99 across arms while leakage drops from 0.80 to 0.00 with version handling",
+    desc: "Per-arm recall at 5 and version-leakage rate on 1000 frozen as-of questions over versioned FAR/DFARS. Naive 0.70/0.80, range 0.72/0.65, graph 0.84/0.00, sql-first 0.99/0.83.",
+  });
+}
+
+export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans, akusento, koebridge, "kotoba-tutor": kotobatutor, "sae-bilingual": saebilingual, "serve-bench": servebench, "asof-rag": asofrag };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];

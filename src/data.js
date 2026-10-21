@@ -512,6 +512,23 @@ export const PROJECTS = [
     ],
   },
   {
+    id: "asof-rag",
+    group: "research",
+    chart: "asof-rag",
+    name: "AsOf-RAG",
+    kind: "RAG · Temporal Correctness",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Time-correct RAG over nine yearly FAR/DFARS revisions (90k versions, bitemporal Postgres): plain hybrid RAG serves wrong-version answers 80% of the time (material 32%); version-graph handling fixes leakage to zero without hurting recall (0.84). 6,920 diff-generated questions, 1,000 frozen. A 1.8B generator echoes evidence (synthesis ~0, echo-stripped) — stated, not hidden. Cache without date leaks 49/50.",
+    role: "Design, implementation, evaluation",
+    stack: ["Python", "PostgreSQL", "pgvector", "BM25", "vLLM", "FastAPI", "Hugging Face", "GitHub Actions"],
+    link: "https://github.com/raihan-js/asof-rag",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/asof-rag-bench" },
+    ],
+  },
+  {
     id: "vetr",
     group: "product",
     name: "VETR Proposal",
