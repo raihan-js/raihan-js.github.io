@@ -473,6 +473,7 @@ export const PROJECTS = [
     stack: ["Python", "LangGraph", "vLLM", "Qwen Swallow", "faster-whisper", "LangSmith", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/kotoba-tutor",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/my-japanese-tutor-agent-works-except-its-brain-calls-everything-a-particle-3ohj" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/kotoba-tutor-eval" },
     ],
   },
