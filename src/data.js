@@ -491,6 +491,7 @@ export const PROJECTS = [
     stack: ["Python", "PyTorch", "SAELens", "llm-jp", "Tatoeba", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/sae-bilingual",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/do-japanese-and-english-share-neurons-i-trained-the-microscope-to-check-o38" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/sae-bilingual" },
     ],
   },
