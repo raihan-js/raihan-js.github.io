@@ -509,6 +509,7 @@ export const PROJECTS = [
     stack: ["Python", "vLLM", "asyncio", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/serve-bench",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/one-knob-19x-latency-what-i-learned-benchmarking-vllm-on-a-single-gpu-14bh" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/serve-bench-eval" },
     ],
   },
