@@ -872,7 +872,37 @@ function asofrag() {
   });
 }
 
-export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans, akusento, koebridge, "kotoba-tutor": kotobatutor, "sae-bilingual": saebilingual, "serve-bench": servebench, "asof-rag": asofrag };
+// Source: clausegym/results/leakage_ladder.json (500 frozen explicit-date items).
+function clausegym() {
+  const arms = ["naive", "range", "graph", "sql"];
+  const leak = [0.802, 0.522, 0.0, 0.0];
+  const vacc = [0.106, 0.172, 0.332, 1.0];
+  const x0 = 120;
+  const x1 = 330;
+  const sx = (v) => x0 + v * (x1 - x0);
+  let body = text(16, 44, "Top-1 leakage (red) vs version-acc@5 (green) per arm", { size: 10, weight: 600, fill: INK });
+  [0, 0.5, 1.0].forEach((v) => {
+    body += line(sx(v), 50, sx(v), 158, RULE) + text(sx(v), 170, v.toFixed(1), { size: 10, anchor: "middle", fill: INK2 });
+  });
+  arms.forEach((t, j) => {
+    const y = 56 + j * 26;
+    body += text(16, y + 11, t, { size: 10.5, fill: INK });
+    body += hbar(x0 + 1, y, Math.max(sx(leak[j]) - x0 - 1, 2), 8, S1, 2);
+    body += hbar(x0 + 1, y + 9, Math.max(sx(vacc[j]) - x0 - 1, 2), 8, S3, 2);
+  });
+  body += text(16, 182, "Red = leakage; green = version accuracy. Pinning kills leakage.", { size: 10, fill: INK2 });
+  body += text(16, 198, "Strict pinning breaks change questions (both-sides 0.00).", { size: 10, fill: INK2 });
+  return frame({
+    headline: "Version leakage: 0.80 to 0.00",
+    sub: "Leakage vs version-accuracy per arm, 500 frozen as-of questions",
+    footer: ["sql is an oracle ceiling, not a retriever.", "No generator trained; retrieval-only numbers."],
+    body,
+    alt: "Clausegym: top-1 leakage from 0.80 to 0.00 across arms while version accuracy at 5 rises from 0.11 to 1.00",
+    desc: "Per-arm top-1 version leakage and version-accuracy at 5 on 500 frozen as-of questions over versioned FAR/DFARS. Naive 0.80/0.11, range 0.52/0.17, graph 0.00/0.33, oracle sql 0.00/1.00.",
+  });
+}
+
+export const CHARTS = { flipgate,"graphproof-qa": graphproof, "fedproc-constrained": fedproc, oraclebench, shiftwatch, "tiny-bilingual-retriever": tiny, "jacite-bench": jacite, "vocab-tax": vocab, "roofline-decoding": roofline, demodoctor, "invoice-check-jp": invoicecheck, "keiri-agent": keiriagent, "agent-shootout": agentshootout, "fedproc-ledger": fedprocledger, "edit-rag-graph": editbench, fewhumans, akusento, koebridge, "kotoba-tutor": kotobatutor, "sae-bilingual": saebilingual, "serve-bench": servebench, "asof-rag": asofrag, clausegym };
 
 export function chartSvg(id) {
   const fn = CHARTS[id];

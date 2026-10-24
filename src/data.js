@@ -532,6 +532,23 @@ export const PROJECTS = [
     ],
   },
   {
+    id: "clausegym",
+    group: "research",
+    chart: "clausegym",
+    name: "ClauseGym",
+    kind: "RAG · Temporal Correctness",
+    year: "2026",
+    status: "Published",
+    summary:
+      "Versioned-compliance RAG benchmark over nine yearly FAR/DFARS revisions (227k chunks, bitemporal Postgres): dateless hybrid RAG answers explicit-date questions from the wrong year 80% of the time at top-1; year-pinning drives leakage to zero but breaks change questions needing two versions (both-sides 0.00) — stated, not hidden. 700 frozen questions, rule-based scoring, no LLM judge. RL loop scaffolded, no generator trained yet.",
+    role: "Design, implementation, evaluation",
+    stack: ["Python", "PostgreSQL", "pgvector", "BM25", "Hugging Face", "GitHub Actions"],
+    link: "https://github.com/raihan-js/clausegym",
+    links: [
+      { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/clausegym-bench" },
+    ],
+  },
+  {
     id: "vetr",
     group: "product",
     name: "VETR Proposal",
