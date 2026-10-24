@@ -527,6 +527,7 @@ export const PROJECTS = [
     stack: ["Python", "PostgreSQL", "pgvector", "BM25", "vLLM", "FastAPI", "Hugging Face", "GitHub Actions"],
     link: "https://github.com/raihan-js/asof-rag",
     links: [
+      { label: "writeup", href: "https://dev.to/raihan-js/correct-cited-and-two-years-out-of-date-measuring-version-leakage-in-rag-5cdk" },
       { label: "HF dataset", href: "https://huggingface.co/datasets/raihan-js/asof-rag-bench" },
     ],
   },
